@@ -41,14 +41,9 @@ class ScheduleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request , Schedule $schedule , Plan $plan)
+    public function store(ScheduleRequest $request , Schedule $schedule , Plan $plan)
     {
-        $request->validate([
-            'event_category'=>'required',
-            'start_time'=>'required',
-            'end_time'=>'required',
-         
-        ]);
+      
     //dd($request);
        $schedule -> event_category = $request-> input('event_category');
        $schedule->start_time =$request-> input('start_time');
@@ -60,6 +55,16 @@ class ScheduleController extends Controller
        $schedule->end_place =$request-> input('end_place');
        $schedule->item =$request-> input('item');
        $schedule->way =$request-> input('way');
+    /**アップロードされたファイル（name="image"）を
+     * storage/app/samplesフォルダに保存し、戻り値（ファイルパス）を
+     * 変数$image_pathに代入する*/
+       $image_path = $request->file('image')->store('samples');
+    /**ファイルパスからファイル名のみを取得し、
+     * Sampleインスタンスのimage_nameプロパティに代入する*/
+      
+
+       $sample->image_name = basename($image_path);
+
        $schedule->user_id = Auth::id();
        $schedule->plan_id = $plan->id;
        $schedule->save();
@@ -120,6 +125,7 @@ class ScheduleController extends Controller
         return back();
     }
     
+  
     public function update_password(Request $request)
     {
         $validatedData = $request->validate([

@@ -49,43 +49,17 @@ function searchChange() {
       if (id == "曖昧") {
           document.getElementById('keyword').style.display = "";
           document.getElementById('vacancy').style.display = "none";
-          /*document.getElementById('facility').style.display = "none";*/
           document.getElementById('lank').style.display = "none";
       } else if (id == '空室') {
           document.getElementById('keyword').style.display = "none";
           document.getElementById('vacancy').style.display = "";
-         /* document.getElementById('facility').style.display = "none";*/
           document.getElementById('lank').style.display = "none";
       }  else if (id == 'ランキング') {
           document.getElementById('keyword').style.display = "none";
           document.getElementById('vacancy').style.display = "none";
-          /*document.getElementById('facility').style.display = "none";*/
           document.getElementById('lank').style.display = "";
-      }/**else if (id == '施設') {
-          document.getElementById('keyword').style.display = "none";
-          document.getElementById('vacancy').style.display = "none";
-          document.getElementById('facility').style.display = "";
-          document.getElementById('lank').style.display = "none";
-      }**/
-  }
-}
-
-window.onload = function () {
-  searchChange();
-
-  // ページ読み込み時にクッキーを取得して適用
-  document.addEventListener('DOMContentLoaded', function () {
-      var searchValue = getCookie("searchValue");
-      if (searchValue) {
-          document.getElementById('search').value = searchValue;
-          searchChange(); // セレクトボックスの初期状態を設定
       }
-  });
-
-  // クッキーを取得する関数
-  function getCookie(name) {
-      var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-      if (match) return match[2];
   }
-};
+  window.onload = searchChange;
+}
 
