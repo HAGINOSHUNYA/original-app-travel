@@ -36,10 +36,10 @@ Route::controller(UserController::class)->group(function () {
 
 //プラン関係
 Route::controller(PlanController::class)->group(function(){
-    Route::get('users/plan/index', 'index')->name('plan.index');
-    Route::post('users/mypage', 'store')->name('mypage.store');//plan新規作成機能
-    Route::put('users/plan/index', 'update')->name('mypage.update');//plan更新
-    Route::delete('users/plan/index', 'destroy')->name('mypage.delete');//plan削除
+    Route::get('users/plan/index', 'index')->name('plan.index')->middleware('auth');
+    Route::post('users/mypage', 'store')->name('mypage.store')->middleware('auth');//plan新規作成機能
+    Route::put('users/plan/index', 'update')->name('mypage.update')->middleware('auth');//plan更新
+    Route::delete('users/plan/index', 'destroy')->name('mypage.delete')->middleware('auth');//plan削除
 
 })->middleware('auth');
 
@@ -47,11 +47,12 @@ Route::controller(PlanController::class)->group(function(){
 //スケジュール関係
 Route::controller(ScheduleController::class)->group(function(){
     Route::get('mypage/schedule/{plan}/index', 'index')->name('schedule')->middleware('auth');
-    Route::get('mypage/{schedule}/show', 'show')->name('schedule_show')->middleware('auth');
-    Route::get('mypage/schedule/{plan}/create', 'create')->name('schedule_create');
-    Route::post('mypage/schedule/{plan}', 'store')->name('schedule_store');
-    Route::get('mypage/{schedule}/favorite','favorite')->name('favorite');
-})->middleware('auth');
+    Route::get('mypage/{schedule}/{plan}/show', 'show')->name('schedule_show')->middleware('auth');
+    Route::get('mypage/schedule/{plan}/create', 'create')->name('schedule_create')->middleware('auth');
+    Route::post('mypage/schedule/{plan}', 'store')->name('schedule_store')->middleware('auth');
+    Route::post('mypage/schedule/updata', 'updata')->name('schedule_updata')->middleware('auth');
+    Route::get('mypage/{schedule}/favorite','favorite')->name('favorite')->middleware('auth');
+});
 //Route::resource('goals.todos', TodoController::class)->only(['store', 'update', 'destroy'])->middleware('auth');
 
 //トップページ関係

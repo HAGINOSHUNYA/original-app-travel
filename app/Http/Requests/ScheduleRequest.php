@@ -28,6 +28,7 @@ class ScheduleRequest extends FormRequest
             'event_category'=>'required',
             'start_time'=>'required',
             'end_time'=>'required',
+            'image' => 'image|max:2048'
          
         ];
     }

@@ -1,7 +1,7 @@
  
 <!--観光の場合開始-->
-<div id="travel" style="display:none">
-<form action="{{route('schedule_store',$plan)}}" method="post" enctype="multipart/form-data">
+<div id="travel">
+<form action="{{route('schedule_updata')}}" method="post">
 @csrf
 <input type="hidden" name="event_category" value="観光">
 <select name="way" id="way" class="form-control">
@@ -26,8 +26,7 @@
 <input type="time" class="form-control" name="end_time">到着時刻
 <br>
 <label>画像</label>
-<input type="file" name="image">
-
+<input type="file" name="image" class="form-control" value="{{$schedule->image_name}}">
 <label for="switch" class="switch_label"  onchange="ball();">
   <div class="switch">
     <input type="checkbox" id="switch" name="recommend_flag" {{ old('recommend_flag', false) ? 'checked' : '' }}/>
@@ -36,8 +35,9 @@
   </div>
   <span class="title">おすすめ非公開</span>
 </label>
-
+<br>
 <input type="submit" name="submit" value="送信"  class="btn btn-primary"/>
 </form>
+
 </div>
 <!--観光の場合終了-->

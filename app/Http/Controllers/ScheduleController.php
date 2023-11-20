@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;//ファサード利用
 use App\Models\User;
 use App\Models\Plan;
+use App\Http\Requests\ScheduleRequest;
 
 class ScheduleController extends Controller
 {
@@ -41,7 +42,7 @@ class ScheduleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ScheduleRequest $request , Schedule $schedule , Plan $plan)
+    public function store(ScheduleRequest $request , Schedule $schedule, Plan $plan)
     {
       
     //dd($request);
@@ -55,15 +56,17 @@ class ScheduleController extends Controller
        $schedule->end_place =$request-> input('end_place');
        $schedule->item =$request-> input('item');
        $schedule->way =$request-> input('way');
-    /**アップロードされたファイル（name="image"）を
-     * storage/app/samplesフォルダに保存し、戻り値（ファイルパス）を
-     * 変数$image_pathに代入する*/
-       $image_path = $request->file('image')->store('samples');
-    /**ファイルパスからファイル名のみを取得し、
-     * Sampleインスタンスのimage_nameプロパティに代入する*/
-      
 
-       $sample->image_name = basename($image_path);
+        // アップロードされたファイル（name="image"）が存在すれば処理を実行する
+        if ($request->hasFile('image')) {
+        // アップロードされたファイル（name="image"）をstorage/app/public/productsフォルダに保存し、戻り値（ファイルパス）を変数$image_pathに代入する
+        $image_path = $request->file('image')->store('public/img');
+        // ファイルパスからファイル名のみを取得し、Productインスタンスのimage_nameプロパティに代入する
+        $schedule->image_name = basename($image_path);
+        }
+
+        $schedule->recommend_flag = $request->has('recommend_flag') ? true : false;
+
 
        $schedule->user_id = Auth::id();
        $schedule->plan_id = $plan->id;
@@ -78,10 +81,11 @@ class ScheduleController extends Controller
      * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function show(Plan $plan,Schedule $schedule)
+    public function show(Schedule $schedule ,Plan $plan)
     {
-        //
-        return view('schedule.show',compact('plan','schedule'));
+       
+        // $schedules = Schedule::where('plan_id', $plan->id)->get();
+        return view('schedule.show',compact('schedule','plan'));
     }
 
     /**
@@ -102,9 +106,36 @@ class ScheduleController extends Controller
      * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Schedule $schedule)
+    public function updata(Request $request, Schedule $schedule, Plan $plan)
     {
-        //
+        dd($request);
+        $schedule->event_category = $request->input('event_category');
+        $schedule->start_time = $request->input('start_time');
+        $schedule->end_time = $request->input('end_time');
+        $schedule->required_time = $request->input('required_time');
+        $schedule->place = $request->input('reservation');
+        $schedule->cost = $request->input('cost');
+        $schedule->start_place = $request->input('start_place');
+        $schedule->end_place = $request->input('end_place');
+        $schedule->item = $request->input('item');
+        $schedule->way = $request->input('way');
+
+        // アップロードされたファイル（name="image"）が存在すれば処理を実行する
+        if ($request->hasFile('image')) {
+        // アップロードされたファイル（name="image"）をstorage/app/public/productsフォルダに保存し、戻り値（ファイルパス）を変数$image_pathに代入する
+        $image_path = $request->file('image')->store('public/img');
+        // ファイルパスからファイル名のみを取得し、Productインスタンスのimage_nameプロパティに代入する
+        $schedule->image_name = basename($image_path);
+        }
+
+        $schedule->recommend_flag = $request->has('recommend_flag') ? true : false;
+
+        $schedule->user_id = Auth::id();
+        $schedule->plan_id = $plan->id;
+       
+        $schedule->save();
+
+    return redirect()->route('schedule_show', compact('schedule', 'plan'));
     }
 
     /**

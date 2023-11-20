@@ -33,7 +33,7 @@ function viewChange(){
 window.onload = viewChange;
 }
 function ball(){
-const checkbox = document.getElementById('switch');
+const checkbox = document.getElementById('switching');
 checkbox.addEventListener('click', () => {
   const title = document.querySelector('.title');
   title.textContent = checkbox.checked ? 'おすすめ公開' : 'おすすめ非公開';
