@@ -2,15 +2,54 @@
 
 @section('content')
 <div class="container text-center">
-  
+  <div class="row">
+      <div class="col-2">
+        <img src="{{ asset('img/no_img.jpg')}}" class="user_icon">
+        <br>
+          
+        
+          {{ Auth::user()->name }}<br>
+          {{ Auth::user()->address }}
+      </div>
+      <div class="col-10">
+        <div id="user_comment">
+          @if(Auth::user()->comment != null)
+            {{ Auth::user()->comment }}
+          @else
+            コメント入力
+          @endif
+         
+         
+         <br>
+         @include('modals.user_edit') 
+         <!-- Button trigger modal -->
+          
+
+        </div>
+        <div class="text-end">
+          <button type="button" class="btn btn-primary text-end" data-bs-toggle="modal" data-bs-target="#user_edit">
+          更新する
+          </button>
+        </div>
+      </div>
+  </div>
+</div>
+  {{--@if ($recently_product->image !== "")もしimageがnullではなかったら
+        <img src="#" class="img-thumbnail">
+      @else
+        <img src="{{ asset('img/no_img.jpg')}}" class="img-thumbnail">
+      @endif
+    --}}
 
   
+  <div class="container text-center">
+
 
   <div class="row">
      <!--新規作成のモーダル呼び出し部分開始-->
      @include('modals.create_plan')  
              <a href="#" class="link-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#addPlanModal">
-                     <span class="fs-5 fw-bold">＋</span>&nbsp;新規作成
+                     <i class="fa-solid fa-plus">新規作成</i>
              </a>          
       <!--新規作成のモーダル呼び出し部分終了-->     
   </div>

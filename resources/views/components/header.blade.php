@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light shadow-sm samuraimart-header-container">
-   <div class="container">
-     <a class="navbar-brand" href="{{ url('/') }}">
+   <div class="container text-center">
+     <a class="navbar-brand" href="{{ route('index') }}">
       <!--ロゴクリックのリンク-->
        <img src = "{{asset('img/logo.jpg')}}" width="40" heigth="40">
      </a>
@@ -21,40 +21,51 @@
      </button>
  
      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-       <!-- Right Side Of Navbar -->
-       <ul class="navbar-nav ms-auto mr-5 mt-2">
-         <!-- Authentication Links -->
-         <!-- ログインしていないときの表示開始-->
-         @guest
-         <li class="nav-item mr-5">
-           <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-         </li>
-         <li class="nav-item mr-5">
-           <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-         </li>
-         <hr>
-         <li class="nav-item mr-5">
-           <a class="nav-link" href="{{ route('login') }}"><i class="far fa-heart"></i></a>
-         </li>
-         <li class="nav-item mr-5">
-           <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-shopping-cart"></i></a>
-         </li>
-         <!-- ログインしていないときの表示終了-->
-         <!-- ログインしているときの表示開始-->
-         @else
-         <li class="nav-item mr-5">
-          <a href="{{route('mypage')}}" >マイページ</a>
-           <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-             ログアウト
-           </a>
- 
-           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-             @csrf
-           </form>
-         </li>
-         @endguest
-          <!-- ログインしているときの表示終了-->
-       </ul>
-     </div>
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav me-auto">
+
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ms-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
+
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                             {{ Auth::user()->name }}
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{route('mypage')}}">マイページ</a></li>
+                                <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+   
+                             </ul>
+                        </div>
+
+                          
+                            
+                        @endguest
+                    </ul>
+                </div>
    </div>
  </nav>

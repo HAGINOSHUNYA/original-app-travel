@@ -12,9 +12,9 @@ use App\Notifications\CustomResetPassword;//pwリセットメールとユーザ�
 use Overtrue\LaravelFavorite\Traits\Favoriter;//お気に入り
 
 
-class User extends Authenticatable 
+class User extends Authenticatable implements MustVerifyEmail//メール送信
 
-implements MustVerifyEmail
+
 {
     use HasApiTokens, HasFactory, Notifiable, Favoriter;//お気に入り
 
@@ -38,7 +38,8 @@ implements MustVerifyEmail
         'email',
         'password',
         'postal_code',
-        'address'
+        'address',
+        'comment'
     ];
 
     /**

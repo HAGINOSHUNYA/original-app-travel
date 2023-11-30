@@ -149,7 +149,7 @@ class ScheduleController extends Controller
         //
     }
 
-    public function favorite(Schedule $schedule)//お気に入り
+    public function favorite(Schedule $schedule)//お気に入り追加機能
     {
         Auth::user()->togglefavorite($schedule);
 

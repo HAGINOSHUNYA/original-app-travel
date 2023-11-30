@@ -63,7 +63,80 @@ input:checked ~ .circle {
   height:  300px;             /* 高さ指定 */
   width: 50%;                 /* 幅指定 */
 }
+.wrapper {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.main {
+  width: calc(100% - 300px);
+}
+.sidebar {
+  width: 280px;
+}
+.widget + .widget {
+  margin-top: 20px;
+}
+.widget--sticky {
+  position: sticky;
+  top: 20px;
+}
+.user_icon{
+  border-radius: 50%;
+  width: 50%;
+  height: 50%;
+}
+#user_comment {
+  position: relative;
+  display: flex;
+  margin: 1.5em 0 1.5em 15px;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #e0edff;
+}
 
+#user_comment:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  margin-top: -15px;
+  border: 15px solid transparent;
+  border-right: 15px solid #e0edff;
+}
 
+#user_comment p {
+  margin: 0;
+  padding: 0;
+}
 
+body {
+  margin: 0;
+  padding: 0;
+}
+#header {
+  box-sizing: border-box;
+  background: #ccc;
+  height: 50px;
+}
+#main {
+  box-sizing: border-box;
+  margin-left: 220px;
+  padding: 20px 40px;
+}
+#sub {
+  box-sizing: border-box;
+  top: 50px;
+  height: 100%;
+  width: 220px;
+  position: fixed;
+  overflow: auto;
+  background: #eee;
+  padding: 20px;
+}
 	

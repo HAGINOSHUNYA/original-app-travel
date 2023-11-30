@@ -10,7 +10,7 @@
          <div class="row">
              @foreach ($favorites as $fav)
                  <div class="col-md-10">
-                     <a href="{{route('schedule_show', $fav->favoriteable_id)}}" class="w-25">
+                     <a href="{{route('schedule_show', ['schedule' => $fav->favoriteable_id, 'plan' => App\Models\Schedule::find($fav->favoriteable_id)->plan_id])}}" class="w-25">
                         詳細
                      </a>
                      

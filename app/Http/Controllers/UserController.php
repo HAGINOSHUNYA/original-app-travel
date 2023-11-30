@@ -48,7 +48,7 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function user_update(Request $request, User $user)
+    public function user_update(Request $request, User $user)//情報変更機能
     {
         //
         $user = Auth::user();
@@ -57,6 +57,7 @@ class UserController extends Controller
         $user->email = $request->input('email') ? $request->input('email') : $user->email;
         $user->postal_code = $request->input('postal_code') ? $request->input('postal_code') : $user->postal_code;
         $user->address = $request->input('address') ? $request->input('address') : $user->address;
+        $user->comment = $request->input('comment') ? $request->input('comment') : $user->comment;
         $user->update();
        
 
@@ -105,7 +106,7 @@ class UserController extends Controller
      {
          $user = Auth::user();
  
-         $favorites = $user->favorites(Product::class)->get();
+         $favorites = $user->favorites(Schedule::class)->get();
  
          return view('users.favorite', compact('favorites'));
      }
