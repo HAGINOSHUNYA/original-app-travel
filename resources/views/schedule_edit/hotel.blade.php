@@ -1,6 +1,6 @@
 <!--宿泊の場合開始-->
 <div id="hotel">
-<form action="{{route('schedule_updata')}}" method="post">
+<form action="{{route('schedule_update')}}" method="post">
 @csrf
 <input type="hidden" name="event_category" value="宿泊">
 <a href="{{route('rakuten.index')}}">ホテル検索</a>

@@ -58,6 +58,14 @@ class UserController extends Controller
         $user->postal_code = $request->input('postal_code') ? $request->input('postal_code') : $user->postal_code;
         $user->address = $request->input('address') ? $request->input('address') : $user->address;
         $user->comment = $request->input('comment') ? $request->input('comment') : $user->comment;
+        // アップロードされたファイル（name="image"）が存在すれば処理を実行する
+        if ($request->hasFile('image')) {
+            // アップロードされたファイル（name="image"）をstorage/app/public/productsフォルダに保存し、戻り値（ファイルパス）を変数$image_pathに代入する
+            $image_path = $request->file('image')->store('public/img');
+            // ファイルパスからファイル名のみを取得し、Productインスタンスのimage_nameプロパティに代入する
+            $schedule->image_name = basename($image_path);
+            }
+        $user->comment = $request->input('') ? $request->input('comment') : $user->comment;
         $user->update();
        
 

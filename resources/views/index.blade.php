@@ -2,9 +2,7 @@
 
 @section('content')
 <main id="main">
-@include('index.recentiy_carousel')
-@include('index.recentiy_card')
-@include('index.favorite_carousel')
+
 </main>
 
 <aside id="sub">

@@ -1,6 +1,6 @@
 <!--食事の場合開始-->
 <div id="eat">
-<form action="{{route('schedule_updata')}}" method="post">
+<form action="{{route('schedule_update')}}" method="post">
 @csrf
 <select name="way" id="way" class="form-control">
  <option>{{$schedule->way}}</option>

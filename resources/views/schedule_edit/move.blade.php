@@ -1,6 +1,6 @@
 <!--移動の場合開始-->
 <div id="move" >
- <form action="{{ route('schedule_updata') }}" method="post" enctype="multipart/form-data">
+ <form action="{{ route('schedule_updata', ['schedule' => $schedule, 'plan' => $plan]) }}" method="post" enctype="multipart/form-data">
       @csrf
       <input type="hidden" name="event_category" value="移動">
       

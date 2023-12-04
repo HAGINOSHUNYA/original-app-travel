@@ -106,9 +106,9 @@ class ScheduleController extends Controller
      * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function updata(Request $request, Schedule $schedule, Plan $plan)
+    public function update(Request $request, Schedule $schedule, Plan $plan)
     {
-        dd($request);
+       
         $schedule->event_category = $request->input('event_category');
         $schedule->start_time = $request->input('start_time');
         $schedule->end_time = $request->input('end_time');

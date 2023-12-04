@@ -1,7 +1,7 @@
  
 <!--観光の場合開始-->
 <div id="travel">
-<form action="{{route('schedule_updata')}}" method="post">
+<form action="{{route('schedule_update')}}" method="post">
 @csrf
 <input type="hidden" name="event_category" value="観光">
 <select name="way" id="way" class="form-control">

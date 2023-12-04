@@ -3,7 +3,39 @@
 
 @section('content') 
      
-  
+<main id="main">
+
+</main>
+
+<aside id="sub">
+  <h2>Menu</h2>
+  <ul>
+    <li>Subject</li>
+    <li>Subject</li>
+    <li>Subject</li>
+    <li>Subject</li>
+    <li>Subject</li>
+  </ul>
+  <h2>Menu</h2>
+  <ul>
+    <li>Subject</li>
+    <li>Subject</li>
+    <li>Subject</li>
+    <li>Subject</li>
+    <li>Subject</li>
+  </ul>
+  <h2>Menu</h2>
+  <ul>
+    <li>Subject</li>
+    <li>Subject</li>
+    <li>Subject</li>
+    <li>Subject</li>
+    <li>Subject</li>
+  </ul>
+</aside>
+
+{{--
+
 <div class="col-2 sticky-top" class="navber">
 @foreach($posts as $post )
 <a href="#{{$post->hotel->rank}}">第{{$post->hotel->rank}}位:{{$post->hotel->hotelName}}</a><br>
@@ -57,7 +89,7 @@
 
 </div>
 
-
+--}}
 
 
 

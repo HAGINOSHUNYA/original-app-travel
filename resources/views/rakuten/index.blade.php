@@ -18,13 +18,14 @@
     
     @include('rakutenapi_search.lank')
     </div>
-   
+    
     
     
 
     
     
 </div>
-
+@include('rakutenapi_search.facility')
+   
 
 @endsection
