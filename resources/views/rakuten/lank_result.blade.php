@@ -34,7 +34,7 @@
   </ul>
 </aside>
 
-{{--
+
 
 <div class="col-2 sticky-top" class="navber">
 @foreach($posts as $post )
@@ -89,7 +89,7 @@
 
 </div>
 
---}}
+
 
 
 
