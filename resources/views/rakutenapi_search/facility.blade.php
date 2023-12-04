@@ -1,4 +1,4 @@
-<div id="facility" style="display:none">
+<div id="facility" >style="display:none"
 <form action="{{route('facility_api')}}">
     @csrf
     <!-- middleClass -->

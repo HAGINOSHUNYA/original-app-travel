@@ -11,6 +11,7 @@
     
     <div class="row">  
    
+  
 
     @include('rakutenapi_search.keyword')
     
@@ -18,14 +19,14 @@
     
     @include('rakutenapi_search.lank')
     </div>
-    
+      @include('rakutenapi_search.facility')
     
     
 
     
     
 </div>
-@include('rakutenapi_search.facility')
+
    
 
 @endsection

@@ -8,7 +8,7 @@ div{
   background-color: rgb(188, 227, 160);
 }
 img{
-  max-width: 100%;
+  width: auto;
   height: auto;
 }
 

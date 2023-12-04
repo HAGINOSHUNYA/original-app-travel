@@ -67,8 +67,8 @@ class HotelController extends Controller
            
 
             $url = "https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426?format=json&largeClassCode=japan&middleClassCode=" . $middleClassCode . "&smallClassCode=" . $smallClassCode . "&applicationId=" . $applicationId;
-dump($middleClassCode);
-dd($smallClassCode);
+//dump($middleClassCode);
+//dd($smallClassCode);
 
             //接続
             

@@ -36,7 +36,7 @@
 
 
 
-{{--
+
 <div class="wrapper">
   <main class="main">
     <h1>新着</h1>
@@ -51,7 +51,7 @@
     
     <div class="widget widget--sticky"><h1>サブ</h1><br><h1>サブ</h1><br><h1>サブ</h1><br><h1>サブ</h1><br><h1>サブ</h1><br><h1>サブ</h1><br></div>
   </aside>
-</div>--}}
+</div>
 @endsection
 <!--
 <div class="container">
