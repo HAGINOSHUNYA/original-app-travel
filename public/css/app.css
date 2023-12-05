@@ -70,14 +70,15 @@ input:checked ~ .circle {
   display: flex;
   justify-content: space-between;
 }
-.main {
-  width: calc(100% - 300px);
-}
+/**.main {
+  width: calc(100% - 200px);
+}**/
 .sidebar {
-  width: 280px;
+  width: 400px;
+  padding: 0px;
 }
 .widget + .widget {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .widget--sticky {
   position: sticky;

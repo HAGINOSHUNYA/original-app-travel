@@ -2,13 +2,14 @@
 
 @section('content')
 <main id="main">
+@include('index.recentiy_card')
 
 </main>
 
 <aside id="sub">
   <h2>Menu</h2>
   <ul>
-    <li>Subject</li>
+    <li><a href="{{route('rakuten.index')}}">ホテル検索</a></li>
     <li>Subject</li>
     <li>Subject</li>
     <li>Subject</li>
@@ -37,21 +38,7 @@
 
 
 
-<div class="wrapper">
-  <main class="main">
-    <h1>新着</h1>
-  @include('index.recentiy_card')
-   
-  </main>
-  
-  
-  
-  
-  <aside class="sidebar">
-    
-    <div class="widget widget--sticky"><h1>サブ</h1><br><h1>サブ</h1><br><h1>サブ</h1><br><h1>サブ</h1><br><h1>サブ</h1><br><h1>サブ</h1><br></div>
-  </aside>
-</div>
+
 @endsection
 <!--
 <div class="container">
