@@ -37,6 +37,7 @@
   <span class="title">おすすめ非公開</span>
 </label>
 
+
 <input type="submit" name="submit" value="送信"  class="btn btn-primary"/>
 </form>
 </div>

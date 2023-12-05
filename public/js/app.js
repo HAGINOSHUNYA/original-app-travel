@@ -32,15 +32,18 @@ function viewChange(){
   
 window.onload = viewChange;
 }
-function ball(){
-const checkbox = document.getElementById('switching');
-checkbox.addEventListener('click', () => {
-  const title = document.querySelector('.title');
-  title.textContent = checkbox.checked ? 'おすすめ公開' : 'おすすめ非公開';
-});
-window.onload = ball;
-}
-
+function ball() {
+    const checkbox = document.getElementById('switch');
+    const title = document.querySelector('.title');
+  
+    checkbox.addEventListener('click', () => {
+      title.textContent = checkbox.checked ? 'おすすめ公開' : 'おすすめ非公開';
+    });
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    ball();
+  });
 
 function searchChange() {
   if (document.getElementById('search')) {

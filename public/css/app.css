@@ -144,5 +144,36 @@ body {
  height: 50px;
  width: 50px;
 }
+/* === ON側のラジオボタンのラベル（標準） ================== */
+#makeImg #sample1on + label {
+  right: 50%;                 /* 右端を中央に変更   */
+  border-radius: 6px 0 0 6px;  /* 角丸(左側の上下)   */
+  background: #eee;            /* 背景               */
+  color: #666;                 /* 文字色             */
+  border-right: none;          /* 枠線の右側を消す   */
+}
 
+/* === ON側のラジオボタンのラベル（ONのとき） ============== */
+#makeImg #sample1on:checked + label {
+  /* 背景グラデーション */
+  background: linear-gradient(180deg, #00b359, #006633, #00b359);
+  color: #fff;                /* 文字色             */
+  text-shadow: 1px 1px 1px #333;  /* 文字に影を付ける   */
+}
 
+/* === OFF側のラジオボタンのラベル（標準） ================ */
+#makeImg #sample1off + label {
+  left: 50%;                  /* 左端を中央に変更   */
+  border-radius: 0 6px 6px 0;  /* 角丸(右側の上下)   */
+  background: #eee;            /* 背景               */
+  color: #666;                 /* 文字色             */
+  border-left: none;           /* 枠線の左側を消す   */
+}
+
+/* === OFF側のラジオボタンのラベル（OFFのとき） ============= */
+#makeImg #sample1off:checked + label {
+  /* 背景グラデーション */
+  background: linear-gradient(175deg, #ccc, #999, #ccc);
+  color: #fff;                /* 文字色             */
+  text-shadow: 1px 1px 1px #333;  /* 文字に影を付ける   */
+}
