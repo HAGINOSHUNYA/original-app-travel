@@ -1,8 +1,8 @@
 @extends('layouts.mypage')
 @section('content')
 
-<div class="container text-center">{{----}}
-@dump($plan)
+<div class="container text-center">
+{{--@dump($plan)--}}
  
  <select name="event_category" id="event_category"  for="event_category" class="form-control" onchange="viewChange();" style="display:"> 
   <option class="text-center">--- 何を ---</option>

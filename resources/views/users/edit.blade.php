@@ -45,7 +45,7 @@
  
                  <div class="form-group">
                      <div class="d-flex justify-content-between">
-                         <label for="postal_code" class="text-md-left samuraimart-edit-user-info-label">郵便番号</label>
+                         <label for="postal_code" class="text-md-left">郵便番号</label>
                      </div>
                      <div class="collapse show editUserPhone">
                          <input id="postal_code" type="text" class="form-control @error('postal_code') is-invalid @enderror" name="postal_code" value="{{ $user->postal_code }}" required autocomplete="postal_code" autofocus placeholder="XXX-XXXX">

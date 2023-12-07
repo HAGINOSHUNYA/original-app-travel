@@ -7,6 +7,14 @@ div{
 .plan-index {
   background-color: rgb(188, 227, 160);
 }
+form {
+  background-color: rgb(160, 162, 157);
+  font-family: 'arial black';
+}
+label{
+  font-family:'arial black';
+
+}
 img{
   width: auto;
   height: auto;
@@ -19,7 +27,7 @@ img{
   display: flex;
   align-items: center;
 }
-input[type = 'checkbox']{
+input[name = 'recommend_flag']{
   position:absolute;
   width: 0;
   height: 0;
@@ -34,6 +42,26 @@ input[type = 'checkbox']{
 .title {
   margin-left: 4px;
 }
+/**
+.move_title {
+  margin-left: 4px;
+}
+
+.eat_title {
+  margin-left: 4px;
+}
+
+.travel_title {
+  margin-left: 4px;
+}
+
+.hotel_title {
+  margin-left: 4px;
+}
+
+*/
+
+
 input:checked ~ .base {
   background-color: rgb(219, 234, 254);/**選択時背景色**/
   transition: 1s;
@@ -48,9 +76,76 @@ input:checked ~ .base {
   background-color: rgb(219, 234, 254);/**ボールデフォルトカラー**/
   transition: 0.5s;
 }
+
+
+.move_circle {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: rgb(219, 234, 254);/**ボールデフォルトカラー**/
+  transition: 0.5s;
+}
+/**
+.eat_circle {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: rgb(219, 234, 254);
+  transition: 0.5s;
+}
+
+.travel_circle {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: rgb(219, 234, 254);
+  transition: 0.5s;
+}
+
+.hotel_circle {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: rgb(219, 234, 254);
+  transition: 0.5s;
+}
+
+**/
 .switch {
   position: relative;
 }
+/**
+.move_switch {
+  position: relative;
+}
+
+.eat_switch {
+  position: relative;
+}
+
+.travel_switch {
+  position: relative;
+}
+
+.hotel_switch {
+  position: relative;
+}
+**/
+
+
+
 input:checked ~ .circle {
   transform: translateX(100%);
   background-color: blue;/**ボール選択時のカラー**/
@@ -144,36 +239,7 @@ body {
  height: 50px;
  width: 50px;
 }
-/* === ON側のラジオボタンのラベル（標準） ================== */
-#makeImg #sample1on + label {
-  right: 50%;                 /* 右端を中央に変更   */
-  border-radius: 6px 0 0 6px;  /* 角丸(左側の上下)   */
-  background: #eee;            /* 背景               */
-  color: #666;                 /* 文字色             */
-  border-right: none;          /* 枠線の右側を消す   */
-}
 
-/* === ON側のラジオボタンのラベル（ONのとき） ============== */
-#makeImg #sample1on:checked + label {
-  /* 背景グラデーション */
-  background: linear-gradient(180deg, #00b359, #006633, #00b359);
-  color: #fff;                /* 文字色             */
-  text-shadow: 1px 1px 1px #333;  /* 文字に影を付ける   */
-}
-
-/* === OFF側のラジオボタンのラベル（標準） ================ */
-#makeImg #sample1off + label {
-  left: 50%;                  /* 左端を中央に変更   */
-  border-radius: 0 6px 6px 0;  /* 角丸(右側の上下)   */
-  background: #eee;            /* 背景               */
-  color: #666;                 /* 文字色             */
-  border-left: none;           /* 枠線の左側を消す   */
-}
-
-/* === OFF側のラジオボタンのラベル（OFFのとき） ============= */
-#makeImg #sample1off:checked + label {
-  /* 背景グラデーション */
-  background: linear-gradient(175deg, #ccc, #999, #ccc);
-  color: #fff;                /* 文字色             */
-  text-shadow: 1px 1px 1px #333;  /* 文字に影を付ける   */
+input[name="reservation"] {
+  display: block; /* または inline-block など*/
 }

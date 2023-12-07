@@ -32,7 +32,23 @@ function viewChange(){
   
 window.onload = viewChange;
 }
-function ball() {
+
+
+
+function move_ball() {
+    const checkbox = document.getElementById('move_switch');
+    const title = document.querySelector('.move_title');
+  
+    checkbox.addEventListener('click', () => {
+      title.textContent = checkbox.checked ? 'おすすめ公開' : 'おすすめ非公開';
+    });
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    move_ball();
+  });
+
+  function ball() {
     const checkbox = document.getElementById('switch');
     const title = document.querySelector('.title');
   
@@ -44,6 +60,43 @@ function ball() {
   document.addEventListener('DOMContentLoaded', function() {
     ball();
   });
+
+  
+
+
+  function MoveChange() {
+    console.log("fuga");
+    if (document.getElementById('move_way')) {
+      var id = document.getElementById('move_way').value;
+      if (id == "自家用車") {
+        document.getElementById('car').style.display = "";
+        document.getElementById('rental').style.display = "none";
+        document.getElementById('train').style.display = "none";
+      } else if (id == 'レンタカー') {
+        document.getElementById('car').style.display = "none";
+        document.getElementById('rental').style.display = "";
+        document.getElementById('train').style.display = "none";
+      } else if (id == '公共交通機関') {
+        document.getElementById('car').style.display = "none";
+        document.getElementById('rental').style.display = "none";
+        document.getElementById('train').style.display = "";
+      }
+    }
+  }
+
+  window.onload = MoveChange;
+
+
+
+
+
+
+
+
+
+
+
+
 
 function searchChange() {
   if (document.getElementById('search')) {
@@ -67,8 +120,8 @@ function searchChange() {
 }
 
 window.addEventListener('scroll', function () {
-    var sidebar = document.getElementById('stickySidebar');
-    var content = document.querySelector('.content');
+    var sidebar = document.getElementById('main');
+    var content = document.querySelector('.sub');
     var contentRect = content.getBoundingClientRect();
 
     if (window.scrollY > contentRect.top) {

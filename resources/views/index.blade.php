@@ -48,8 +48,6 @@
   </ul>
 </aside>
 
-<div><iframe src="sample1.html" width="250" height="80" name="sample">代替内容</iframe></div>
-
 
 
 

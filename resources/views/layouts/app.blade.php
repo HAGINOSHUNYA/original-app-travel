@@ -12,6 +12,13 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="web-fonts.css">
+    <!-- ここでGoogle Fontsを読み込みます -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Potta+One&display=swap" rel="stylesheet">
+
+
 
     
     <!-- Styles -->

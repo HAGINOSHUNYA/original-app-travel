@@ -11,15 +11,18 @@
     <form action="{{route('lank_api')}}">
       @csrf
     
-     <input type="checkbox"  name="keyword" id="onsen" value="onsen">
-     <label for="onsen">温泉ランキング検索</label>
+      <select name="keyword" id="onsen" class="form-control">
+     <option for="onsen" value="all">総合検索</option>
+     <option for="onsen" value="onsen">温泉ランキング検索</option>
+     <option for="onsen" value="premium">高級ホテル/旅館ランキング検索</option>
 
+     
      <input type="submit" name="submit" value="送信"  class="btn btn-primary"/>
    </form>
     <h1>{{$title}}</h1>
   </div>  
 
-  <main id="main">
+  <main id="main" style="max-width:1500px">
     @foreach($posts as $post )
      <div class="row">
         <div class="card mb-3" id="{{$post->hotel->rank}}">
@@ -38,7 +41,10 @@
     @endforeach
   </main>
 
-  <aside id="sub">
+  
+
+</div>
+<aside id="sub">
     @foreach($posts as $post )
     <h2></h2>
     <ul>
@@ -48,7 +54,4 @@
     </ul>
     @endforeach
   </aside>
-
-</div>
-
 @endsection

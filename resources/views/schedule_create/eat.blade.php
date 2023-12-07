@@ -1,14 +1,14 @@
 <!--食事の場合開始-->
 <div class="row text-center" id="eat" style="display:none">
-<form action="{{route('schedule_store',$plan)}}" method="post" enctype="multipart/form-data">
-@csrf
-<input type="hidden" name="event_category" value="食事"/>
+  <form action="{{route('schedule_store',$plan)}}" method="post" enctype="multipart/form-data">
+    @csrf
+    <input type="hidden" name="event_category" value="食事"/>
 
-<label>店名</label>
-<input type="text" class="form-control text-center" name="place">
+    <label>店名</label>
+    <input type="text" class="form-control text-center" name="place">
 
-<select   name="way" id="way" class="form-control text-center">
- <option>--- ジャンル ---</option>
+    <select   name="way" id="way" class="form-control text-center">
+    <option>--- ジャンル ---</option>
       <option value="居酒屋">居酒屋</option>
       <option value="ファミレス">ファミレス</option>
       <option value="中華">中華</option>
@@ -20,14 +20,14 @@
       <option value="レストラン">レストラン</option>
       <option value="焼肉">焼肉</option>
       <option value="ファストフード">ファストフード</option>
-</select>
+    </select>
 
 
 
-<select name="reservatoion" id="reservatoion" class="form-control text-center">
- <option>--- 予約状況 ---</option>
-      <option value="1">予約済み</option>
-      <option value="0">未予約</option>
+    <select name="reservatoion" id="reservatoion" class="form-control text-center">
+      <option>--- 予約状況 ---</option>
+      <option value="true">予約済み</option>
+      <option value="false">未予約</option>
       
 </select>
 
@@ -41,6 +41,8 @@
 <br>
 <label>画像</label>
 <input type="file" class="form-control text-center" name="image">
+<label>コメント</label>
+<input type="text" class="form-control" name="comment">
 
 <label for="switch" class="switch_label"  class="form-control text-center" onchange="ball();">
   <div class="switch">

@@ -19,7 +19,7 @@ class ScheduleController extends Controller
      */
     public function index(Plan $plan, Schedule $schedules)
 {
-    $schedules = Schedule::where('plan_id', $plan->id)->get();
+    $schedules = Schedule::where('plan_id', $plan->id)->paginate(5);
       
   
     //dd($schedules);
@@ -50,12 +50,14 @@ class ScheduleController extends Controller
        $schedule->start_time =$request-> input('start_time');
        $schedule->end_time	 =$request-> input('end_time');
        $schedule->required_time =$request-> input('required_time');
-       $schedule->place =$request-> input('reservation');
+       $schedule->reservation = $request->has('reservation');//has メソッドはフォームデータに reservation が存在し、かつその値が null でない場合に true を返します
        $schedule->cost =$request-> input('cost');
        $schedule->start_place =$request-> input('start_place');
        $schedule->end_place =$request-> input('end_place');
        $schedule->item =$request-> input('item');
        $schedule->way =$request-> input('way');
+       $schedule->move_way =$request-> input('move_way');
+       $schedule->comment = $request->input('comment');
 
         // アップロードされたファイル（name="image"）が存在すれば処理を実行する
         if ($request->hasFile('image')) {
@@ -113,13 +115,15 @@ class ScheduleController extends Controller
         $schedule->start_time = $request->input('start_time');
         $schedule->end_time = $request->input('end_time');
         $schedule->required_time = $request->input('required_time');
-        $schedule->place = $request->input('reservation');
+        $schedule->reservation = $request->has('reservation');
         $schedule->cost = $request->input('cost');
         $schedule->start_place = $request->input('start_place');
         $schedule->end_place = $request->input('end_place');
         $schedule->item = $request->input('item');
         $schedule->way = $request->input('way');
-
+        $schedule->move_way =$request-> input('move_way');
+        $schedule->comment = $request->input('comment');
+        
         // アップロードされたファイル（name="image"）が存在すれば処理を実行する
         if ($request->hasFile('image')) {
         // アップロードされたファイル（name="image"）をstorage/app/public/productsフォルダに保存し、戻り値（ファイルパス）を変数$image_pathに代入する
@@ -127,6 +131,7 @@ class ScheduleController extends Controller
         // ファイルパスからファイル名のみを取得し、Productインスタンスのimage_nameプロパティに代入する
         $schedule->image_name = basename($image_path);
         }
+
 
         $schedule->recommend_flag = $request->has('recommend_flag') ? true : false;
 
