@@ -18,6 +18,8 @@ label{
 img{
   width: auto;
   height: auto;
+  vertical-align: bottom;
+	line-height: 1.0em;
 }
 
 
@@ -233,7 +235,7 @@ body {
   position: fixed;
   overflow: auto;
   background: #eee;
-  padding: 20px;
+  padding: 0px;
 }
 .card-img{
  height: 50px;

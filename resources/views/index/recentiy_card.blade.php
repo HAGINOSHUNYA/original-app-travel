@@ -1,4 +1,31 @@
 <div class="row">
+@foreach ($recently_schedules as $schedule)
+<div class="card mb-3" style="max-width: 1800px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+                @if($schedule->image_name)
+                    <img src="{{ asset('storage/img/' . $schedule->image_name) }}" class="img-fluid rounded-start" alt="...">
+                @else
+                    <img src="{{ asset('img/no_img.jpg') }}" class="img-fluid rounded-start" alt="Default Image">
+                @endif
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
+
+
+
+
+
+
+{{--
     @if ($recently_schedules)
         @foreach ($recently_schedules as $schedule)
             <a href="#" class="link-dark text-decoration-none">
@@ -37,4 +64,5 @@
     @else
         <p>スケジュールはありません。</p>
     @endif
+    --}}
 </div>
