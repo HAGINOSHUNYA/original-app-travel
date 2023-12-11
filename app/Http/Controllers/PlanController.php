@@ -18,13 +18,17 @@ class PlanController extends Controller
      */
     public function index()
     {
-       // $plans = Auth::user()->plans;
-        //ユーザーが持つPlanテーブルの情報を取得したい
-        $plans = Plan::sortable()->paginate(5);
-       
-        //dd($plans);
-        return view('plan.index', compact('plans'));
-        //
+       // ログイン中のユーザーを取得
+    $user = Auth::user();
+
+    // ユーザーが持つPlanテーブルの情報を取得
+    $plans = $user->plans()->sortable()->paginate(5);
+
+    return view('plan.index', compact('plans'));
+
+
+
+        
     }
 
     /**

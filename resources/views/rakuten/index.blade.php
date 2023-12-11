@@ -18,9 +18,9 @@
     @include('rakutenapi_search.vacancy')
     
     @include('rakutenapi_search.lank')
-    </div>
-      @include('rakutenapi_search.facility')
     
+      @include('rakutenapi_search.facility')
+    </div>
     
 
     

@@ -63,6 +63,7 @@ class HotelController extends Controller
                  foreach($Places->areaClasses as $place){
                      foreach($place[0]->largeClass[1]->middleClasses as $middleClasses){
                          foreach($middleClasses->middleClass[1]->smallClasses as $smallClass){
+                            //dump($smallClass);
                          $sNames[] = $smallClass->smallClass[0]->smallClassName;
                          }
                      }
@@ -72,6 +73,7 @@ class HotelController extends Controller
                     return [$name, $code];
                 }, $sNames, $scodes);
 
+                //dump($smallArray);
 
 
 
@@ -95,23 +97,22 @@ class HotelController extends Controller
 
               
 
-                    
+                    //detailclass予定地
                 
-
-                    foreach($Places->areaClasses as $place){//detailclass予定地
+                    foreach($Places->areaClasses as $place){
                         foreach($place[0]->largeClass[1]->middleClasses as $middleClasses){
-                           foreach($middleClasses->middleClass[1]->smallClasses as $smallClass){
-                            //dump($smallClass->smallClass->detailClasses);
-    
-                           }
-                         }
+                            foreach($middleClasses->middleClass[1]->smallClasses as $smallClass){
+                              // dump($smallClass);
+                            
+                            }
                         }
+                    }
 
 
                 /**地区APIの各クラスコード取得終了*/
 
-                /**地区APIの各クラスコード取得終了 */
                 /***地区API終了 */
+                
                 /***楽天トラベル施設検索API開始*/
 
             $middleClassCode = "akita";//$request->input('middleClassCode')

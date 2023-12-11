@@ -4,27 +4,39 @@
  
 <form action="{{route('facility_api')}}">
     @csrf
-    <!--都道府県のセレクトボックス開始-->
-    <label for="selectedmiddleClass">都道府県:</label>
-    <select name="selectedmiddleClass" id="selectedmiddleClass" class="form-control">
-        @foreach($middleArray as $middle)
-        <option value="{{$middle[1]}}">
-            {{$middle[0]}}
-        </option>
-        @endforeach
-    </select>
-    <!--都道府県のセレクトボックス終了-->
+    
+   
+            @include('facility.middleClasses')
+       
+ 
+            @include('facility.smallClasses')
+      
+   
 
-    <!--市町村のセレクトボックス開始-->
-    <label for="selectedsmallClass">市町村:</label>
-    <select name="selectedsmallClass" id="selectedsmallClass" class="form-control">
-        @foreach($smallArray as $small)
-        <option value="{{$small[1]}}">
-            {{$small[0]}}
-        </option>
+    @foreach($Array as $array) 
+        @foreach($array[1] as $a)
+            
+          {{--@dump($a->smallClass)--}} 
+            @foreach($a->smallClass as $b)
+           
+            @endforeach
+   
+           
+           
         @endforeach
-    </select>
-    <!--市町村のセレクトボックス終了-->
+    @endforeach
+->detailClasses
+   
+ 
+
+
+
+        {{--<option value="{{$small[1]}}">
+            {{$small[0]}}
+        </option>--}}
+        
+    
+
 
 
 {{--

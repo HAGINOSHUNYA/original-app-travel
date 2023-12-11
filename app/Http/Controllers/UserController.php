@@ -113,10 +113,12 @@ class UserController extends Controller
      public function favoritepage()//お気に入りページ
      {
          $user = Auth::user();
+        
+         $plan = Plan::where('user_id', $user->id)->first();
  
-         $favorites = $user->favorites(Schedule::class)->get();
+         $favorites = $user->favorites(Schedule::class)->paginate(5);
  
-         return view('users.favorite', compact('favorites'));
+         return view('users.favorite', compact('favorites','plan'));
      }
   
 

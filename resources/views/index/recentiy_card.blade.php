@@ -14,6 +14,17 @@
         <h5 class="card-title">Card title</h5>
         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
         <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+            @if($schedule->isFavoritedBy(Auth::user()))
+                <a href="{{ route('favorite', $schedule) }}" class="link-dark text-decoration-none">
+                    <i class="fa-solid fa-star"></i>
+                        お気に入り中</small>
+                </a>
+            @else
+                <a href="{{ route('favorite', $schedule) }}" class="link-dark text-decoration-none">
+                    <i class="fa-regular fa-star"></i>
+                        お気に入り追加する</small>
+                </a>
+            @endif
       </div>
     </div>
   </div>

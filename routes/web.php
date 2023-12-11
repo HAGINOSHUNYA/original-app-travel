@@ -26,12 +26,12 @@ Route::get('/', function () {
 //ユーザー関連ページのルーティング
 Route::controller(UserController::class)->group(function () {
     Route::get('users/mypage', 'mypage')->name('mypage')->middleware('auth');//マイページ表示
-    Route::get('users/mypage/edit', 'edit')->name('mypage.edit');//ユーサー情報作成
-    Route::put('users/mypage', 'user_update')->name('mypage.update');//ユーザー情報変更
-    Route::get('users/mypage/password/edit', 'edit_password')->name('mypage.edit_password');//パスワード変更画面
-    Route::put('users/mypage/password', 'update_password')->name('mypage.update_password');//パスワード変更機能
+    Route::get('users/mypage/edit', 'edit')->name('mypage.edit')->middleware('auth');//ユーサー情報作成
+    Route::put('users/mypage', 'user_update')->name('mypage.update')->middleware('auth');//ユーザー情報変更
+    Route::get('users/mypage/password/edit', 'edit_password')->name('mypage.edit_password')->middleware('auth');//パスワード変更画面
+    Route::put('users/mypage/password', 'update_password')->name('mypage.update_password')->middleware('auth');//パスワード変更機能
     Route::delete('users/mypage/delete', 'destroy')->name('mypage.destroy');//退会機能
-    Route::get('users/mypage/favorite', 'favoritepage')->name('mypage.favorite');//お気に入り一覧
+    Route::get('users/mypage/favorite', 'favoritepage')->name('mypage.favorite')->middleware('auth');//お気に入り一覧
 });
 
 //プラン関係
@@ -58,6 +58,7 @@ Route::controller(ScheduleController::class)->group(function(){
 //トップページ関係
 Route::controller(WebController::class)->group(function(){
     Route::get('web/travel/index', 'index')->name('index')->middleware('auth');
+    Route::get('web/travel/{schedule}/{plan}/public/show', 'public_schedule')->name('public_schedule')->middleware('auth');
 
 });
 Route::resource('travel','App\Http\Controllers\TravelController');
@@ -80,14 +81,16 @@ Route::post('/send', 'App\Http\Controllers\PostController@send');
 //楽天ホテルAPIのルーティング
 
 Route::controller(HotelController::class)->group(function(){
-    Route::get('rakuten/index', 'index')->name('rakuten.index');//検索画面
-    Route::get('rakuten/index/keyword', 'keyword_api')->name('keyword');//キーワード検索機能
-    Route::get('rakuten/index/keyword/show', 'keyword_show')->name('keyword_show');//キーワード検索結果ページ
-    Route::get('rakuten/index/lank', 'lank_api')->name('lank_api');//キーワード検索機能
-    Route::get('rakuten/index/facility', 'facility_api')->name('facility_api');//施設検索機能
+    Route::get('rakuten/index', 'index')->name('rakuten.index')->middleware('auth');//検索画面
+    Route::get('rakuten/index/keyword', 'keyword_api')->name('keyword')->middleware('auth');//キーワード検索機能
+    Route::get('rakuten/index/keyword/show', 'keyword_show')->name('keyword_show')->middleware('auth');//キーワード検索結果ページ
+    Route::get('rakuten/index/lank', 'lank_api')->name('lank_api')->middleware('auth');//キーワード検索機能
+    Route::get('rakuten/index/facility', 'facility_api')->name('facility_api')->middleware('auth');//施設検索機能
 
 
-})->middleware('auth');
+})
+
+;
 
 Auth::routes();
 
