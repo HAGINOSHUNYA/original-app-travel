@@ -195,7 +195,7 @@ class HotelController extends Controller
                     foreach($Places->areaClasses as $place){//各都道府県のsmallClassCode
                         foreach($place[0]->largeClass[1]->middleClasses as $middleClasses){
                            foreach($middleClasses->middleClass[1]->smallClasses as $smallClass){
-                            //dump($smallClass->smallClass->detailClasses);
+                            //dump(count($smallClass->smallClass));
     
                            }
                          }

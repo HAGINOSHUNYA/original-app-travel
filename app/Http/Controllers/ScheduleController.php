@@ -33,7 +33,8 @@ class ScheduleController extends Controller
     public function create(Request $request,Plan $plan,Schedule $schedule)
     {
         //
-        return view('schedule.create',compact('plan'));
+        $day = date('Y-m-d', strtotime($plan->start_day));
+        return view('schedule.create',compact('day','plan'));
     }
 
     /**
@@ -44,7 +45,7 @@ class ScheduleController extends Controller
      */
     public function store(ScheduleRequest $request , Schedule $schedule, Plan $plan)
     {
-      
+     
     //dd($request);
        $schedule -> event_category = $request-> input('event_category');
        $schedule->start_time =$request-> input('start_time');
@@ -55,9 +56,13 @@ class ScheduleController extends Controller
        $schedule->start_place =$request-> input('start_place');
        $schedule->end_place =$request-> input('end_place');
        $schedule->item =$request-> input('item');
+       $schedule->place =$request-> input('place');
+       $schedule->address =$request-> input('address');
        $schedule->way =$request-> input('way');
        $schedule->move_way =$request-> input('move_way');
        $schedule->comment = $request->input('comment');
+       $schedule->title =$request-> input('title');
+       $schedule->appeal =$request-> input('appeal');
 
         // アップロードされたファイル（name="image"）が存在すれば処理を実行する
         if ($request->hasFile('image')) {
@@ -85,9 +90,12 @@ class ScheduleController extends Controller
      */
     public function show(Schedule $schedule ,Plan $plan)
     {
+
+        $day = date('Y-m-d', strtotime($schedule->start_day));
+        $time = date('H:i:s', strtotime($schedule->start_time));
        
         // $schedules = Schedule::where('plan_id', $plan->id)->get();
-        return view('schedule.show',compact('schedule','plan'));
+        return view('schedule.show',compact('day','time','schedule','plan'));
     }
 
     /**
@@ -110,20 +118,23 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, Schedule $schedule, Plan $plan)
     {
-       
-        $schedule->event_category = $request->input('event_category');
-        $schedule->start_time = $request->input('start_time');
-        $schedule->end_time = $request->input('end_time');
-        $schedule->required_time = $request->input('required_time');
-        $schedule->reservation = $request->has('reservation');
-        $schedule->cost = $request->input('cost');
-        $schedule->start_place = $request->input('start_place');
-        $schedule->end_place = $request->input('end_place');
-        $schedule->item = $request->input('item');
-        $schedule->way = $request->input('way');
-        $schedule->move_way =$request-> input('move_way');
-        $schedule->comment = $request->input('comment');
-        
+        $schedule -> event_category = $request-> input('event_category');
+       $schedule->start_time =$request-> input('start_time');
+       $schedule->end_time	 =$request-> input('end_time');
+       $schedule->required_time =$request-> input('required_time');
+       $schedule->reservation = $request->has('reservation');//has メソッドはフォームデータに reservation が存在し、かつその値が null でない場合に true を返します
+       $schedule->cost =$request-> input('cost');
+       $schedule->start_place =$request-> input('start_place');
+       $schedule->end_place =$request-> input('end_place');
+       $schedule->item =$request-> input('item');
+       $schedule->place =$request-> input('place');
+       $schedule->address =$request-> input('address');
+       $schedule->way =$request-> input('way');
+       $schedule->move_way =$request-> input('move_way');
+       $schedule->comment = $request->input('comment');
+       $schedule->title =$request-> input('title');
+       $schedule->appeal =$request-> input('appeal');
+
         // アップロードされたファイル（name="image"）が存在すれば処理を実行する
         if ($request->hasFile('image')) {
         // アップロードされたファイル（name="image"）をstorage/app/public/productsフォルダに保存し、戻り値（ファイルパス）を変数$image_pathに代入する
@@ -132,15 +143,13 @@ class ScheduleController extends Controller
         $schedule->image_name = basename($image_path);
         }
 
-
         $schedule->recommend_flag = $request->has('recommend_flag') ? true : false;
-
         $schedule->user_id = Auth::id();
         $schedule->plan_id = $plan->id;
        
         $schedule->save();
 
-    return redirect()->route('schedule_show', compact('schedule', 'plan'));
+    return redirect()->route('schedule', compact('schedule', 'plan'));
     }
 
     /**
@@ -162,21 +171,27 @@ class ScheduleController extends Controller
     }
     
   
-    public function update_password(Request $request)
+    public function search(Request $request, Schedule $schedule, Plan $plan)
     {
-        $validatedData = $request->validate([
-            'password' => 'required|confirmed',
-        ]);
+    $query = $request->input('query');
 
-        $user = Auth::user();
+    // ここで検索処理を実装する
+    $results = Schedule::where('title', 'LIKE', '%' . $query . '%')
+                        ->orWhere('way', 'LIKE', '%' . $query . '%') 
+                        ->orWhere('move_way', 'LIKE', '%' . $query . '%')
+                        ->orWhere('comment', 'LIKE', '%' . $query . '%')
+                        ->orWhere('train_name_1', 'LIKE', '%' . $query . '%')
+                        ->orWhere('train_name_2', 'LIKE', '%' . $query . '%')
+                        ->orWhere('train_name_3', 'LIKE', '%' . $query . '%')
+                        ->orWhere('train_name_4', 'LIKE', '%' . $query . '%')
+                        ->orWhere('appeal', 'LIKE', '%' . $query . '%')
+                        ->orWhere('address', 'LIKE', '%' . $query . '%')
+                        ->orWhere('start_place', 'LIKE', '%' . $query . '%')
+                        ->orWhere('end_place', 'LIKE', '%' . $query . '%')
+                        ->orWhere('place', 'LIKE', '%' . $query . '%')
+                        ->orWhere('start_day', 'LIKE', '%' . $query . '%')                           
+                        ->get();
 
-        if ($request->input('password') == $request->input('password_confirmation')) {
-            $user->password = bcrypt($request->input('password'));
-            $user->update();
-        } else {
-            return to_route('mypage.edit_password');
-        }
-
-        return to_route('mypage');
+    return view('schedule.search_results', compact('results','schedule','plan'));
     }
 }

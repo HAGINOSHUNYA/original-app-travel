@@ -50,8 +50,9 @@ Route::controller(ScheduleController::class)->group(function(){
     Route::get('mypage/{schedule}/{plan}/show', 'show')->name('schedule_show')->middleware('auth');
     Route::get('mypage/schedule/{plan}/create', 'create')->name('schedule_create')->middleware('auth');
     Route::post('mypage/schedule/{plan}', 'store')->name('schedule_store')->middleware('auth');
-    Route::post('mypage/schedule/{schedule}/{plan}/updata', 'update')->name('schedule_updata')->middleware('auth');
+    Route::post('mypage/schedule/{schedules}/{plan}/updata', 'update')->name('schedule_updata')->middleware('auth');
     Route::get('mypage/{schedule}/favorite','favorite')->name('favorite')->middleware('auth');//お気に入り追加機能
+    Route::get('mypage/search/index','search')->name('search_results')->middleware('auth');
 });
 //Route::resource('goals.todos', TodoController::class)->only(['store', 'update', 'destroy'])->middleware('auth');
 

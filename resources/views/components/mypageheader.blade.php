@@ -6,8 +6,8 @@
       
      </a>
      
-     <div class="col-md-11" >class="d-flex justify-content-center"
-       <h1>マイページ</h1>
+     <div class="col-md-11" >
+       
      </div>
      
      <div class="collapse navbar-collapse">           

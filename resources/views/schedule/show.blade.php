@@ -1,13 +1,13 @@
 @extends('layouts.mypage')
 @section('content')
-
 <div class="container text-center">
- 
-      <div class="card mb-3">
-       <img src="{{asset('strage/img/'.$schedule->image_name)}}" class="card-img-top" alt="...">
-       <div class="card-body">
-        <h3 class="card-title"name="event_category" id="event_category"  for="event_category" class="form-control" onchange="viewChange();" value="{{$schedule->event_category}}">{{$schedule->event_category}}</h3>
+    <h1>{{$plan->name}}{{$schedule->event_category}}の編集</h1>
+<hr>
+</div>
 
+<div class="container text-center" style="max-width: 800px;">
+ 
+     
        <!-- 移動の場合 -->
 @if ($schedule->event_category === '移動')
     @include('schedule_edit.move')
@@ -28,8 +28,7 @@
     @include('schedule_edit.hotel')
 @endif
         
-     </div>
-   </form>
+
 </div>
  
 

@@ -1,11 +1,15 @@
 @extends('layouts.mypage')
 @section('content')
-
 <div class="container text-center">
+<h1>{{$plan->name}}のスケジュール作成</h1>
+<hr>
+</div>
+<div class="container text-center" style="max-width:800px">
+
 {{--@dump($plan)--}}
  
  <select name="event_category" id="event_category"  for="event_category" class="form-control" onchange="viewChange();" style="display:"> 
-  <option class="text-center">--- 何を ---</option>
+  <option class="text-center">--- 選択してください ---</option>
   <option class="text-center" value="移動">移動</option>
   <option class="text-center" value="観光">観光</option>
   <option class="text-center" value="食事">食事</option>

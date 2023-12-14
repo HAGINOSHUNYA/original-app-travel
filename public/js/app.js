@@ -36,11 +36,9 @@ window.onload = viewChange;
 
 
 function move_ball() {
-    const checkbox = document.getElementById('move_switch');
-    const title = document.querySelector('.move_title');
-  
-    checkbox.addEventListener('click', () => {
-      title.textContent = checkbox.checked ? 'おすすめ公開' : 'おすすめ非公開';
+      checkbox.addEventListener('click', () => {
+        const title = document.querySelector(titleSelector);
+        title.textContent = checkbox.checked ? 'おすすめ公開' : 'おすすめ非公開';
     });
   }
   
