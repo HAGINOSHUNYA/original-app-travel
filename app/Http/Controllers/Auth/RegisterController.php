@@ -52,6 +52,7 @@ class RegisterController extends Controller
         return Validator::make($data, [//バリデーション
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'postal_code' => ['required', 'string'],
             'address' => ['required', 'string'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -68,6 +69,7 @@ class RegisterController extends Controller
         return User::create([//ユーザーを新しく作るときに使う
             'name' => $data['name'],
             'email' => $data['email'],
+            'postal_code' => $data['postal_code'],
             'address' => $data['address'],
             'password' => Hash::make($data['password']),
         ]);
