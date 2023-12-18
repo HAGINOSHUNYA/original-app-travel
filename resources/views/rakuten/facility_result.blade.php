@@ -40,8 +40,22 @@
  </div>
 
  <div class="row">
+ <!--<label>市町村:</label>
+        <select name="Class" class="form-control">-->
+@foreach($darray[0] as $dcodes)
 
 
+        @dump($dcodes)
+   
+ 
+
+
+
+@endforeach
+<option value="#">
+ 
+  </option>
+</select>
 </table>
 
 

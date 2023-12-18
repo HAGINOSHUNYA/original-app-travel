@@ -2,6 +2,7 @@
 
 
  
+ 
 <form action="{{route('facility_api')}}">
     @csrf
     
@@ -10,22 +11,12 @@
        
  
             @include('facility.smallClasses')
+
+            @include('facility.detailClasses')
       
    
 
-    @foreach($Array as $array) 
-        @foreach($array[1] as $a)
-            
-          {{--@dump($a->smallClass)--}} 
-            @foreach($a->smallClass as $b)
-           
-            @endforeach
    
-           
-           
-        @endforeach
-    @endforeach
-->detailClasses
    
  
 

@@ -21,34 +21,34 @@ class HotelController extends Controller
             $Places = json_decode($Places);
             
                 /**地区APIの各middleClasscode取得開始 */
-                foreach($Places->areaClasses as $place){
-                    foreach($place[0]->largeClass[1]->middleClasses as $middleClass){
-                        //dump($middleClass->middleClass);//各都道府県の塊
-                 }}
-
-                 $mcodes = [];//各都道府県のmiddleClassCode
+                
+                 $mcodes = [];//各都道府県のmiddleClassCode☆
                     foreach($Places->areaClasses as $place){
                         foreach($place[0]->largeClass[1]->middleClasses as $middleClass){
                          $mcodes[] =$middleClass->middleClass[0]->middleClassCode;
                         }
                     }
 
-                 $mNames = [];//各都道府県のmiddleClassName
+                 $mNames = [];//各都道府県のmiddleClassName☆
                     foreach($Places->areaClasses as $place){
                         foreach($place[0]->largeClass[1]->middleClasses as $middleClass){
                             $mNames[] =$middleClass->middleClass[0]->middleClassName;
                         }
                     }
-
-                $middleArray = array_map(function ($name, $code) {//ミドルのネームとコードを組み合わせる
+                //ミドルのネームとコードを組み合わせる☆
+                $middleArray = array_map(function ($name, $code) {
                         return [$name, $code];
                     }, $mNames, $mcodes);
+
+                    /**地区APIの各middleClasscode取得終了 */
+
+                    /**地区APIの各smallClasscode取得開始 */
 
                     
                    
                  
                  
-                 $scodes = [];//各都道府県のsmallClassCode
+                 $scodes = [];//各都道府県のsmallClassCode☆
                     foreach($Places->areaClasses as $place){
                         foreach($place[0]->largeClass[1]->middleClasses as $middleClasses){
                             foreach($middleClasses->middleClass[1]->smallClasses as $smallClass){
@@ -59,7 +59,7 @@ class HotelController extends Controller
                     }
  
                     
-                 $sNames = [];//各都道府県のsmallClassName
+                 $sNames = [];//各都道府県のsmallClassName☆
                  foreach($Places->areaClasses as $place){
                      foreach($place[0]->largeClass[1]->middleClasses as $middleClasses){
                          foreach($middleClasses->middleClass[1]->smallClasses as $smallClass){
@@ -68,48 +68,55 @@ class HotelController extends Controller
                          }
                      }
                  }
-
-                 $smallArray = array_map(function ($name, $code) {//スモールのネームとコードを組み合わせる
+                //スモールのネームとコードを組み合わせる☆
+                 $smallArray = array_map(function ($name, $code) {
                     return [$name, $code];
                 }, $sNames, $scodes);
 
-                //dump($smallArray);
-
-
-
-                $sArray = [];
-                foreach($Places->areaClasses as $place){
-                    foreach($place[0]->largeClass[1]->middleClasses as $middle){
-                           
-                        foreach($middle->middleClass[1] as $small){
-                            $sArray [] = $small;
-                            //dump($small);//各都道府県の塊
-                        }
-                    }  
-                 }
-
-                 $Array = array_map(function ($middle, $small) {//ミドルのネームとコードを組み合わせる
-                    return [$middle, $small];
-                }, $middleArray, $sArray);
-
-                 //dump($Array);
-                        
-
-              
-
-                    //detailclass予定地
                 
-                    foreach($Places->areaClasses as $place){
-                        foreach($place[0]->largeClass[1]->middleClasses as $middleClasses){
-                            foreach($middleClasses->middleClass[1]->smallClasses as $smallClass){
-                              // dump($smallClass);
-                            
+
+                dump($smallArray);
+
+                /**地区APIの各smallClasscode取得終了 */
+
+                /**地区APIの各detailclasscode取得開始 */
+
+                $darray = [];
+
+                foreach ($Places->areaClasses as $place) {
+                    foreach ($place[0]->largeClass[1]->middleClasses as $middleClasses) {
+                        foreach ($middleClasses->middleClass[1]->smallClasses as $smallClass) {
+                            if (count($smallClass->smallClass) == 2) {
+                                foreach ($smallClass->smallClass as $item) {
+                                    if (is_object($item) && property_exists($item, 'detailClasses')) {
+                                        $darray[] = $item->detailClasses;
+                                    }
+                                }
                             }
                         }
                     }
+                }
+                
+                $mergedClasses = [];
+                
+                for ($i = 0; $i < 5; $i++) {
+                    $dclass = [];
+                    foreach ($darray[$i] as $dclasses) {
+                        $dclass[] = $dclasses->detailClass;
+                    }
+                    $mergedClasses[] = $dclass;
+                }
+                
+              
+                $detailArray = array_merge(...$mergedClasses);
+                
+               
+                
 
 
-                /**地区APIの各クラスコード取得終了*/
+
+                    /***  都道府県のdetailclass作成終了 */
+                    
 
                 /***地区API終了 */
                 
@@ -137,7 +144,7 @@ class HotelController extends Controller
             
 
 
-            return view('rakuten.index', compact('posts','Places','mNames','middleArray','smallArray','Array'));
+            return view('rakuten.index', compact('posts','Places','mNames','middleArray','smallArray','detailArray'));
         }
 
         public function facility_api(Request $request){//施設検索API機能とページ　機能とページは分けた方がよいかも
@@ -174,10 +181,6 @@ class HotelController extends Controller
                         }
                     }
 
-                    dump($mNames);
-                    foreach($mNames as $mName){
-                        
-                    }
                  
                  $scodes = [];//各都道府県のsmallClassCode
                     foreach($Places->areaClasses as $place){
@@ -190,16 +193,47 @@ class HotelController extends Controller
                     }
 
                     
+                /**地区APIの各detailclasscode取得開始 */
+
+                $darray = [];
+
+                foreach ($Places->areaClasses as $place) {
+                    foreach ($place[0]->largeClass[1]->middleClasses as $middleClasses) {
+                        foreach ($middleClasses->middleClass[1]->smallClasses as $smallClass) {
+                            if (count($smallClass->smallClass) == 2) {
+                                foreach ($smallClass->smallClass as $item) {
+                                    if (is_object($item) && property_exists($item, 'detailClasses')) {
+                                        $darray[] = $item->detailClasses;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                $mergedClasses = [];
+                
+                for ($i = 0; $i < 5; $i++) {
+                    $dclass = [];
+                    foreach ($darray[$i] as $dclasses) {
+                        $dclass[] = $dclasses->detailClass;
+                    }
+                    $mergedClasses[] = $dclass;
+                }
+                
+                
+                
+                $detailArray = array_merge(...$mergedClasses);
+               
                 
 
-                    foreach($Places->areaClasses as $place){//各都道府県のsmallClassCode
-                        foreach($place[0]->largeClass[1]->middleClasses as $middleClasses){
-                           foreach($middleClasses->middleClass[1]->smallClasses as $smallClass){
-                            //dump(count($smallClass->smallClass));
-    
-                           }
-                         }
-                        }
+
+
+                    /***  都道府県のdetailclass作成終了 */
+                       
+
+                       // dump($dclasses);
+                        
 
 
                 /**地区APIの各クラスコード取得終了*/
@@ -222,7 +256,7 @@ class HotelController extends Controller
            // $posts = $response->getBody();
            // $posts = json_decode($posts);
         /**施設検索API終了 */
-            return view('rakuten.facility_result', compact('middleClassCode','smallClassCode','Places'));
+            return view('rakuten.facility_result', compact('middleClassCode','smallClassCode','Places','darray'));
             
         }
 
