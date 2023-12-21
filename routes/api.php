@@ -20,4 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/test', [App\Http\Controllers\Api\TestController::class, 'index']);
+Route::post('/testpost', [App\Http\Controllers\Api\TestController::class, 'testpost']);
 
+Route::post('/getSelectedSmallClass', [App\Http\Controllers\Api\TestController::class, 'getSelectedSmallClass']);

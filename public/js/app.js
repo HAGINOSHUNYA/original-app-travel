@@ -131,3 +131,32 @@ window.addEventListener('scroll', function () {
     }
 });
 
+// セレクトボックスの変更イベントを監視
+document.getElementById('selectedmiddleClass').addEventListener('change', function () {
+  // 選択された値を取得
+  var selectedValue = this.value;
+
+  // Ajaxリクエストを送信
+  axios.post('/getPrefectureData', {
+      selectedmiddleClass: selectedValue
+  })
+  .then(function (response) {
+      // サーバーレスポンスから取得したデータを処理する
+      var testarray = response.data;
+
+      // セレクトボックスにデータを追加する処理を行う（例）
+      // ここでの処理は、実際のHTML構造や表示方法に応じて調整してください
+      var selectBox = document.getElementById('selectedsmallClass');
+      selectBox.innerHTML = ''; // 一度クリア
+
+      for (var i = 0; i < testarray.length; i++) {
+          var option = document.createElement('option');
+          option.value = testarray[i];
+          option.text = testarray[i];
+          selectBox.add(option);
+      }
+  })
+  .catch(function (error) {
+      console.error(error);
+  });
+});

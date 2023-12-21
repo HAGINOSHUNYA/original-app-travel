@@ -1,6 +1,8 @@
 @extends('layouts.mypage')
 
 @section('content')
+@dump($results)
+
 <span>
     <a href="{{ route('mypage') }}" class="link-dark text-decoration-none">マイページ</a> > <a href="{{route('plan.index')}}" class="link-dark text-decoration-none">プラン一覧</a>>{{$plan->name}}のスケジュール一覧
 </span>
@@ -20,8 +22,8 @@
 <hr style="margin: 0px;padding: 0px;">
 <div class="container text-center" style="max-width: 800px"><!--サイドバーと一覧-->
     <div class="row">
-        <a href="{{route('schedule_create',$plan )}}" class="link-dark text-decoration-none">+スケジュール追加</a>
-        <hr>
+        <a href="#" class="link-dark text-decoration-none">+スケジュール追加</a>
+        <hr>{{--{{route('schedule_create',  ['plan' => $results['plan_id']] )}}--}}
     </div>
     <h1>スケジュール一覧</h1>
 
@@ -35,9 +37,9 @@
     </form>
     </div>
   <hr>
-
+@if($results)
     @foreach ($results as $result)
-     <div class="card mb-3" style="max-width: 800px;">
+    <div class="card mb-3" style="max-width: 800px;">
         <div class="row g-0" >
             <div class="col-md-4">
                 @if($result->image_name)
@@ -47,39 +49,39 @@
                 @endif
             </div>
             <div class="col-md-8" style="padding: 0px;">
-            <a href="{{ route('schedule_show', ['schedule' => $schedule, 'plan' => $plan->id]) }}" class="link-dark text-decoration-none">
-                <div class="card-body">
-                    <h1 class="card-title" style="margin-bottom: 0px;">{{ $result->event_category }}</h1>
-                    {{$result->way}}
-                    <h3 class="card-text" style="margin-bottom: 0px;">開始予定時刻：{{ \Carbon\Carbon::parse($result->start_time)->format('H時i分') }}</h2>
+                <a href="{{ route('schedule_show', ['schedule' => $schedule, 'plan' => $plan->id]) }}" class="link-dark text-decoration-none">
+                    <div class="card-body">
+                        <h1 class="card-title" style="margin-bottom: 0px;">{{ $result->event_category }}</h1>
+                            {{$result->way}}
+                            <h3 class="card-text" style="margin-bottom: 0px;">開始予定時刻：{{ \Carbon\Carbon::parse($result->start_time)->format('H時i分') }}</h2>
                     
                       
-                        <button type="button" class="btn btn-outline-dark btn-lg" style="margin-top: 0px;"> 
-                            @if($result->isFavoritedBy(Auth::user()))
-                            <a href="{{ route('favorite', $result) }}" class="link-dark text-decoration-none">
-                                   <i class="fa-solid fa-star"></i>
-                                   お気に入り中</small>
-                             </a>
-                            @else
-                            <a href="{{ route('favorite', $result) }}" class="link-dark text-decoration-none">
-                                  <i class="fa-regular fa-star"></i>
-                                  お気に入り追加する</small>
-                            </a>
-                            @endif
-                        </button>
-                      
-                        
-                    
-
-             </a>
+                            <button type="button" class="btn btn-outline-dark btn-lg" style="margin-top: 0px;"> 
+                                @if($result->isFavoritedBy(Auth::user()))
+                                    <a href="{{ route('favorite', $result) }}" class="link-dark text-decoration-none">
+                                        <i class="fa-solid fa-star"></i>
+                                        お気に入り中</small>
+                                    </a>
+                                @else
+                                    <a href="{{ route('favorite', $result) }}" class="link-dark text-decoration-none">
+                                        <i class="fa-regular fa-star"></i>
+                                        お気に入り追加する</small>
+                                    </a>
+                                @endif
+                            </button>
+                </a>
+            </div>
         </div>
     </div>
-  </div>
-</div>
-  
-@endforeach
+    @endforeach
 
-{{$schedules->links()}}
+    @else
+
+    <h3>nasi</h3>
+
+    @endif
+
+
 
 
 

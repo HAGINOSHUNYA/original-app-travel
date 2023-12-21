@@ -1,5 +1,5 @@
  <!--都道府県のセレクトボックス開始-->
- <label for="selectedetailClass">都道府県:</label>
+ <label for="selectedetailClass">地区:</label>
     <select name="selectedmiddleClass" id="selectedmiddleClass" class="form-control">
     <option selected disabled> --選択してください-- </option>
     <option value="" >選択しない</option>

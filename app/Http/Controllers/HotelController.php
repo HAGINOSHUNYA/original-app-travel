@@ -19,9 +19,14 @@ class HotelController extends Controller
             $place_response = $client->request($method, $Places_url);
             $Places = $place_response->getBody();
             $Places = json_decode($Places);
+
+            foreach($Places->areaClasses as $place){
+                foreach($place[0]->largeClass[1]->middleClasses as $middleClass){
+                    //dump($middleClass->middleClass);//各都道府県の塊
+             }}
             
                 /**地区APIの各middleClasscode取得開始 */
-                
+
                  $mcodes = [];//各都道府県のmiddleClassCode☆
                     foreach($Places->areaClasses as $place){
                         foreach($place[0]->largeClass[1]->middleClasses as $middleClass){
@@ -44,9 +49,53 @@ class HotelController extends Controller
 
                     /**地区APIの各smallClasscode取得開始 */
 
+                    $sarray = [];
+                    foreach($Places->areaClasses as $place){
+                        foreach($place[0]->largeClass[1]->middleClasses as $middleClasses){
+                            foreach($middleClasses->middleClass[1] as $smallClass){
+                                        $sarray[] = $smallClass;         
+                           }
+                        }
+                    }//dump($sarray);
+                    $dynamicVariables = [];
+
+                    for ($i = 1; $i <= 47; $i++) {
+                        // 変数名を動的に生成
+                        $variableName = "prefectures_" . $i;
+                        $$variableName = [];  // 可変変数を作成
+                        foreach ($sarray[$i - 1] as $sclasses) {
+                            foreach ($sclasses as $sss) {
+                                $$variableName[] = $sss[0];  // 可変変数にデータを追加
+                            }
+                        }
+                        //echo "Content of $variableName: ";
+                        //dump($$variableName);
+                        // 可変変数の名前と値を配列に保存
+                        $dynamicVariables[$variableName] = $$variableName;
+                        //dump($dynamicVariables["prefectures_" .$i]);
+                    }
                     
-                   
-                 
+                    $testarray = [];
+
+                    $variableName = "prefectures_6" ;//ここのリクエストを送れるようにする
+
+                     // $dynamicVariablesに$keyが$variableNameの要素がある場合のみ処理を行う
+                        if (array_key_exists($variableName, $dynamicVariables)) {
+                            $count[$i] = count($dynamicVariables[$variableName]);
+
+                            //$count[$i]回数分だけ繰り返す
+                            for ($j = 0; $j < $count[$i]; $j++) {
+                                $item = $dynamicVariables[$variableName][$j];
+                                // ここで$itemを利用した処理を行う
+                                //dump($item);
+                                $testarray[] = $item;
+                            }
+                        }
+                        dump($testarray);//これをレスポンスする
+   
+
+                    
+                    
                  
                  $scodes = [];//各都道府県のsmallClassCode☆
                     foreach($Places->areaClasses as $place){
@@ -75,7 +124,7 @@ class HotelController extends Controller
 
                 
 
-                dump($smallArray);
+                //dump($smallArray);
 
                 /**地区APIの各smallClasscode取得終了 */
 
@@ -172,6 +221,7 @@ class HotelController extends Controller
                         }
                     }
 
+                    dump($mcodes);
 
                     
                  $mNames = [];//各都道府県のmiddleClassCode

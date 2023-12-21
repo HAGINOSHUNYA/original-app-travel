@@ -171,9 +171,9 @@ class ScheduleController extends Controller
     }
     
   
-    public function search(Request $request, Schedule $schedule, Plan $plan)
-    {
+    public function search(Request $request, Schedule $schedule, Plan $plan){
     $query = $request->input('query');
+    dump($request['query']);
 
     // ここで検索処理を実装する
     $results = Schedule::where('title', 'LIKE', '%' . $query . '%')
@@ -192,6 +192,7 @@ class ScheduleController extends Controller
                         ->orWhere('start_day', 'LIKE', '%' . $query . '%')                           
                         ->get();
 
+                        dump($results);
     return view('schedule.search_results', compact('results','schedule','plan'));
     }
 }

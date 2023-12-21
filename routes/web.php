@@ -8,6 +8,7 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\WebController;
+use App\Http\Controllers\Api\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,3 +97,5 @@ Route::controller(HotelController::class)->group(function(){
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/getSelectedSmallClass', [App\Http\Controllers\Api\TestController::class, 'getSelectedSmallClass']);
