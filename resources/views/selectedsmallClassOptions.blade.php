@@ -9,7 +9,7 @@
 
             // Ajaxリクエストを送信
             $.ajax({
-                type: 'GET',
+                type: 'POST',
                 url: '/getSelectedSmallClass',
                 data: { selectedValue: selectedValue },
                 dataType: 'json',

@@ -158,10 +158,11 @@ class TestController extends Controller
             for ($j = 0; $j < $count; $j++) {
                 $item = $dynamicVariables[$variableName][$j];
                 $testarray[] = $item;
+                dump($item);
             }
         }
     
-        //return response()->json($testarray);
-        return view('selectedsmallClassOptions', compact('middleArray','testarray'));
+        return response()->json($testarray);
+        
     }
 }
