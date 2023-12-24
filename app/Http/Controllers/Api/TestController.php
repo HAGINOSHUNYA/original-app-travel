@@ -92,7 +92,7 @@ class TestController extends Controller
         dump($request);
     }
 
-    public function getSelectedSmallClass(Request $request)
+    public function getSmallClass(Request $request)
     {//dd($request);
         $client = new Client();
         $applicationId = "1052696491690146167";
@@ -152,6 +152,9 @@ class TestController extends Controller
         $variableName = "prefectures_" . ($selectedValue + 1);
         $testarray = [];
     
+        dump($selectedValue);
+        dump($variableName);
+
         if (array_key_exists($variableName, $dynamicVariables)) {
             $count = count($dynamicVariables[$variableName]);
     
@@ -162,7 +165,9 @@ class TestController extends Controller
             }
         }
     
-        return response()->json($testarray);
+         // JSON形式でレスポンスを返す
+         return response()->json($testarray);
+
         
     }
 }

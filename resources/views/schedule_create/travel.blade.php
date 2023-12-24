@@ -22,7 +22,7 @@
     </select>
     <hr>
     <label>到着予定時刻</label>
-    <input type="date" class="form-control text-center" name="start_day" value="{{$day}}">
+    <input type="date" class="form-control text-center" name="start_day">
     <input type="time" class="form-control text-center" name="start_time">
     <hr>
     <label>到着場所</label>
@@ -30,9 +30,6 @@
     <hr>
     <label>終了予定時刻</label>
     <input type="time" class="form-control text-center" name="end_time">
-    <hr>
-    <label>予約状況</label>
-    <input type="checkbox" class="form-control text-center" name="reservation" value="true">
     <hr>
     <label>値段</label>
     <input type="text" class="form-control text-center" name="cost">

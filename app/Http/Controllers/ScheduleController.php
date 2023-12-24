@@ -54,6 +54,7 @@ class ScheduleController extends Controller
        $schedule->reservation = $request->has('reservation');//has メソッドはフォームデータに reservation が存在し、かつその値が null でない場合に true を返します
        $schedule->cost =$request-> input('cost');
        $schedule->start_place =$request-> input('start_place');
+       $schedule->start_day =$request-> input('start_day');
        $schedule->end_place =$request-> input('end_place');
        $schedule->item =$request-> input('item');
        $schedule->place =$request-> input('place');
@@ -180,16 +181,10 @@ class ScheduleController extends Controller
                         ->orWhere('way', 'LIKE', '%' . $query . '%') 
                         ->orWhere('move_way', 'LIKE', '%' . $query . '%')
                         ->orWhere('comment', 'LIKE', '%' . $query . '%')
-                        ->orWhere('train_name_1', 'LIKE', '%' . $query . '%')
-                        ->orWhere('train_name_2', 'LIKE', '%' . $query . '%')
-                        ->orWhere('train_name_3', 'LIKE', '%' . $query . '%')
-                        ->orWhere('train_name_4', 'LIKE', '%' . $query . '%')
-                        ->orWhere('appeal', 'LIKE', '%' . $query . '%')
                         ->orWhere('address', 'LIKE', '%' . $query . '%')
                         ->orWhere('start_place', 'LIKE', '%' . $query . '%')
                         ->orWhere('end_place', 'LIKE', '%' . $query . '%')
                         ->orWhere('place', 'LIKE', '%' . $query . '%')
-                        ->orWhere('start_day', 'LIKE', '%' . $query . '%')                           
                         ->get();
 
                         dump($results);

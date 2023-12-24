@@ -12,6 +12,7 @@ form {
   background-color: rgb(236, 241, 229);
   font-family: 'arial black';
 }
+
 label{
   font-family:'arial black';
 
@@ -20,6 +21,10 @@ img{
   max-width: 100%;
   height: auto;
   
+}
+.public_text{
+  font-family: 'arial black';
+  font-size: large;
 }
 
 

@@ -1,5 +1,5 @@
 <!--食事の場合開始-->
-<div class="row text-center" id="eat" style="display:none;max-width:750px">
+<div class="row text-center" id="eat" style="display:none;max-width:800px">
   <form action="{{route('schedule_store',$plan)}}" method="post" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="event_category" value="食事"/>
@@ -34,7 +34,7 @@
     @dump($plan->start_day)
     @dump($day)
     <label>予定開始時刻</label>
-    <input type="date" class="form-control text-center" name="start_day" value="{{$day}}">
+    <input type="date" class="form-control text-center" name="start_day">
     <input type="time" class="form-control text-center" name="start_time">
     <hr>
     <label>予定終了時刻</label>

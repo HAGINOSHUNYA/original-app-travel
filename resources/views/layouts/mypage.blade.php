@@ -6,6 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -18,7 +19,13 @@
     
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <!-- jQueryライブラリを含める -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- jQueryを使用する他のスクリプトを含める -->
+    <script src="path/to/your/script.js"></script>
+    
     
     
     <!--FontAwesome -->

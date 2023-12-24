@@ -15,7 +15,7 @@
     <li>
         <!--新規作成のモーダル呼び出し部分開始-->
             @include('modals.create_plan')  
-             <a href="#" class="link-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#addPlanModal">
+             <a href="" class="link-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#addPlanModal">
                      <i class="fa-solid fa-plus">新規作成</i>
              </a>          
         <!--新規作成のモーダル呼び出し部分終了-->   

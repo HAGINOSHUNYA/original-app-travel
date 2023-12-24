@@ -1,4 +1,4 @@
-@foreach ($recommend_schedules as $schedule)
+@foreach ($recently_schedules as $schedule)
      <div class="card mb-3" style="max-width:1800px;">
         <div class="row g-0" >
             <div class="col-md-4">
@@ -9,10 +9,11 @@
                 @endif
             </div>
             <div class="col-md-8" style="padding: 0px;">
-            <a href="#" class="link-dark text-decoration-none">
+            <a href="{{route('public_schedule',['schedule'=>$schedule])}}" class="link-dark text-decoration-none">
                 <div class="card-body">
                     <h1 class="card-title" style="margin-bottom: 0px;">{{ $schedule->event_category }}</h1>
                     <h3 class="card-text" style="margin-bottom: 0px;">開始予定時刻：{{ \Carbon\Carbon::parse($schedule->start_time)->format('H時i分') }}</h2>
+                    <p class="card-text"><small class="text-body-secondary">作成者：{{ App\Models\Schedule::find($schedule->id)->user->name }}　さん</small></p>
                     
                       
                         <button type="button" class="btn btn-outline-dark btn-lg" style="margin-top: 0px;"> 

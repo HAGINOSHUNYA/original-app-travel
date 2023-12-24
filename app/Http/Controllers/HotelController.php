@@ -33,6 +33,7 @@ class HotelController extends Controller
                          $mcodes[] =$middleClass->middleClass[0]->middleClassCode;
                         }
                     }
+                    dump($mcodes);
 
                  $mNames = [];//各都道府県のmiddleClassName☆
                     foreach($Places->areaClasses as $place){
@@ -74,7 +75,7 @@ class HotelController extends Controller
                         $dynamicVariables[$variableName] = $$variableName;
                         //dump($dynamicVariables["prefectures_" .$i]);
                     }
-                    
+                    //dump($dynamicVariables);
                     $testarray = [];
 
                     $variableName = "prefectures_6" ;//ここのリクエストを送れるようにする
@@ -91,7 +92,7 @@ class HotelController extends Controller
                                 $testarray[] = $item;
                             }
                         }
-                        dump($testarray);//これをレスポンスする
+                        //dump($testarray);//これをレスポンスする
    
 
                     
@@ -221,7 +222,7 @@ class HotelController extends Controller
                         }
                     }
 
-                    dump($mcodes);
+                    
 
                     
                  $mNames = [];//各都道府県のmiddleClassCode
