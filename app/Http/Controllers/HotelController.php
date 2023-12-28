@@ -547,11 +547,12 @@ class HotelController extends Controller
                             $posts = "";
                             $message = "検索結果なし";
                             
-                
+                dd($checkinDate);
                         } else {
                             // その他のエラーの場合の処理
                             // ...
                             $message = "検索結果なし";
+                            
                         }
                         } else {
                         // レスポンスがない場合（リクエストが失敗した場合など）
