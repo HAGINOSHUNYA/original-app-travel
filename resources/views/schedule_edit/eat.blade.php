@@ -1,34 +1,34 @@
 <!--食事の場合開始-->
 <div id="eat" style="max-width: 800px;">
-<form action="{{route('schedule_updata', ['schedule' => $schedule, 'plan' => $plan])}}" method="post">
+<form action="{{route('schedule_updata', ['schedule' => $schedule, 'plan' => $plan])}}" method="post" enctype="multipart/form-data">
 @csrf
 <input type="hidden" name="event_category" value="食事"/>
     <hr>
     <label>タイトル</label>
-    <input type="text" class="form-control text-center" id="title" name="title">
+    <input type="text" class="form-control text-center" id="title" name="title" value="{{ $schedule->title }}">
     <hr>
     <label>店名</label>
-    <input type="text" class="form-control text-center" id="place" name="place">
+    <input type="text" class="form-control text-center" id="place" name="place" value="{{ $schedule->place }}">
     <hr>
     <select   name="way" id="way" class="form-control text-center">
     <option>--- 選択してください ---</option>
-      <option value="居酒屋">居酒屋</option>
-      <option value="ファミレス">ファミレス</option>
-      <option value="中華">中華</option>
-      <option value="フレンチ">フレンチ</option>
-      <option value="イタリアン">イタリアン</option>
-      <option value="和食">和食</option>
-      <option value="洋食">洋食</option>
-      <option value="寿司">寿司</option>
-      <option value="レストラン">レストラン</option>
-      <option value="焼肉">焼肉</option>
-      <option value="ファストフード">ファストフード</option>
+      <option value="居酒屋" {{ $schedule->way == '居酒屋' ? 'selected' : '' }}>居酒屋</option>
+      <option value="ファミレス" {{ $schedule->way == 'ファミレス' ? 'selected' : '' }}>ファミレス</option>
+      <option value="中華" {{ $schedule->way == '中華' ? 'selected' : '' }}>中華</option>
+      <option value="フレンチ" {{ $schedule->way == 'フレンチ' ? 'selected' : '' }}>フレンチ</option>
+      <option value="イタリアン" {{ $schedule->way == 'イタリアン' ? 'selected' : '' }}>イタリアン</option>
+      <option value="和食" {{ $schedule->way == '和食' ? 'selected' : '' }}>和食</option>
+      <option value="洋食" {{ $schedule->way == '洋食' ? 'selected' : '' }}>洋食</option>
+      <option value="寿司" {{ $schedule->way == '寿司' ? 'selected' : '' }}>寿司</option>
+      <option value="レストラン" {{ $schedule->way == 'レストラン' ? 'selected' : '' }}>レストラン</option>
+      <option value="焼肉" {{ $schedule->way == '焼肉' ? 'selected' : '' }}>焼肉</option>
+      <option value="ファストフード" {{ $schedule->way == 'ファストフード' ? 'selected' : '' }}>ファストフード</option>
     </select>
     <hr>
-    <select name="reservatoion" id="reservatoion" class="form-control text-center">
-      <option>--- 予約状況 ---</option>
-      <option value="true">予約済み</option>
-      <option value="false">未予約</option>
+    <select name="reservation" id="reservation" class="form-control text-center">
+    <option>--- 予約状況 ---</option>
+    <option value="true" {{ $schedule->reservation ? 'selected' : '' }}>予約済み</option>
+    <option value="false" {{ !$schedule->reservation ? 'selected' : '' }}>未予約</option>
     </select>
     <hr>
     @dump($plan->start_day)
@@ -38,28 +38,36 @@
     <input type="time" class="form-control text-center" name="start_time" value="{{$time}}">
     <hr>
     <label>予定終了時刻</label>
-    <input type="time" class="form-control text-center" name="end_time">
+    <input type="time" class="form-control text-center" name="end_time" value="{{$end_time}}">
     <hr>
     <label>値段</label>
-    <input type="text" class="form-control" name="cost">
+    <input type="text" class="form-control" name="cost" value="{{$schedule->cost}}">
     <hr>
     <label>必要なもの</label>
-    <input type="text" class="form-control text-center" name="item">
+    <input type="text" class="form-control text-center" name="item" value="{{$schedule->item}}">
     <hr>
     <label>画像</label>
+    <div class="edit_img">
+              @if($schedule->image_name)
+                    <img src="{{ asset('storage/img/' . $schedule->image_name) }}" class="img-fluid rounded-start" alt="...">
+                @else
+                    <img src="{{ asset('img/no_img.jpg') }}" class="img-fluid rounded-start" alt="Default Image">
+                @endif
+
+    </div>
     <input type="file" class="form-control text-center" name="image">
     <hr>
     <label>コメント</label>
     <input type="text" class="form-control" name="comment">
     <hr>
-    <label for="switch" class="switch_label"  class="form-control text-center" onchange="ball();">
-      <div class="switch">
-        <input type="checkbox" id="switch" name="recommend_flag" {{ old('recommend_flag', false) ? 'checked' : '' }}/>
-        <div class="circle"></div>
-        <div class="base"></div>
-      </div>
-      <span class="title">おすすめ非公開</span>
-    </label>
+    <label for="switch" class="switch_label" class="form-control text-center" onchange="ball();">
+  <div class="switch">
+    <input type="checkbox" id="switch" name="recommend_flag" {{ old('recommend_flag', false) ? 'checked' : '' }} />
+    <div class="circle {{ old('recommend_flag', false) ? 'move_circle' : '' }}"></div>
+    <div class="base"></div>
+  </div>
+  <span class="title">{{ old('recommend_flag', false) ? 'おすすめ公開' : 'おすすめ非公開' }}</span>
+</label>
     <hr>
     <input type="submit" name="submit" value="送信"  class="btn btn-primary"/>
   </form>

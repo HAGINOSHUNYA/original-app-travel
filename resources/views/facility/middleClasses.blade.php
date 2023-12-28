@@ -1,4 +1,4 @@
-<script>
+{{--<script>
 $(document).ready(function() {
     // オブジェクトマッピングを定義
     var prefectureMapping = {
@@ -108,7 +108,7 @@ $('#selectedmiddleClass').on('change', function() {
 });
 });
 </script>
-  
+  --}}
   
   <!--都道府県のセレクトボックス開始-->
   <label for="selectedmiddleClass">都道府県:</label>

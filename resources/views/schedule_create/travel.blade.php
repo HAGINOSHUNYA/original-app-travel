@@ -5,6 +5,9 @@
     @csrf
     <input type="hidden" name="event_category" value="観光">
     <hr>
+    <label>タイトル</label>
+    <input type="text" class="form-control text-center" id="title" name="title">
+    <hr>
     <label>施設名</label>
     <input type="text" class="form-control" name="place">
     <hr>

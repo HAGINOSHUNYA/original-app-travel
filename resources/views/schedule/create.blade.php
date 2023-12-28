@@ -2,6 +2,7 @@
 @section('content')
 <div class="container text-center">
 <h1>{{$plan->name}}のスケジュール作成</h1>
+<p>{{\Carbon\Carbon::parse($plan->start_day)->format('Y年m月d日')}}~{{\Carbon\Carbon::parse($plan->end_day)->format('Y年m月d日')}}</p>
 <hr>
 </div>
 <div class="container text-center" style="max-width:800px">

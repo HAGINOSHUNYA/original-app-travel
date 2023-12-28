@@ -3,24 +3,14 @@
     @csrf
     <input type="hidden" name="event_category" value="移動">
     <input type="hidden" name="way" value="公共交通機関">
+    <label>タイトル</label>
+    <input type="text" class="form-control text-center" id="title" name="title">
+    <hr>
 
     <label>路線名</label>
     <input type="text" class="form-control" name="train_name_1">
 
-    <div style="display: flex;display: flex; justify-content: center; align-items: center; ">乗り換え
-      <div>
-        <label>あり
-        <input type="radio" name="reservation" class="form-control" value="1">
-        </label>
-      </div>
-      <div>
-        <label>なし
-        <input type="radio" name="reservation" class="form-control" value="0">
-        </label>
-      </div>
-    </div>
-
-
+   
 
       <label>出発時刻</label>
       <input type="date" class="form-control text-center" name="start_day" value="{{$day}}">

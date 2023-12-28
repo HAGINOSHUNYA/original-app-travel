@@ -1,4 +1,5 @@
 <div id="keyword" style="display:none">
+<h2>楽天キーワード検索</h2>
 
   <form action="{{route('keyword')}}" class="from-control">
     @csrf

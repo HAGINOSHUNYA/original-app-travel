@@ -1,4 +1,5 @@
 <div id="lank" style="display:none">
+<h2>ランキング検索</h2>
 
 <form action="{{route('lank_api')}}">
 @csrf

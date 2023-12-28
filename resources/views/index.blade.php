@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.mypage')
 
 @section('content')
 <main id="main">
@@ -13,19 +13,14 @@
   <h2>UserMenu</h2>
   <ul>
     <li>
-        <!--新規作成のモーダル呼び出し部分開始-->
-            @include('modals.create_plan')  
-             <a href="" class="link-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#addPlanModal">
-                     <i class="fa-solid fa-plus">新規作成</i>
-             </a>          
-        <!--新規作成のモーダル呼び出し部分終了-->   
+        <a href="{{route('mypage')}}" class="link-dark text-decoration-none">マイページ</a>
     </li>
+
     <li> 
         <a href="{{route('plan.index')}}" class="link-dark text-decoration-none">プラン一覧</a>
     </li>
-    <li>
-        <a href="{{route('mypage')}}" class="link-dark text-decoration-none">マイページ</a>
-    </li>
+
+    
     
   </ul>
   <h2>HotelSerch</h2>
@@ -39,16 +34,9 @@
     <li>
         <a href="https://www.jalan.net/" target="_blank" rel="noopener noreferrer">じゃらん</a>へ
     </li>
-    <li>Subject</li>
+   
   </ul>
-  <h2>LeisureMenu</h2>
-  <ul>
-    <li>Subject</li>
-    <li>Subject</li>
-    <li>Subject</li>
-    <li>Subject</li>
-    <li>Subject</li>
-  </ul>
+  
 </aside>
 
 

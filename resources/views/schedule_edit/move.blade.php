@@ -6,9 +6,10 @@
       
 
 <select name="way" id="way" class="form-control">
- <option>{{$schedule->way}}</option>
+ <option value="{{$schedule->way}}">{{$schedule->way}}</option>
       <option value="自家用車">自家用車</option>
       <option value="レンタカー">レンタカー</option>
+      <option value="公共交通機関">公共交通機関</option>
 </select>
 <label>出発時刻</label>
 <input type="time" class="form-control" name="start_time" value="{{$time}}">

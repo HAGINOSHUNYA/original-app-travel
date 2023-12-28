@@ -80,7 +80,7 @@ class UserController extends Controller
     public function update_password(Request $request)//パスワード変更機能
      {
          $validatedData = $request->validate([
-             'password' => 'required|confirmed',
+             'password' => 'required|confirmed|string|min:8',
          ]);
  
          $user = Auth::user();

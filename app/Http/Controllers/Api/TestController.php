@@ -166,6 +166,7 @@ class TestController extends Controller
         }
     
          // JSON形式でレスポンスを返す
+         dump($testarray);
          return response()->json($testarray);
 
         

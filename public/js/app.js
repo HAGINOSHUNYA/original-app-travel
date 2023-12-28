@@ -33,35 +33,18 @@ function viewChange(){
 window.onload = viewChange;
 }
 
+function ball() {
+  const checkbox = document.getElementById('switch');
+  const title = document.querySelector('.title');
 
-
-function move_ball() {
-      checkbox.addEventListener('click', () => {
-        const title = document.querySelector(titleSelector);
-        title.textContent = checkbox.checked ? 'おすすめ公開' : 'おすすめ非公開';
-    });
-  }
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    move_ball();
-  });
-
-  function ball() {
-    const checkbox = document.getElementById('switch');
-    const title = document.querySelector('.title');
-  
-    checkbox.addEventListener('click', () => {
+  checkbox.addEventListener('click', () => {
       title.textContent = checkbox.checked ? 'おすすめ公開' : 'おすすめ非公開';
-    });
-  }
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    ball();
   });
+}
 
-  
-
-
+document.addEventListener('DOMContentLoaded', function() {
+  ball();
+});
   function MoveChange() {
     console.log("fuga");
     if (document.getElementById('move_way')) {
@@ -104,29 +87,24 @@ function searchChange() {
           document.getElementById('keyword').style.display = "";
           document.getElementById('vacancy').style.display = "none";
           document.getElementById('lank').style.display = "none";
+          document.getElementById('facility').style.display = "none";
       } else if (id == '空室') {
           document.getElementById('keyword').style.display = "none";
           document.getElementById('vacancy').style.display = "";
           document.getElementById('lank').style.display = "none";
+          document.getElementById('facility').style.display = "none";
       }  else if (id == 'ランキング') {
           document.getElementById('keyword').style.display = "none";
           document.getElementById('vacancy').style.display = "none";
           document.getElementById('lank').style.display = "";
-      }
+          document.getElementById('facility').style.display = "none";
+      }  else if (id == '施設') {
+        document.getElementById('keyword').style.display = "none";
+        document.getElementById('vacancy').style.display = "none";
+        document.getElementById('lank').style.display = "none";
+        document.getElementById('facility').style.display = "";
+    }
   }
   window.onload = searchChange;
 }
 
-window.addEventListener('scroll', function () {
-    var sidebar = document.getElementById('main');
-    var content = document.querySelector('.sub');
-    var contentRect = content.getBoundingClientRect();
-
-    if (window.scrollY > contentRect.top) {
-        sidebar.style.position = 'fixed';
-        sidebar.style.top = '0';
-    } else {
-        sidebar.style.position = 'relative';
-        sidebar.style.top = 'auto';
-    }
-});

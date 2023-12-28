@@ -1,5 +1,5 @@
-<div id="facility" >style="display:none"
-
+<div id="facility" style="display:none">
+<h2>楽天施設検索</h2>
 
  
  

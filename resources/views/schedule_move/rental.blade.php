@@ -4,6 +4,9 @@
     <input type="hidden" name="event_category" value="移動">
     <input type="hidden" name="way" value="レンタカー">
     <input type="hidden" name="move_way" value="レンタカー">
+    <label>タイトル</label>
+    <input type="text" class="form-control text-center" id="title" name="title">
+    <hr>
       <label>出発時刻</label>
       <input type="date" class="form-control text-center" name="start_day" value="{{$day}}">
       <input type="time" class="form-control" name="start_time">

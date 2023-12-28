@@ -1,12 +1,16 @@
 
 {{----}}
+
 <!--市町村のセレクトボックス開始-->
 <label for="selectedsmallClass">市町村:</label>
     <select name="selectedsmallClass" id="selectedsmallClass" class="form-control">
         @foreach($smallArray as $small)
         <option value="{{$small[1]}}">
             {{$small[0]}}
+            
         </option>
+
+        
         @endforeach
     </select>
     <!--市町村のセレクトボックス終了-->

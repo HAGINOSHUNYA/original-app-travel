@@ -37,8 +37,8 @@
     </form>
     </div>
   <hr>
-@if($results)
-    @foreach ($results as $result)
+
+    @forelse ($results as $result)
     <div class="card mb-3" style="max-width: 800px;">
         <div class="row g-0" >
             <div class="col-md-4">
@@ -49,7 +49,8 @@
                 @endif
             </div>
             <div class="col-md-8" style="padding: 0px;">
-                <a href="{{ route('schedule_show', ['schedule' => $schedule, 'plan' => $plan->id]) }}" class="link-dark text-decoration-none">
+            <a href="{{ route('schedule_show', ['schedule' => $result, 'plan' => $result->plan_id]) }}" class="link-dark text-decoration-none">
+                   
                     <div class="card-body">
                         <h1 class="card-title" style="margin-bottom: 0px;">{{ $result->event_category }}</h1>
                             {{$result->way}}
@@ -73,13 +74,13 @@
             </div>
         </div>
     </div>
-    @endforeach
+    @empty
 
     @else
 
     <h3>nasi</h3>
 
-    @endif
+    @endforelse
 
 
 

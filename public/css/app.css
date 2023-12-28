@@ -1,8 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Potta+One&display=swap');
 /*div{
   grid-area: auto;
   border: 1px solid ;
 }**/
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Potta One', cursive;
+}
 
+
+p{
+  font-family: 'Potta One', cursive;
+
+}
+a {
+  font-family: 'Potta One', cursive;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🚀</text></svg>"), auto;
+}
+h1{
+  font-family: 'Potta One', cursive;
+}
+h2{
+  font-family: 'Potta One', cursive;
+
+}
+h3{
+  font-family: 'Potta One', cursive;
+}
+h5{
+  font-family: 'Potta One', cursive;
+}
+input{
+  font-family: 'Potta One', cursive;
+}
+button{
+  font-family: 'Potta One', cursive;
+}
+i{
+  font-family: 'Potta One', cursive;
+}
+
+label{
+  font-family: 'Potta One', cursive;
+}
+option{
+  font-family: 'Potta One', cursive;
+}
 
 .plan-index {
   background-color: rgb(225, 230, 219);
@@ -10,23 +54,59 @@
 }
 form {
   background-color: rgb(236, 241, 229);
-  font-family: 'arial black';
+  font-family: 'Potta One', cursive;
+}
+.user_name{
+  font-family: 'Potta One', cursive;
+}
+#user_comment {
+  margin: 5;
+  padding: 0;
+  text-align: center;
+  font-family: 'Potta One', cursive;
+}
+#user_comment {
+  position: relative;
+  display: flex;
+  margin: 1.5em 0 1.5em 15px;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #e0edff;
+}
+#user_comment:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  margin-top: -15px;
+  border: 15px solid transparent;
+  border-right: 15px solid #e0edff;
 }
 
-label{
-  font-family:'arial black';
 
-}
 img{
   max-width: 100%;
   height: auto;
   
+  
 }
 .public_text{
-  font-family: 'arial black';
+  font-family: 'Potta One', cursive;
   font-size: large;
 }
 
+.mypage_text{
+  font-size: 300%;  
+  font-family: 'Potta One', cursive;
+}
+
+.add {
+  font-size: 300%;  
+  font-family: 'Potta One', cursive;
+}
 
 
 
@@ -50,25 +130,6 @@ input[name = 'recommend_flag']{
 .title {
   margin-left: 4px;
 }
-/**
-.move_title {
-  margin-left: 4px;
-}
-
-.eat_title {
-  margin-left: 4px;
-}
-
-.travel_title {
-  margin-left: 4px;
-}
-
-.hotel_title {
-  margin-left: 4px;
-}
-
-*/
-
 
 input:checked ~ .base {
   background-color: rgb(219, 234, 254);/**選択時背景色**/
@@ -96,61 +157,11 @@ input:checked ~ .base {
   background-color: rgb(219, 234, 254);/**ボールデフォルトカラー**/
   transition: 0.5s;
 }
-/**
-.eat_circle {
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  width: 24px;
-  height: 24px;
-  border-radius: 12px;
-  background-color: rgb(219, 234, 254);
-  transition: 0.5s;
-}
 
-.travel_circle {
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  width: 24px;
-  height: 24px;
-  border-radius: 12px;
-  background-color: rgb(219, 234, 254);
-  transition: 0.5s;
-}
-
-.hotel_circle {
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  width: 24px;
-  height: 24px;
-  border-radius: 12px;
-  background-color: rgb(219, 234, 254);
-  transition: 0.5s;
-}
-
-**/
 .switch {
   position: relative;
 }
-/**
-.move_switch {
-  position: relative;
-}
 
-.eat_switch {
-  position: relative;
-}
-
-.travel_switch {
-  position: relative;
-}
-
-.hotel_switch {
-  position: relative;
-}
-**/
 
 
 
@@ -173,9 +184,7 @@ input:checked ~ .circle {
   display: flex;
   justify-content: space-between;
 }
-/**.main {
-  width: calc(100% - 200px);
-}**/
+
 .sidebar {
   width: 400px;
   padding: 0px;
@@ -192,38 +201,13 @@ input:checked ~ .circle {
   width: 50%;
   height: 50%;
 }
-#user_comment {
-  position: relative;
-  display: flex;
-  margin: 1.5em 0 1.5em 15px;
-  padding: 7px 10px;
-  min-width: 120px;
-  max-width: 100%;
-  color: #555;
-  font-size: 16px;
-  background: #e0edff;
-}
 
-#user_comment:before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -30px;
-  margin-top: -15px;
-  border: 15px solid transparent;
-  border-right: 15px solid #e0edff;
-}
 
-#user_comment {
-  margin: 5;
-  padding: 0;
-  text-align: center;
-}
 
-body {
-  margin: 0;
-  padding: 0;
-}
+
+
+
+
 #header {
   box-sizing: border-box;
   background: #ccc;

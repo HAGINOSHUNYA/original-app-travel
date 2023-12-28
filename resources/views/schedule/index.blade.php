@@ -20,7 +20,7 @@
 <hr style="margin: 0px;padding: 0px;">
 <div class="container text-center" style="max-width: 800px"><!--サイドバーと一覧-->
     <div class="row">
-        <a href="{{route('schedule_create',$plan )}}" class="link-dark text-decoration-none">+スケジュール追加</a>
+        <a href="{{route('schedule_create',$plan )}}" class="link-dark text-decoration-none add">+スケジュール追加</a>
         <hr>
     </div>
     <h1>スケジュール一覧</h1>
@@ -41,9 +41,9 @@
         <div class="row g-0" >
             <div class="col-md-4">
                 @if($schedule->image_name)
-                    <img src="{{ asset('storage/img/' . $schedule->image_name) }}" class="img-fluid rounded-start" alt="...">
+                    <img src="{{ asset('storage/img/' . $schedule->image_name) }}" class="img-fluid rounded-start" alt="..." style="height: 200px;width:300px; ">
                 @else
-                    <img src="{{ asset('img/no_img.jpg') }}" class="img-fluid rounded-start" alt="Default Image">
+                    <img src="{{ asset('img/no_img.jpg') }}" class="img-fluid rounded-start" alt="Default Image" style="height: 200px;width:300px;">
                 @endif
             </div>
             <div class="col-md-8" style="padding: 0px;">
@@ -54,7 +54,7 @@
                     <h3 class="card-text" style="margin-bottom: 0px;">開始予定時刻：{{ \Carbon\Carbon::parse($schedule->start_time)->format('H時i分') }}</h2>
                     
                       
-                        <button type="button" class="btn btn-outline-dark btn-lg" style="margin-top: 0px;"> 
+                        <button type="button" class="btn btn-outline-primary" style="margin-top: 0px;"> 
                             @if($schedule->isFavoritedBy(Auth::user()))
                             <a href="{{ route('favorite', $schedule) }}" class="link-dark text-decoration-none">
                                    <i class="fa-solid fa-star"></i>
