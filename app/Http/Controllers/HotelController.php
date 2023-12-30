@@ -149,6 +149,7 @@ class HotelController extends Controller
                 }
                 
                 $mergedClasses = [];
+               
                 
                 for ($i = 0; $i < 5; $i++) {
                     $dclass = [];
@@ -157,7 +158,7 @@ class HotelController extends Controller
                     }
                     $mergedClasses[] = $dclass;
                 }
-                
+                 dump($mergedClasses);
               
                 $detailArray = array_merge(...$mergedClasses);
                 
@@ -424,10 +425,12 @@ class HotelController extends Controller
                         // その他のエラーの場合の処理
                         // ...
                         $message = "検索結果なし";
+                        $posts = "";
                     }
                     } else {
                     // レスポンスがない場合（リクエストが失敗した場合など）
                     $message = "検索結果なし";
+                    $posts = "";
             
                     // タイムアウトやネットワークエラーなどの処理を行う
                     // ...

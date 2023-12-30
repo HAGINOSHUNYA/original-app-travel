@@ -22,7 +22,7 @@ use App\Http\Controllers\Api\TestController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('public_index');
 });
 //ユーザー関連ページのルーティング
 Route::controller(UserController::class)->group(function () {
@@ -61,6 +61,9 @@ Route::controller(ScheduleController::class)->group(function(){
 Route::controller(WebController::class)->group(function(){
     Route::get('web/travel/index', 'index')->name('index')->middleware('auth');
     Route::get('web/travel/{schedule}/public/show', 'public_schedule')->name('public_schedule')->middleware('auth');
+    //.
+    
+    
     Route::get('web/trvel/public_index','public_index')->name('public_index');
 
 });
@@ -100,4 +103,3 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/getSelectedSmallClass', [App\Http\Controllers\Api\TestController::class, 'getSelectedSmallClass']);

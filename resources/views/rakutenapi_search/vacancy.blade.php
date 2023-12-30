@@ -7,8 +7,8 @@
 <form action="{{route('vacncy_api')}}" method="post">
 
 <!--都道府県のセレクトボックス開始-->
-    <label for="selectedmiddleClass">都道府県:</label>
-    <select name="selectedmiddleClass" id="selectedmiddleClass" class="form-control text-center">
+    <label for="selectedmiddleClass1">都道府県:</label>
+    <select name="selectedmiddleClass" id="selectedmiddleClass1" class="form-control text-center">
         @foreach($middleArray as $middle)
         <option value="{{$middle[1]}}">
             {{$middle[0]}}
@@ -18,8 +18,8 @@
 <!--都道府県のセレクトボックス終了-->
 
 <!--市町村のセレクトボックス開始-->
-    <label for="selectedsmallClass">市町村:</label>
-    <select name="selectedsmallClass" id="selectedsmallClass" class="form-control text-center">
+    <label for="selectedsmallClass1">市町村:</label>
+    <select name="selectedsmallClass" id="selectedsmallClass1" class="form-control text-center">
         @foreach($smallArray as $small)
         <option value="{{$small[1]}}">
             {{$small[0]}}
@@ -29,8 +29,8 @@
 <!--市町村のセレクトボックス終了-->
 
 <!--都道府県のセレクトボックス開始-->
- <label for="selectedetailClass">地区:</label>
-    <select name="selecteddetailClass" id="selecteddetailClass" class="form-control text-center">
+ <label for="selectedetailClass1">地区:</label>
+    <select name="selecteddetailClass" id="selecteddetailClass1" class="form-control text-center">
     <option selected disabled> --選択してください-- </option>
     <option value="" >選択しない</option>
         @foreach($detailArray as $detail)

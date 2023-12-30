@@ -21,11 +21,12 @@
 
     @include('rakutenapi_search.keyword')
     
-    @include('rakutenapi_search.vacancy')
+  
     
     @include('rakutenapi_search.lank')
     
       @include('rakutenapi_search.facility')
+      @include('rakutenapi_search.vacancy')
     </div>
     
 

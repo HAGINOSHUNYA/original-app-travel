@@ -34,7 +34,7 @@ class ScheduleController extends Controller
     $schedules = Schedule::where('plan_id', $plan->id)->paginate(5);
         
         
-        dump($schedule);
+        //dump($schedule);
 
 
 
@@ -53,9 +53,9 @@ class ScheduleController extends Controller
     })
     ->get();
 
-              dump($request['query']);
-  dump($user_id);
-  dump($results);        
+              //dump($request['query']);
+  //dump($user_id);
+  //dump($results);        
 
 
                      

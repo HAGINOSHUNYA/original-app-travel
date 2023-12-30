@@ -26,3 +26,4 @@ Route::post('/testpost', [App\Http\Controllers\Api\TestController::class, 'testp
 
 Route::post('/getSelectedSmallClass', [App\Http\Controllers\Api\TestController::class, 'getSelectedSmallClass']);
 Route::post('/getSmallClass', [App\Http\Controllers\Api\TestController::class, 'getSmallClass']);
+Route::post('/getDetailClass', [App\Http\Controllers\Api\TestController::class, 'getDetailClass']);

@@ -22,7 +22,9 @@
             @include('facility.smallClasses')
 
             @include('facility.detailClasses')
-</div>
+            <input type="submit" name="submit" value="送信"  class="btn btn-primary"/>
+            </form>
+          </div>
 <hr>
           
             <div class="container text-center">
@@ -30,7 +32,7 @@
              <hr>
               @if($posts != "")
               @foreach($posts->hotels as $post)
-              {{----}}@dump($post->hotel[0]->hotelBasicInfo)
+              {{--@dump($post->hotel[0]->hotelBasicInfo)--}}
 
               <div class="card mb-3" style="max-width: 1800px;">
                 <div class="row g-0">

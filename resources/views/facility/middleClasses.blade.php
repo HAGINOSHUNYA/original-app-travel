@@ -1,4 +1,4 @@
-<script>
+<script>//smallclassを生成
 $(document).ready(function() {
     // オブジェクトマッピングを定義
     var prefectureMapping = {
@@ -62,52 +62,90 @@ $('#selectedmiddleClass').on('change', function() {
     // ここで convertedValue の値を利用して何かしらの処理を行う
     console.log('選択された値:', convertedValue);
 
-    // Ajaxリクエストを送信
+    // smallclassのAjaxリクエスト
     $.ajax({
         type: 'POST',
-        url:'/original-app-travel/public/api/getSmallClass',
-        
+        url:  '{{ url("/api/getSmallClass") }}',
         data: {
             selectedValue: convertedValue,
-            _token: 'Z698vwJrmgFHDZAPS2FherWNOAV1Ag2YbGbv2J4B', // CSRFトークンを追加
+            _token: 'Z698vwJrmgFHDZAPS2FherWNOAV1Ag2YbGbv2J4B',
             _method: "POST"
         },
+        dataType: 'json',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        success: function(data) {
-          console.log('データ:', data);
-          console.log('選択された値:', convertedValue);
-            // id="selectedsmallClass"のオプションを変更
-            var smallClassSelect = $('#selectedsmallClass');
-            smallClassSelect.empty(); // オプションを一旦クリア
-            parsedData = JSON.parse(data);
-            console.log('parsedData:', parsedData);
+        success: function(parsedData) {
+            console.log('データ:', parsedData);
+            console.log('選択された値:', convertedValue);
 
-            // 取得したデータを元にオプションを追加
+            var smallClassSelect = $('#selectedsmallClass');
+            smallClassSelect.empty();
+
             for (var i = 0; i < parsedData.length; i++) {
-              console.log('Loop iteration:', i);
+                console.log('Loop iteration:', i);
                 smallClassSelect.append($('<option>', {
-                    value: parsedData[i].smallClassCode, // 適切なプロパティに修正
-                    text: parsedData[i].smallClassName // 適切なプロパティに修正
+                    value: parsedData[i].smallClassCode,
+                    text: parsedData[i].smallClassName
                 }));
             }
 
-            // 新しく追加されたオプションの値をコンソールに表示
             console.log('Newly added options:', smallClassSelect.val());
 
-            
+            console.log('parsedData:', parsedData);
         },
         error: function(error, XMLHttpRequest, textStatus, errorThrown) {
-    console.log("ajax通信に失敗しました");
-    console.log("XMLHttpRequest : " + XMLHttpRequest.status);
-    console.log("textStatus     : " + textStatus);
-    console.log("errorThrown    : ", error); // ここを変更
-}
+            console.log("smallclassのajax通信に失敗しました");
+            console.log("XMLHttpRequest : " + XMLHttpRequest.status);
+            console.log("textStatus     : " + textStatus);
+            console.log("errorThrown    : ", error);
+        }
+    });
+
+    // detailclassのAjaxリクエスト
+    $.ajax({
+        type: 'POST',
+        url: '{{ url("/api/getDetailClass") }}',
+        data: {
+          selectedValue: convertedValue,
+            _token: 'Z698vwJrmgFHDZAPS2FherWNOAV1Ag2YbGbv2J4B',
+            _method: "POST"
+        },
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+          console.log("detailclassのajax通信に成功しました:", data);
+          console.log('選択された値:', convertedValue);
+
+
+          var detailClassSelect = $('#selecteddetailClass');
+            detailClassSelect.empty();
+
+            for (var i = 0; i < data.length; i++) {
+                console.log('Loop iteration:', i);
+                detailClassSelect.append($('<option>', {
+                    value: data[i].detailClassCode,
+                    text: data[i].detailClassName
+                }));
+            }
+
+
+
+           
+        },
+        error: function(error, XMLHttpRequest, textStatus, errorThrown) {
+            console.log("detailclassのajax通信に失敗しました");
+            console.log("XMLHttpRequest : " + XMLHttpRequest.status);
+            console.log("textStatus     : " + textStatus);
+            console.log("errorThrown    : ", error.responseText);
+        }
     });
 });
 });
 </script>
+
 {{----}}
   
   <!--都道府県のセレクトボックス開始-->
