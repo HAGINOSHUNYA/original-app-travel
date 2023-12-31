@@ -201,6 +201,8 @@ class ScheduleController extends Controller
     public function destroy(Schedule $schedule)
     {
         //
+       $schedule->delete();
+       return redirect()->route('schedule')->with('flash_message','削除しました');
     }
 
     public function favorite(Schedule $schedule)//お気に入り追加機能

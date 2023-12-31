@@ -267,8 +267,23 @@ class TestController extends Controller
         }
         //dump($responseArray);
 
+        // $responseArray が存在し、かつキー 0 が存在するかを確認
+if (isset($responseArray[0])) {
+    // キーが存在する場合、JSON レスポンスとして返す
+    return response()->json($responseArray[0]);
+} else {
+    // キーが存在しない場合、エラーまたは別の処理を行う
 
-        return response()->json($responseArray[0]);
+    // $responseArray を再定義
+    $responseArray = [
+        'detailClassCode' => null,
+        'detailClassName' => 'なし'
+    ];
+
+    // dump($responseArray);
+    return response()->json($responseArray, 500, []); // 第三引数に空の配列を渡す
+}
+
 
         
         

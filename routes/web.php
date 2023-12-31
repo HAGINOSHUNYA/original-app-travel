@@ -92,7 +92,7 @@ Route::controller(HotelController::class)->group(function(){
     Route::get('rakuten/index/keyword/show', 'keyword_show')->name('keyword_show')->middleware('auth');//キーワード検索結果ページ
     Route::get('rakuten/index/lank', 'lank_api')->name('lank_api')->middleware('auth');//キーワード検索機能
     Route::get('rakuten/index/facility', 'facility_api')->name('facility_api')->middleware('auth');//施設検索機能
-    Route::post('rakuten/index/vacncy', 'vacncy')->name('vacncy_api')->middleware('auth');//空室検索機能
+    Route::post('rakuten/index/vacncy', 'vacancy')->name('vacancy_api')->middleware('auth');//空室検索機能
 
 
 })

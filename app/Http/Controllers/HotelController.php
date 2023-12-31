@@ -501,7 +501,9 @@ class HotelController extends Controller
         }
 
         public function vacancy(Request $request){
+           
             try{
+              
                 $client = new Client();
                 $applicationId = "1052696491690146167";
                 $middleClassCode = $request->input("selectedmiddleClass");
@@ -514,22 +516,24 @@ class HotelController extends Controller
 
                 if($detailClassCode == null){
 
-                    dump($checkinDate);
+                    
                     $url = "https://app.rakuten.co.jp/services/api/Travel/VacantHotelSearch/20170426?format=json&checkinDate=".$checkinDate."&checkoutDate=".$checkoutDate."&largeClassCode=japan&middleClassCode=".$middleClassCode."&smallClassCode=".$smallClassCode."&applicationId=".$applicationId;
                     
                     $response = $client->request($method, $url);
                     $posts = $response->getBody();
                     $posts = json_decode($posts);
                     $message = "検索結果あり";
+                    //dump($posts);
                 }else{
                     $url = "https://app.rakuten.co.jp/services/api/Travel/VacantHotelSearch/20170426?format=json&checkinDate=".$checkinDate."&checkoutDate=".$checkoutDate."&largeClassCode=japan&middleClassCode=".$middleClassCode."&smallClassCode=".$smallClassCode."&detailClassCode=".$detailClassCode."&applicationId=".$applicationId;
                     
-
+                    
 
                     $response = $client->request($method, $url);
                     $posts = $response->getBody();
                     $posts = json_decode($posts);
                     $message = "検索結果あり";
+                    //dump($posts);
                 }
                 }catch (RequestException $e) {
                     // Guzzle が例外をスローした場合の処理
@@ -550,20 +554,23 @@ class HotelController extends Controller
                             $posts = "";
                             $message = "検索結果なし";
                             
-                dd($checkinDate);
+                
                         } else {
                             // その他のエラーの場合の処理
                             // ...
                             $message = "検索結果なし";
-                            
+                            $posts = "";
                         }
                         } else {
                         // レスポンスがない場合（リクエストが失敗した場合など）
                         $message = "検索結果なし";
+                        $posts = "";
                 
                         // タイムアウトやネットワークエラーなどの処理を行う
                         // ...
                         }
+                       
+                        //dump($message);
                         return view('rakuten.vacncy_result', compact('posts','message'));
                 }
                 
