@@ -174,24 +174,25 @@ $(document).ready(function() {
 <!--市町村のセレクトボックス開始-->
     <label for="selectedsmallClass1">市町村:</label>
     <select name="selectedsmallClass" id="selectedsmallClass1" class="form-control text-center">
-        @foreach($smallArray as $small)
+    <option selected disabled value=""> --選択して下さい-- </option>
+        {{--@foreach($smallArray as $small)
         <option value="{{$small[1]}}">
             {{$small[0]}}
         </option>
-        @endforeach
+        @endforeach--}}
     </select>
 <!--市町村のセレクトボックス終了-->
 
 <!--都道府県のセレクトボックス開始-->
  <label for="selectedetailClass1">地区:</label>
     <select name="selecteddetailClass" id="selecteddetailClass1" class="form-control text-center">
-    <option selected disabled> --選択してください-- </option>
-    <option value="" >選択しない</option>
+    <option selected disabled value=""> --選択しない-- </option>
+    {{--<option value="" >選択しない</option>
         @foreach($detailArray as $detail)
         <option value="{{$detail->detailClassCode}}">
             {{$detail->detailClassName}}
         </option>
-        @endforeach
+        @endforeach--}}
   </select>
 <!--都道府県のセレクトボックス終了-->
 
