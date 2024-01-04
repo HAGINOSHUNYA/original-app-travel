@@ -2,11 +2,12 @@
 
 @section('content')
 <main id="main">
+<div class="container text-center" style="max-width: 1200px">
     
         <h1 style="margin:0px">新着一覧</h1>
         <hr style="margin-top:0px">
         @include('index.recommend_card')
-    
+</div>
 </main>
 
 <aside id="sub">

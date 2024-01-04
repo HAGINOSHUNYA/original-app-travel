@@ -31,8 +31,7 @@
     <option value="false" {{ !$schedule->reservation ? 'selected' : '' }}>未予約</option>
     </select>
     <hr>
-    @dump($plan->start_day)
-    @dump($day)
+    
     <label>予定開始時刻</label>
     <input type="date" class="form-control text-center" name="start_day" value="{{$day}}">
     <input type="time" class="form-control text-center" name="start_time" value="{{$time}}">
@@ -46,15 +45,26 @@
     <label>必要なもの</label>
     <input type="text" class="form-control text-center" name="item" value="{{$schedule->item}}">
     <hr>
-    <label>画像</label>
-    <div class="edit_img">
-              @if($schedule->image_name)
-                    <img src="{{ asset('storage/img/' . $schedule->image_name) }}" class="img-fluid rounded-start" alt="...">
+    <div class="card mb-3" style="max-width: 800px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+    @if($schedule->image_name)
+                    <img src="{{ asset('storage/img/' . $schedule->image_name) }}" class="img-fluid rounded-start" alt="..." style="height: 200px;width:300px; ">
                 @else
-                    <img src="{{ asset('img/no_img.jpg') }}" class="img-fluid rounded-start" alt="Default Image">
+                    <img src="{{ asset('img/no_img.jpg') }}" class="img-fluid rounded-start" alt="Default Image" style="height: 200px;width:300px;">
                 @endif
-
     </div>
+    <div class="col-md-8">
+      <div class="card-body">
+      <label>画像</label>
+      <input type="file" name="image" class="form-control" value="{{$schedule->image_name}}">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
     <input type="file" class="form-control text-center" name="image">
     <hr>
     <label>コメント</label>
@@ -69,8 +79,9 @@
   <span class="title">{{ old('recommend_flag', false) ? 'おすすめ公開' : 'おすすめ非公開' }}</span>
 </label>
     <hr>
-    <input type="submit" name="submit" value="送信"  class="btn btn-primary"/>
+    <input type="submit" name="submit" value="登録"  class="btn btn-primary"/>
   </form>
+  
 </div>
 
 

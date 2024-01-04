@@ -1,15 +1,15 @@
 @foreach ($recently_schedules as $schedule)
 
-     <div class="card mb-3" style="max-width:1800px;">
+     <div class="card mb-3" style="max-width:1600px;">
         <div class="row g-0" >
-            <div class="col-md-4">
+            <div class="col-md-6">
                 @if($schedule->image_name)
-                    <img src="{{ asset('storage/img/' . $schedule->image_name) }}" class="img-fluid rounded-start" alt="..." style="height: 200px;width:300px; ">
+                    <img src="{{ asset('storage/img/' . $schedule->image_name) }}" class="img-fluid rounded-start" alt="..." style="height: 400px;width:600px; ">
                 @else
                     <img src="{{ asset('img/no_img.jpg') }}" class="img-fluid rounded-start" alt="Default Image" style="height: 200px;width:300px; ">
                 @endif
             </div>
-            <div class="col-md-8" style="padding: 0px;">
+            <div class="col-md-6" style="padding: 0px;">
             <a href="{{route('public_schedule',['schedule'=>$schedule])}}" class="link-dark text-decoration-none">
                 <div class="card-body">
                     <h1 class="card-title" style="margin-bottom: 0px;">{{ $schedule->title }}</h1>

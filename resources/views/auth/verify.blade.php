@@ -18,7 +18,7 @@
                  メール本文内のURLをクリックすると本会員登録が完了となります。  
              </p>
              <div class="text-center">
-                 <a href="{{ url('web/trvel/public_index') }}" class="btn samuraimart-submit-button w-50 text-white">トップページへ</a>
+                 <a href="{{ url('web/trvel/index') }}" class="btn samuraimart-submit-button w-50 text-white">トップページへ</a>
              </div>
          </div>
      </div>

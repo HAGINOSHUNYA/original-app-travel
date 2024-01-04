@@ -29,6 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
+        //アカウント作成後のリダイレクト先変更
     protected $redirectTo = '/email/verify';
  
     /**

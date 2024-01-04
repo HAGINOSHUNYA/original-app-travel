@@ -15,7 +15,7 @@
                      <label for="name" class="col-md-5 col-form-label text-md-left">氏名<span class="ml-1 samuraimart-require-input-label"><span class="samuraimart-require-input-label-text">必須</span></span></label>
  
                      <div class="col-md-7">
-                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror samuraimart-login-input" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="侍 太郎">
+                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror samuraimart-login-input" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="田中 太郎">
  
                          @error('name')
                          <span class="invalid-feedback" role="alert">
@@ -29,7 +29,7 @@
                      <label for="email" class="col-md-5 col-form-label text-md-left">メールアドレス<span class="ml-1 samuraimart-require-input-label"><span class="samuraimart-require-input-label-text">必須</span></span></label>
  
                      <div class="col-md-7">
-                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror samuraimart-login-input" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="samurai@samurai.com">
+                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror samuraimart-login-input" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="sampl@××.com">
  
                          @error('email')
                          <span class="invalid-feedback" role="alert">
@@ -40,7 +40,7 @@
                  </div>
  
                  <div class="form-group row">
-                     <label for="postal_code" class="col-md-5 col-form-label text-md-left">郵便番号<span class="ml-1 samuraimart-require-input-label"><span class="samuraimart-require-input-label-text">必須</span></span></label>
+                     <label for="postal_code" class="col-md-5 col-form-label text-md-left">郵便番号<span class="ml-1"><span class="samuraimart-require-input-label-text">必須</span></span></label>
  
                      <div class="col-md-7">
                          <input type="text" class="form-control @error('postal_code') is-invalid @enderror samuraimart-login-input" name="postal_code" required placeholder="150-0043">

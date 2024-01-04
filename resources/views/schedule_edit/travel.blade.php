@@ -3,7 +3,7 @@
   <input type="hidden" name="event_category" value="観光">
     <hr>
     <label>施設名</label>
-    <input type="text" class="form-control" name="place" value="{{ $schedule->place }}">
+    <input type="text" class="form-control text-center" name="place" value="{{ $schedule->place }}">
     <hr>
     <select name="way" id="way" class="form-control text-center">
       <option value="{{$schedule->way}}">{{$schedule->way}}</option>
@@ -40,12 +40,30 @@
     <label>必要なもの</label>
     <input type="text" class="form-control text-center" name="item" value="{{ $schedule->item }}">
     <hr>
-    <label>画像</label>
-    <input type="file" name="image" class="form-control text-center">
-    <hr>
+  
     <label>コメント</label>
     <input type="text" class="form-control text-center" name="comment" autofocus  placeholder="必要なもの・注意点・魅力など！" value="{{ $schedule->comment }}">
     <hr>
+    <div class="card mb-3" style="max-width: 800px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          @if($schedule->image_name)
+            <img src="{{ asset('storage/img/' . $schedule->image_name) }}" class="img-fluid rounded-start" alt="..." style="height: 200px;width:300px; ">
+          @else
+            <img src="{{ asset('img/no_img.jpg') }}" class="img-fluid rounded-start" alt="Default Image" style="height: 200px;width:300px;">
+          @endif
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <label>画像</label>
+              <input type="file" name="image" class="form-control" value="{{$schedule->image_name}}">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
     <label for="switch" class="switch_label"  onchange="ball();">
       <div class="switch">
         <input type="checkbox" id="switch" name="recommend_flag" {{ old('recommend_flag', false) ? 'checked' : '' }}/>
@@ -56,7 +74,7 @@
     </label>
 
 
-    <input type="submit" name="submit" value="送信"  class="btn btn-primary"/>
+    <input type="submit" name="submit" value="登録"  class="btn btn-primary"/>
   </form>
 </div>
 <!--観光の場合終了--> 

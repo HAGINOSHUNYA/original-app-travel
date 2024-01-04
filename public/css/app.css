@@ -59,6 +59,34 @@ form {
 .user_name{
   font-family: 'Potta One', cursive;
 }
+.public_div{
+  position: relative;/*相対位置*/
+}
+.public_div h1{
+  position: absolute;/*絶対位置*/
+  /*color: white;*/
+  font-size: 500%;
+  top: 35%;
+  left: 35%;
+}
+.public_p{
+  /*border-bottom: double 6px #87CEFA;*/
+  background: linear-gradient(transparent 50%, #a8eaff 0%);
+  max-width: 300px;
+  text-align: center;
+  margin: 0 auto; /* 追加: 左右のマージンを自動でセンターに配置 */
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  line-height: 1; /* 追加: 行の高さを1に設定 */
+}
+
+
+
+.public_img{
+  /*height: 200px;*/
+  width:100%;
+}
+
 #user_comment {
   margin: 5;
   padding: 0;
@@ -76,6 +104,7 @@ form {
   font-size: 16px;
   background: #e0edff;
 }
+
 #user_comment:before {
   content: "";
   position: absolute;

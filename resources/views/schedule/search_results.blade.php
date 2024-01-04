@@ -28,7 +28,7 @@
     <h1>スケジュール一覧</h1>
 
     <div>
-    <form action="{{route('search_results')}}" method="GET" class="form-control text-center">
+    <form action="{{route('search_results',['plan'=>$plan->id])}}" method="post" class="form-control text-center">
         @csrf
     <input type="text" name="query" placeholder="検索キーワードを入力" class="form-control text-center">
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -38,7 +38,10 @@
     </div>
   <hr>
 
-    @forelse ($results as $result)
+  <h1>検索結果</h1>
+  <hr>
+  @if($results->count() > 0)
+    @foreach ($results as $result)
     <div class="card mb-3" style="max-width: 800px;">
         <div class="row g-0" >
             <div class="col-md-4">
@@ -49,12 +52,11 @@
                 @endif
             </div>
             <div class="col-md-8" style="padding: 0px;">
-            <a href="{{ route('schedule_show', ['schedule' => $result, 'plan' => $result->plan_id]) }}" class="link-dark text-decoration-none">
-                   
+                <a href="{{ route('schedule_show', ['schedule' => $result, 'plan' => $result->plan_id]) }}" class="link-dark text-decoration-none">
                     <div class="card-body">
                         <h1 class="card-title" style="margin-bottom: 0px;">{{ $result->event_category }}</h1>
                             {{$result->way}}
-                            <h3 class="card-text" style="margin-bottom: 0px;">開始予定時刻：{{ \Carbon\Carbon::parse($result->start_time)->format('H時i分') }}</h2>
+                            <h3 class="card-text" style="margin-bottom: 0px;">開始予定時刻：{{ \Carbon\Carbon::parse($result->start_day)->format('Y年m月d日') }}{{ \Carbon\Carbon::parse($result->start_time)->format('H時i分') }}</h2>
                     
                       
                             <button type="button" class="btn btn-outline-dark btn-lg" style="margin-top: 0px;"> 
@@ -74,21 +76,13 @@
             </div>
         </div>
     </div>
-    @empty
+    @endforeach
+  @else
+    <h1>検索結果</h1>
+    <hr>
+    <p>「{{$query}}」の検索結果はありまでんでした。</p>
+  @endif
+</div>
+</div>
 
-    @else
-
-    <h3>nasi</h3>
-
-    @endforelse
-
-
-
-
-
-
-@foreach($results as $result)
-
-@dump($result->event_category)
-
-@endforeach
+@endsection

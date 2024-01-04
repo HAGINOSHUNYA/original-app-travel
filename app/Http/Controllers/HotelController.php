@@ -372,34 +372,32 @@ class HotelController extends Controller
                 $detailClassCode = $request->input('selecteddetailClass');
             
 
-                if($detailClassCode == null){
-                    $middleClassCode = $request->input('selectedmiddleClass');;//$request->input('middleClassCode')
-                    $smallClassCode = $request->input('selectedsmallClass');;//$request->input('smallClassCode')
-                    dump($smallClassCode);
-                    dump($middleClassCode);
+                if($detailClassCode == null){//detailClassなし
+                    //$middleClassCode = $request->input('selectedmiddleClass');;//$request->input('middleClassCode')
+                    //$smallClassCode = $request->input('selectedsmallClass');;//$request->input('smallClassCode')
+                    //dump($smallClassCode);
+                    //dump($middleClassCode);
 
                     $url = "https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426?format=json&largeClassCode=japan&middleClassCode=" . $middleClassCode . "&smallClassCode=" . $smallClassCode . "&page=1&hits=30&applicationId=1052696491690146167";
-                    dump($url);
+                    //dump($url);
 
                     //接続
             
                     $response = $client->request($method, $url);
-                    dump($url);
+                    //dump($url);
     
                     $posts = $response->getBody();
                     $posts = json_decode($posts);
                     $message = "検索結果あり";
-                }else{
+                }else{//detailClassあり
 
                     $url = "https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426?format=json&largeClassCode=japan&middleClassCode=" . $middleClassCode . "&smallClassCode=" . $smallClassCode ."&detailClassCode=" . $detailClassCode ."&applicationId=" . $applicationId;
                     //接続  
-                    dump($url);
+                    //dump($url);
                     $response = $client->request($method, $url);
-          
-    
                     $posts = $response->getBody();
-                     $posts = json_decode($posts);
-                     $message = "検索結果あり";
+                    $posts = json_decode($posts);
+                    $message = "検索結果あり";
                 }
             }catch (RequestException $e) {
                 // Guzzle が例外をスローした場合の処理
@@ -495,23 +493,58 @@ class HotelController extends Controller
             $title = $posts->Rankings[0]->Ranking->title;
             $posts = $posts->Rankings[0]->Ranking->hotels;
 
-           
+         
             return view('rakuten.lank_result', compact('posts','keyword','title'));
 
         }
 
         public function vacancy(Request $request){
+                  /***地区API開始 */
+                  $client = new Client();
+                  $applicationId = "1052696491690146167";
+                  $method = "GET";
+                  $Places_url = "https://app.rakuten.co.jp/services/api/Travel/GetAreaClass/20131024?format=json&applicationId=".$applicationId;
+                  $place_response = $client->request($method, $Places_url);
+                  $Places = $place_response->getBody();
+                  $Places = json_decode($Places);
+      
+                  foreach($Places->areaClasses as $place){
+                      foreach($place[0]->largeClass[1]->middleClasses as $middleClass){
+                          //dump($middleClass->middleClass);//各都道府県の塊
+                   }}
+                  
+                      /**地区APIの各middleClasscode取得開始 */
+      
+                       $mcodes = [];//各都道府県のmiddleClassCode☆
+                          foreach($Places->areaClasses as $place){
+                              foreach($place[0]->largeClass[1]->middleClasses as $middleClass){
+                               $mcodes[] =$middleClass->middleClass[0]->middleClassCode;
+                              }
+                          }
+                          //dump($mcodes);
+      
+                       $mNames = [];//各都道府県のmiddleClassName☆
+                          foreach($Places->areaClasses as $place){
+                              foreach($place[0]->largeClass[1]->middleClasses as $middleClass){
+                                  $mNames[] =$middleClass->middleClass[0]->middleClassName;
+                              }
+                          }
+                      //ミドルのネームとコードを組み合わせる☆
+                      $middleArray = array_map(function ($name, $code) {
+                              return [$name, $code];
+                          }, $mNames, $mcodes);
+      
+                          /**地区APIの各middleClasscode取得終了 */
            
             try{
               
-                $client = new Client();
-                $applicationId = "1052696491690146167";
+                
                 $middleClassCode = $request->input("selectedmiddleClass");
                 $smallClassCode = $request->input("selectedsmallClass");
                 $detailClassCode = $request->input("selecteddetailClass");
                 $checkinDate = $request->input("checkinDate");
                 $checkoutDate = $request->input("checkoutDate");
-                $method = "GET";
+                
 
 
                 if($detailClassCode == null){
@@ -526,9 +559,6 @@ class HotelController extends Controller
                     //dump($posts);
                 }else{
                     $url = "https://app.rakuten.co.jp/services/api/Travel/VacantHotelSearch/20170426?format=json&checkinDate=".$checkinDate."&checkoutDate=".$checkoutDate."&largeClassCode=japan&middleClassCode=".$middleClassCode."&smallClassCode=".$smallClassCode."&detailClassCode=".$detailClassCode."&applicationId=".$applicationId;
-                    
-                    
-
                     $response = $client->request($method, $url);
                     $posts = $response->getBody();
                     $posts = json_decode($posts);
@@ -571,10 +601,10 @@ class HotelController extends Controller
                         }
                        
                         //dump($message);
-                        return view('rakuten.vacncy_result', compact('posts','message'));
+                        
                 }
                 
 
-
+            return view('rakuten.vacancy_result', compact('posts','message','middleArray'));
         }
 }

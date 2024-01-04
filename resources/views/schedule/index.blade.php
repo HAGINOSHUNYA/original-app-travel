@@ -1,11 +1,15 @@
 @extends('layouts.mypage')
 
 @section('content')
-<span>
-    <a href="{{ route('mypage') }}" class="link-dark text-decoration-none">マイページ</a> > <a href="{{route('plan.index')}}" class="link-dark text-decoration-none">プラン一覧</a>>{{$plan->name}}のスケジュール一覧
-</span>
+
+
 <div class="container text-center" style="max-width: 800px;"><!--プラン名と日付-->
-    <div class="row" style="padding: 0px;margin-top: 0px;">
+<span>
+    <p><a href="{{ route('mypage') }}" class="link-dark text-decoration-none">マイページ</a> > <a href="{{route('plan.index')}}" class="link-dark text-decoration-none">プラン一覧</a>>{{$plan->name}}のスケジュール一覧</p>
+</span>
+
+
+   <div class="row" style="padding: 0px;margin-top: 0px;">
       
     <h1>プラン名：{{$plan->name}}</h1>
     <p style="text-align: right;">
@@ -18,15 +22,19 @@
 </div>
 </div>   
 <hr style="margin: 0px;padding: 0px;">
-<div class="container text-center" style="max-width: 800px"><!--サイドバーと一覧-->
+<div class="container text-center" style="max-width: 1000px"><!--サイドバーと一覧-->
     <div class="row">
         <a href="{{route('schedule_create',$plan )}}" class="link-dark text-decoration-none add">+スケジュール追加</a>
         <hr>
     </div>
     <h1>スケジュール一覧</h1>
+    <div>
+    Sort By
+    @sortablelink('start_day', '日付順')
+  </div>
 
     <div>
-    <form action="{{route('search_results')}}" method="GET" class="form-control text-center">
+    <form action="{{route('search_results',['plan'=>$plan->id])}}" method="post" class="form-control text-center">
         @csrf
     <input type="text" name="query" placeholder="検索キーワードを入力" class="form-control text-center">
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -37,7 +45,7 @@
   <hr>
 
     @foreach ($schedules as $schedule)
-     <div class="card mb-3" style="max-width: 800px;">
+     <div class="card mb-3" style="max-width: 1000px;">
         <div class="row g-0" >
             <div class="col-md-4">
                 @if($schedule->image_name)
@@ -49,29 +57,32 @@
             <div class="col-md-8" style="padding: 0px;">
             <a href="{{ route('schedule_show', ['schedule' => $schedule, 'plan' => $plan->id]) }}" class="link-dark text-decoration-none">
                 <div class="card-body">
-                    <h1 class="card-title" style="margin-bottom: 0px;">{{ $schedule->event_category }}</h1>
+                    <h1 class="card-title" style="margin-bottom: 0px;">{{ $schedule->title }}</h1>
                     {{$schedule->way}}
-                    <h3 class="card-text" style="margin-bottom: 0px;">開始予定時刻：{{ \Carbon\Carbon::parse($schedule->start_time)->format('H時i分') }}</h2>
-                    
-                      
-                        <button type="button" class="btn btn-outline-primary" style="margin-top: 0px;"> 
-                            @if($schedule->isFavoritedBy(Auth::user()))
-                            <a href="{{ route('favorite', $schedule) }}" class="link-dark text-decoration-none">
-                                   <i class="fa-solid fa-star"></i>
-                                   お気に入り中</small>
-                             </a>
-                            @else
-                            <a href="{{ route('favorite', $schedule) }}" class="link-dark text-decoration-none">
-                                  <i class="fa-regular fa-star"></i>
+                    <h3 class="card-text" style="margin-bottom: 0px;">開始予定時刻：{{ \Carbon\Carbon::parse($schedule->start_day)->format('Y年m月d日') }}{{ \Carbon\Carbon::parse($schedule->start_time)->format('H時i分') }}</h2>
+            </a>
+          
+            <div class="d-grid gap-2 d-md-block">
+                <button type="button" class="btn btn-outline-primary" style="margin-top: 0px;"> 
+                    @if($schedule->isFavoritedBy(Auth::user()))
+                        <a href="{{ route('favorite', $schedule) }}" class="link-dark text-decoration-none">
+                            <i class="fa-solid fa-star"></i>
+                                お気に入り中</small>
+                        </a>
+                    @else
+                        <a href="{{ route('favorite', $schedule) }}" class="link-dark text-decoration-none">
+                            <i class="fa-regular fa-star"></i>
                                   お気に入り追加する</small>
-                            </a>
-                            @endif
-                        </button>
-                      
-                        
-                    
-
-             </a>
+                        </a>
+                    @endif
+                </button>
+             
+                <form action="{{ route('destroy', $schedule)}}" method="post">
+                    @csrf
+                    @method('delete')   
+                    <button class="btn btn-danger"type="submit">削除</button>                                     
+                </form>
+            </div>
         </div>
     </div>
   </div>

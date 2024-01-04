@@ -26,7 +26,8 @@ Route::get('/', function () {
 });
 //ユーザー関連ページのルーティング
 Route::controller(UserController::class)->group(function () {
-    Route::get('users/mypage', 'mypage')->name('mypage')->middleware('auth');//マイページ表示
+    Route::get('users/mypage', 'mypage')->name('mypage')->middleware(['auth', 'verified']);
+    Auth::routes(['verify' => true]);//マイページ表示
     Route::get('users/mypage/edit', 'edit')->name('mypage.edit')->middleware('auth');//ユーサー情報作成
     Route::put('users/mypage', 'user_update')->name('mypage.update')->middleware('auth');//ユーザー情報変更
     Route::get('users/mypage/password/edit', 'edit_password')->name('mypage.edit_password')->middleware('auth');//パスワード変更画面
@@ -53,17 +54,17 @@ Route::controller(ScheduleController::class)->group(function(){
     Route::post('mypage/schedule/{plan}', 'store')->name('schedule_store')->middleware('auth');
     Route::post('mypage/schedule/{schedule}/{plan}/updata', 'update')->name('schedule_updata')->middleware('auth');
     Route::get('mypage/{schedule}/favorite','favorite')->name('favorite')->middleware('auth');//お気に入り追加機能
-    Route::get('mypage/search/index','search')->name('search_results')->middleware('auth');
+    Route::post('mypage/schedule/{plan}/search/index','search')->name('search_results')->middleware('auth');
+    Route::delete('mypage/{schedule}/index','destroy')->name('destroy')->middleware('auth');
+
 });
 //Route::resource('goals.todos', TodoController::class)->only(['store', 'update', 'destroy'])->middleware('auth');
 
 //トップページ関係
 Route::controller(WebController::class)->group(function(){
-    Route::get('web/travel/index', 'index')->name('index')->middleware('auth');
+    Route::get('web/travel/index', 'index')->name('index')->middleware(['auth', 'verified']);
+    Auth::routes(['verify' => true]);
     Route::get('web/travel/{schedule}/public/show', 'public_schedule')->name('public_schedule')->middleware('auth');
-    //.
-    
-    
     Route::get('web/trvel/public_index','public_index')->name('public_index');
 
 });
@@ -102,4 +103,8 @@ Route::controller(HotelController::class)->group(function(){
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::view('upload', 'upload');
+Route::post('s3', [\App\Http\Controllers\S3Controller::class, 'uploadS3'])->name('s3');
 

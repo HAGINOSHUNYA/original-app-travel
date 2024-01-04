@@ -9,7 +9,7 @@
     <input type="text" class="form-control text-center" id="title" name="title">
     <hr>
     <label>施設名</label>
-    <input type="text" class="form-control" name="place">
+    <input type="text" class="form-control text-center" name="place">
     <hr>
     <select name="way" id="way" class="form-control text-center">
       <option>--- 選択してください ---</option>
@@ -22,6 +22,12 @@
       <option value="遊園地・テーマパーク">遊園地・テーマパーク</option>
       <option value="動物園">動物園</option>
       <option value="水族館">水族館</option>
+    </select>
+    <hr>
+    <select name="reservatoion" id="reservatoion" class="form-control text-center">
+      <option>--- 予約状況 ---</option>
+      <option value="true">予約済み</option>
+      <option value="false">未予約</option>
     </select>
     <hr>
     <label>到着予定時刻</label>
@@ -46,17 +52,10 @@
     <label>コメント</label>
     <input type="text" class="form-control text-center" name="comment" autofocus  placeholder="必要なもの・注意点・魅力など！">
     <hr>
-    <label for="switch" class="switch_label"  onchange="ball();">
-      <div class="switch">
-        <input type="checkbox" id="switch" name="recommend_flag" {{ old('recommend_flag', false) ? 'checked' : '' }}/>
-          <div class="circle"></div>
-          <div class="base"></div>
-      </div>
-      <span class="title">おすすめ非公開</span>
-    </label>
+    
 
 
-    <input type="submit" name="submit" value="送信"  class="btn btn-primary"/>
+    <input type="submit" name="submit" value="登録"  class="btn btn-primary"/>
   </form>
 </div>
 <!--観光の場合終了-->

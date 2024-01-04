@@ -1,3 +1,12 @@
+<div id="vacancy" style="display:none">
+  <h2>空室検索</h2>
+
+
+
+
+  <form action="{{route('vacancy_api')}}" method="post">
+  @csrf
+
 <script>//smallclassを生成
 $(document).ready(function() {
     // オブジェクトマッピングを定義
@@ -151,16 +160,9 @@ $(document).ready(function() {
 
 
 
-<div id="vacancy" style="display:none">
-<h2>空室検索</h2>
 
 
-
-
-<form action="{{route('vacancy_api')}}" method="post">
-  @csrf
-
-<!--都道府県のセレクトボックス開始-->
+    <!--都道府県のセレクトボックス開始-->
     <label for="selectedmiddleClass1">都道府県:</label>
     <select name="selectedmiddleClass" id="selectedmiddleClass1" class="form-control text-center">
         @foreach($middleArray as $middle)
@@ -169,41 +171,32 @@ $(document).ready(function() {
         </option>
         @endforeach
     </select>
-<!--都道府県のセレクトボックス終了-->
+    <!--都道府県のセレクトボックス終了-->
 
-<!--市町村のセレクトボックス開始-->
+    <!--市町村のセレクトボックス開始-->
     <label for="selectedsmallClass1">市町村:</label>
     <select name="selectedsmallClass" id="selectedsmallClass1" class="form-control text-center">
     <option selected disabled value=""> --選択して下さい-- </option>
-        {{--@foreach($smallArray as $small)
-        <option value="{{$small[1]}}">
-            {{$small[0]}}
-        </option>
-        @endforeach--}}
+        
     </select>
-<!--市町村のセレクトボックス終了-->
+    <!--市町村のセレクトボックス終了-->
 
-<!--都道府県のセレクトボックス開始-->
- <label for="selectedetailClass1">地区:</label>
+    <!--都道府県のセレクトボックス開始-->
+    <label for="selectedetailClass1">地区:</label>
     <select name="selecteddetailClass" id="selecteddetailClass1" class="form-control text-center">
     <option selected disabled value=""> --選択しない-- </option>
-    {{--<option value="" >選択しない</option>
-        @foreach($detailArray as $detail)
-        <option value="{{$detail->detailClassCode}}">
-            {{$detail->detailClassName}}
-        </option>
-        @endforeach--}}
-  </select>
-<!--都道府県のセレクトボックス終了-->
-
-<label for="checkinDate">チェックイン</label>
-<input type="date" class="form-control text-center" name="checkinDate" value="{{ \Carbon\Carbon::now()->toDateString() }}">
-
-<label for="checkoutDate">チェックアウト</label>
-<input type="date" class="form-control text-center" name="checkoutDate" value="{{ \Carbon\Carbon::tomorrow()->toDateString() }}">
     
-<input type="submit" name="submit" value="検索"  class="btn btn-primary"/>
+    </select>
+    <!--都道府県のセレクトボックス終了-->
+
+    <label for="checkinDate">チェックイン</label>
+    <input type="date" class="form-control text-center" name="checkinDate" value="{{ \Carbon\Carbon::now()->toDateString() }}">
+
+    <label for="checkoutDate">チェックアウト</label>
+    <input type="date" class="form-control text-center" name="checkoutDate" value="{{ \Carbon\Carbon::tomorrow()->toDateString() }}">
+    
+    <input type="submit" name="submit" value="検索"  class="btn btn-primary"/>
 
 
-</form>
+    </form>
 </div>

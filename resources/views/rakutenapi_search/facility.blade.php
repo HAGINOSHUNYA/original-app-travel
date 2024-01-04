@@ -19,27 +19,3 @@
     
   </form>
 
-
-<div class="row">
-<table >
-    <tr>
-                            <th>タイトル</th>
-                            <th>いいね数</th>
-                            <th>コメント数</th>
-                            <th>作成日</th>
-    </tr>
-                        <br>
-
-@foreach($posts->hotels as $post)
-                        <tr>
-                            <td>{{$post->hotel[0]->hotelBasicInfo->hotelNo}}</td>
-                            <td>{{$post->hotel[0]->hotelBasicInfo->hotelName}}</td>
-                            <td>{{$post->hotel[0]->hotelBasicInfo->address1}}</td>
-                            <td>{{$post->hotel[0]->hotelBasicInfo->address2}}</td>
-                            <br>
-                        </tr>
-                        @endforeach
-</table>
-</div>
-
-</div>

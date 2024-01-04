@@ -1,13 +1,8 @@
-{{----}} <!--都道府県のセレクトボックス開始-->
+<!--都道府県のセレクトボックス開始-->
  <label for="selectedetailClass">地区:</label>
     <select name="selecteddetailClass" id="selecteddetailClass" class="form-control">
-    <option selected disabled> --選択してください-- </option>
-    <option value="" >選択しない</option>
-        @foreach($detailArray as $detail)
-        <option value="{{$detail->detailClassCode}}">
-            {{$detail->detailClassName}}
-        </option>
-        @endforeach
+    <option selected disabled value=""> --選択してください-- </option>
+    
     </select>
-    <!--都道府県のセレクトボックス終了-->
+<!--都道府県のセレクトボックス終了-->
     

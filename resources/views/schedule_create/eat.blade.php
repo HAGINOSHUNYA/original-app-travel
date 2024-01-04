@@ -31,8 +31,7 @@
       <option value="false">未予約</option>
     </select>
     <hr>
-    @dump($plan->start_day)
-    @dump($day)
+    
     <label>予定開始時刻</label>
     <input type="date" class="form-control text-center" name="start_day">
     <input type="time" class="form-control text-center" name="start_time">
@@ -52,16 +51,8 @@
     <label>コメント</label>
     <input type="text" class="form-control" name="comment">
     <hr>
-    <label for="switch" class="switch_label"  class="form-control text-center" onchange="ball();">
-      <div class="switch">
-        <input type="checkbox" id="switch" name="recommend_flag" {{ old('recommend_flag', false) ? 'checked' : '' }}/>
-        <div class="circle"></div>
-        <div class="base"></div>
-      </div>
-      <span class="title">おすすめ非公開</span>
-    </label>
-    <hr>
-    <input type="submit" name="submit" value="送信"  class="btn btn-primary"/>
+    
+    <input type="submit" name="submit" value="登録"  class="btn btn-primary"/>
   </form>
 </div>
 <!--食事の場合終了-->

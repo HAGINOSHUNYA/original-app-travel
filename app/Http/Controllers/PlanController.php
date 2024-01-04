@@ -118,7 +118,7 @@ class PlanController extends Controller
     {
         //
         $plan->delete();
- 
-        return redirect()->route('mypage'); 
+        return back()->with('flash_message','削除しました');
+        
     }
 }

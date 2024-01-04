@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container text-center">
-<span>
-        <a href="{{route('rakuten.index')}}">検索</a> > 施設検索 > 検索結果
+      <span>
+       <p> <a href="{{route('rakuten.index')}}">検索</a> > 施設検索 > 検索結果</p>
       </span> 
  <div class="row">
     <selec class="form-control">  

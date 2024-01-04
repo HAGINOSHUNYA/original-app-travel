@@ -19,7 +19,7 @@ class ScheduleController extends Controller
      */
     public function index(Plan $plan, Schedule $schedules)
 {
-    $schedules = Schedule::where('plan_id', $plan->id)->paginate(5);
+    $schedules = Schedule::where('plan_id', $plan->id)->sortable()->paginate(5);
       
   
     //dd($schedules);
@@ -27,40 +27,29 @@ class ScheduleController extends Controller
 }
 
     public function search(Request $request, Plan $plan, Schedule $schedules){
-    $query = $request->input('query');
-    $user_id = Auth::id();
-  
-
-    $schedules = Schedule::where('plan_id', $plan->id)->paginate(5);
+        $query = $request->input('query');
+        $user_id = Auth::id();
+      
+        // $schedulesをページネーションせずに取得
+        $schedules = Schedule::where('plan_id', $plan->id)->get();
         
-        
-        //dump($schedule);
-
-
-
-    
-    // ここで検索処理を実装する
-    $results = Schedule::where('plan_id', $plan->id)
-    ->where(function ($queryBuilder) use ($query) {
-        $queryBuilder->where('title', 'LIKE', '%' . $query . '%')
-            ->orWhere('way', 'LIKE', '%' . $query . '%')
-            ->orWhere('move_way', 'LIKE', '%' . $query . '%')
-            ->orWhere('comment', 'LIKE', '%' . $query . '%')
-            ->orWhere('address', 'LIKE', '%' . $query . '%')
-            ->orWhere('start_place', 'LIKE', '%' . $query . '%')
-            ->orWhere('end_place', 'LIKE', '%' . $query . '%')
-            ->orWhere('place', 'LIKE', '%' . $query . '%');
-    })
-    ->get();
-
-              //dump($request['query']);
-  //dump($user_id);
-  //dump($results);        
-
+        // ここで検索処理を実装する
+        $results = Schedule::where('plan_id', $plan->id)
+            ->where(function ($queryBuilder) use ($query) {
+                $queryBuilder->where('title', 'LIKE', '%' . $query . '%')
+                    ->orWhere('way', 'LIKE', '%' . $query . '%')
+                    ->orWhere('move_way', 'LIKE', '%' . $query . '%')
+                    ->orWhere('comment', 'LIKE', '%' . $query . '%')
+                    ->orWhere('address', 'LIKE', '%' . $query . '%')
+                    ->orWhere('start_place', 'LIKE', '%' . $query . '%')
+                    ->orWhere('end_place', 'LIKE', '%' . $query . '%')
+                    ->orWhere('place', 'LIKE', '%' . $query . '%');
+            })
+            ->sortable()->paginate(5);  // ページネーションを適用して結果を5件ずつ表示
 
                      
                        
-     return view('schedule.search_results', compact('plan','schedule','results'));
+     return view('schedule.search_results', compact('plan','schedules','results','query'));
     }
     /**
      * Show the form for creating a new resource.
@@ -128,12 +117,18 @@ class ScheduleController extends Controller
      */
     public function show(Schedule $schedule ,Plan $plan)
     {
-        dump($schedule->start_time);
+        //dump($schedule);
+        //{{ \Carbon\Carbon::parse($schedule->start_day)->format('Y年m月d日') }}
 
-        $day = date('Y-m-d', strtotime($schedule->start_day));
+        if($schedule->start_day !== null){
+            $day = date('Y-m-d', strtotime($schedule->start_day));
+        }else{
+            $day = null;
+        }
+        
         $time = date('H:i:s', strtotime($schedule->start_time));
         $end_time = date('H:i:s', strtotime($schedule->end_time));
-       
+       //dump($day);
         // $schedules = Schedule::where('plan_id', $plan->id)->get();
         return view('schedule.show',compact('day','time','end_time','schedule','plan'));
     }
@@ -198,11 +193,12 @@ class ScheduleController extends Controller
      * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Schedule $schedule)
+    public function destroy(Schedule $schedule,Plan $plan)
     {
         //
        $schedule->delete();
-       return redirect()->route('schedule')->with('flash_message','削除しました');
+       return back()->with('flash_message','削除しました');
+       
     }
 
     public function favorite(Schedule $schedule)//お気に入り追加機能

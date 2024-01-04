@@ -34,8 +34,26 @@
     <label>必要なもの</label>
     <input type="text" class="form-control text-center" name="item" value="{{ $schedule->item }}">
     <hr>
-    <label>画像</label>
-    <input type="file" name="image">
+    <div class="card mb-3" style="max-width: 800px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+    @if($schedule->image_name)
+                    <img src="{{ asset('storage/img/' . $schedule->image_name) }}" class="img-fluid rounded-start" alt="..." style="height: 200px;width:300px; ">
+                @else
+                    <img src="{{ asset('img/no_img.jpg') }}" class="img-fluid rounded-start" alt="Default Image" style="height: 200px;width:300px;">
+                @endif
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+      <label>画像</label>
+      <input type="file" name="image" class="form-control" value="{{$schedule->image_name}}">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
     <hr>
     <label>コメント</label>
     <input type="text" class="form-control" name="comment" value="{{ $schedule->comment }}">
@@ -49,7 +67,7 @@
       <span class="title">おすすめ非公開</span>
     </label>
     <hr>
-    <input type="submit" name="submit" value="送信"  class="btn btn-primary"/>
+    <input type="submit" name="submit" value="登録"  class="btn btn-primary"/>
   </form>
 </div>
 <!--宿泊の場合終了-->

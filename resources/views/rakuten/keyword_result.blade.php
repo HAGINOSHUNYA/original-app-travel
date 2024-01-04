@@ -3,15 +3,15 @@
 </div>
 @section('content')
 
-<main id="main">
+
   
-  <div> class="container"
+  <div class="container">
   
     <span>
-     <a href="{{route('rakuten.index')}}">検索</a> > キーワード検索
+     <p><a href="{{route('rakuten.index')}}">検索</a> > キーワード検索>検索結果</p>
     </span>
-    <!---->
-    <div> class="row text-center"
+   
+    <div class="row text-center">
       <select name="search" id="search"  for="search" class="form-control"  style="display:"> 
         <option value="曖昧">キーワード検索</option>
       </select>
@@ -24,45 +24,46 @@
     </div>
     <!---->
     
-    <div>  class="row text-center"
-      @foreach($posts->hotels as $hotels )
-        @foreach($hotels->hotel[0] as $hotel)
-          {{--@dump($hotel)--}}          
-            <div class="card mb-3" style="max-width: 1300px;" id="{{$hotel->hotelNo}}">
-              <div class="row g-0">
-                <div class="col-md-2">
-                  <img src="{{$hotel->hotelThumbnailUrl}}" class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-10">
-                  <div class="card-body">
-                    <h5 class="card-title">{{$hotel->hotelName}}</h5>
-                    <p class="card-text">{{$hotel->hotelSpecial}}</p>
-                    <p class="card-text"><small class="text-body-secondary">{{$hotel->address1}}{{$hotel->address2}}</small></p>
+    <div class="container text-center">
+              <h1>検索結果</h1>
+             <hr>
+             
+              @foreach($posts->hotels as $post)
+              {{--@dump($post->hotel[0]->hotelBasicInfo)--}}
+
+              <div class="card mb-3" style="max-width: 1800px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    @include('carousels.facility_result_carousels')
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                    <p class="card-text"><small class="text-body-secondary">{{$post->hotel[0]->hotelBasicInfo->hotelKanaName}}</small></p>
+                      <h3 class="card-title">{{$post->hotel[0]->hotelBasicInfo->hotelName}}</h3>
+                      <p class="card-text">TEL:{{$post->hotel[0]->hotelBasicInfo->telephoneNo}}</p>
+                      <p class="card-text">住所:〒{{$post->hotel[0]->hotelBasicInfo->postalCode}}　{{$post->hotel[0]->hotelBasicInfo->address1}}{{$post->hotel[0]->hotelBasicInfo->address2}}</p>
+                      <p class="card-text">最寄駅:{{$post->hotel[0]->hotelBasicInfo->nearestStation}}駅</p>
+                      <p class="card-text">アクセス:{{$post->hotel[0]->hotelBasicInfo->access}}</p>
+                      
+                      
+                      
+                      
+                      
+                      <p class="card-text">{{$post->hotel[0]->hotelBasicInfo->hotelSpecial}}</p>
+                      <p class="card-text"><small class="text-body-secondary">リンクURL：<a href="{{ $post->hotel[0]->hotelBasicInfo->hotelInformationUrl }}" target="_blank">ホテルHP</a></small></p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-       @endforeach   
-     @endforeach  
+
+              
+              @endforeach
+
     </div> 
     
   </div> 
 
-</main>
-  <aside id="sub">
-    
-    <h2></h2>
-    <ul>
-    @foreach($posts->hotels as $hotels )
-        @foreach($hotels->hotel[0] as $hotel)
-      <li>
-      <a href="#{{$hotel->hotelNo}}">{{$hotel->hotelName}}</a>
-      </li>
-      @endforeach   
-     @endforeach  
-    </ul>
 
-  </aside>
-
+ 
 
 @endsection
