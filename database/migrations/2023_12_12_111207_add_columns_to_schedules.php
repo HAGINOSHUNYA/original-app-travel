@@ -30,9 +30,9 @@ return new class extends Migration
     {
         Schema::table('schedules', function (Blueprint $table) {
             //
-            $table->dropColumu('title');
-            $table->dropColumu('price');
-            $table->dropColumu('appeal');
+            $table->dropColumn('title');
+            $table->dropColumn('price');
+            $table->dropColumn('appeal');
         });
     }
 };

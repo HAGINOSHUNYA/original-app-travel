@@ -16,7 +16,7 @@
   <div class="col-1"></div>
   <div class="col-10">
               @if($schedule->image_name)
-                                <img src="{{ asset('storage/img/' . $schedule->image_name) }}" class="img-fluid rounded-start" alt="..." style="height: 500px;width:1000px; ">
+                                <img src="https://app-travel-buket.s3.ap-northeast-1.amazonaws.com/{{ $schedule->image_name }}" class="img-fluid rounded-start" alt="..." style="height: 500px;width:1000px; ">
                             @else
                                 <img src="{{ asset('img/no_img.jpg') }}" class="img-fluid rounded-start" alt="Default Image" style="height: 200px;width:1000px; ">
                             @endif

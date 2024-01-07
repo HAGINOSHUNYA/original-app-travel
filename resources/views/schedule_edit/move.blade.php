@@ -2,7 +2,11 @@
 <div id="move">
  <form action="{{ route('schedule_updata', ['schedule' => $schedule, 'plan' => $plan]) }}" method="post" enctype="multipart/form-data">
       @csrf
-      <input type="hidden" name="event_category" value="移動">
+      @method('put')
+
+
+      
+<input type="hidden" name="event_category" value="移動">
       
 
 <select name="way" id="way" class="form-control">
@@ -29,7 +33,7 @@
   <div class="row g-0">
     <div class="col-md-4">
     @if($schedule->image_name)
-                    <img src="{{ asset('storage/img/' . $schedule->image_name) }}" class="img-fluid rounded-start" alt="..." style="height: 200px;width:300px; ">
+                    <img src="https://app-travel-buket.s3.ap-northeast-1.amazonaws.com/{{ $schedule->image_name }}" class="img-fluid rounded-start" alt="..." style="height: 200px;width:300px; ">
                 @else
                     <img src="{{ asset('img/no_img.jpg') }}" class="img-fluid rounded-start" alt="Default Image" style="height: 200px;width:300px;">
                 @endif
@@ -46,13 +50,13 @@
 
 
 
-<label for="switch" class="switch_label"  onchange="ball();">
+<label for="switch" class="switch_label" class="form-control text-center" onchange="ball();">
   <div class="switch">
-    <input type="checkbox" id="switch" name="recommend_flag" {{ old('recommend_flag', false) ? 'checked' : '' }}/>
-    <div class="circle"></div>
+    <input type="checkbox" id="switch" name="recommend_flag" {{ isset($schedule) && $schedule->recommend_flag ? 'checked' : '' }} />
+    <div class="circle {{ isset($schedule) && $schedule->recommend_flag ? 'move_circle' : '' }}"></div>
     <div class="base"></div>
   </div>
-  <span class="title">おすすめ非公開</span>
+  <span class="title">{{ isset($schedule) && $schedule->recommend_flag ? 'おすすめ公開' : 'おすすめ非公開' }}</span>
 </label>
 <br>
 

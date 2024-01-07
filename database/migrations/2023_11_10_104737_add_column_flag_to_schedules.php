@@ -28,7 +28,7 @@ return new class extends Migration
     {
         Schema::table('schedules', function (Blueprint $table) {
             //
-            $table->dropColumu('recommend_flag');
+            $table->dropColumn('recommend_flag');
         });
     }
 };

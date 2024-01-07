@@ -28,7 +28,7 @@ return new class extends Migration
     {
         Schema::table('schedules', function (Blueprint $table) {
             //
-            $table->dropColumn('user_id');
+            //$table->dropColumn('user_id');
         });
     }
 };

@@ -17,6 +17,7 @@ class S3Controller extends Controller
                 'file' => 'required|file',
             ]
         );
+        dd($request);
 
         // S3へファイルをアップロード
         $result = Storage::disk('s3')->put('/', $request->file('file'));

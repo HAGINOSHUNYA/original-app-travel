@@ -28,7 +28,7 @@ return new class extends Migration
     {
         Schema::table('schedules', function (Blueprint $table) {
             //
-            $table->dropColumu('start_day');
+            $table->dropColumnu('start_day');
         });
     }
 };

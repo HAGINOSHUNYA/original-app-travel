@@ -46,7 +46,7 @@
         <div class="row g-0" >
             <div class="col-md-4">
                 @if($result->image_name)
-                    <img src="{{ asset('storage/img/' . $result->image_name) }}" class="img-fluid rounded-start" alt="...">
+                    <img src="https://app-travel-buket.s3.ap-northeast-1.amazonaws.com/{{ $schedule->image_name }}" class="img-fluid rounded-start" alt="...">
                 @else
                     <img src="{{ asset('img/no_img.jpg') }}" class="img-fluid rounded-start" alt="Default Image">
                 @endif

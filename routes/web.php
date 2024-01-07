@@ -52,7 +52,7 @@ Route::controller(ScheduleController::class)->group(function(){
     Route::get('mypage/{schedule}/{plan}/show', 'show')->name('schedule_show')->middleware('auth');
     Route::get('mypage/schedule/{plan}/create', 'create')->name('schedule_create')->middleware('auth');
     Route::post('mypage/schedule/{plan}', 'store')->name('schedule_store')->middleware('auth');
-    Route::post('mypage/schedule/{schedule}/{plan}/updata', 'update')->name('schedule_updata')->middleware('auth');
+    Route::put('mypage/schedule/{schedule}/{plan}/updata', 'update')->name('schedule_updata')->middleware('auth');
     Route::get('mypage/{schedule}/favorite','favorite')->name('favorite')->middleware('auth');//お気に入り追加機能
     Route::post('mypage/schedule/{plan}/search/index','search')->name('search_results')->middleware('auth');
     Route::delete('mypage/{schedule}/index','destroy')->name('destroy')->middleware('auth');

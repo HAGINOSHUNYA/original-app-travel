@@ -2,6 +2,7 @@
 <div id="eat" style="max-width: 800px;">
 <form action="{{route('schedule_updata', ['schedule' => $schedule, 'plan' => $plan])}}" method="post" enctype="multipart/form-data">
 @csrf
+@method('put')
 <input type="hidden" name="event_category" value="食事"/>
     <hr>
     <label>タイトル</label>
@@ -49,7 +50,7 @@
   <div class="row g-0">
     <div class="col-md-4">
     @if($schedule->image_name)
-                    <img src="{{ asset('storage/img/' . $schedule->image_name) }}" class="img-fluid rounded-start" alt="..." style="height: 200px;width:300px; ">
+                    <img src="https://app-travel-buket.s3.ap-northeast-1.amazonaws.com/{{ $schedule->image_name }}" class="img-fluid rounded-start" alt="..." style="height: 200px;width:300px; ">
                 @else
                     <img src="{{ asset('img/no_img.jpg') }}" class="img-fluid rounded-start" alt="Default Image" style="height: 200px;width:300px;">
                 @endif
@@ -65,19 +66,21 @@
 
 
 
-    <input type="file" class="form-control text-center" name="image">
+ 
     <hr>
     <label>コメント</label>
     <input type="text" class="form-control" name="comment">
     <hr>
+
     <label for="switch" class="switch_label" class="form-control text-center" onchange="ball();">
   <div class="switch">
-    <input type="checkbox" id="switch" name="recommend_flag" {{ old('recommend_flag', false) ? 'checked' : '' }} />
-    <div class="circle {{ old('recommend_flag', false) ? 'move_circle' : '' }}"></div>
+    <input type="checkbox" id="switch" name="recommend_flag" {{ isset($schedule) && $schedule->recommend_flag ? 'checked' : '' }} />
+    <div class="circle {{ isset($schedule) && $schedule->recommend_flag ? 'move_circle' : '' }}"></div>
     <div class="base"></div>
   </div>
-  <span class="title">{{ old('recommend_flag', false) ? 'おすすめ公開' : 'おすすめ非公開' }}</span>
+  <span class="title">{{ isset($schedule) && $schedule->recommend_flag ? 'おすすめ公開' : 'おすすめ非公開' }}</span>
 </label>
+
     <hr>
     <input type="submit" name="submit" value="登録"  class="btn btn-primary"/>
   </form>

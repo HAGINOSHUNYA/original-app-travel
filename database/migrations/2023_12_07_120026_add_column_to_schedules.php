@@ -33,11 +33,11 @@ return new class extends Migration
     {
         Schema::table('schedules', function (Blueprint $table) {
             //
-            $table->dropColumu('transfer_flag');
-            $table->dropColumu('train_name_1');
-            $table->dropColumu('train_name_2');
-            $table->dropColumu('train_name_3');
-            $table->dropColumu('train_name_4');
+            $table->dropColumn('transfer_flag');
+            $table->dropColumn('train_name_1');
+            $table->dropColumn('train_name_2');
+            $table->dropColumn('train_name_3');
+            $table->dropColumn('train_name_4');
         });
     }
 };
