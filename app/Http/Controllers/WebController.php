@@ -12,7 +12,7 @@ class WebController extends Controller
 {
     //
     public function index(Schedule $schedule,Plan $plan){
-        $recently_schedules = Schedule::where('recommend_flag', true)->orderBy('created_at', 'desc')->take(4)->get();
+        $recently_schedules = Schedule::where('recommend_flag', true)->orderBy('created_at', 'desc')->paginate(3);
         $recommend_schedules = Schedule::where('recommend_flag', true)->take(4)->get();
 
            // $scheduleId に基づいて Schedule を取得

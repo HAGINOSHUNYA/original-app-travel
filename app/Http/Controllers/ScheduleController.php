@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;//ファサード利用
 use App\Models\User;
 use App\Models\Plan;
 use App\Http\Requests\ScheduleRequest;
+use Illuminate\Support\Facades\Storage; 
 
 class ScheduleController extends Controller
 {
@@ -91,14 +92,38 @@ class ScheduleController extends Controller
        $schedule->title =$request-> input('title');
        $schedule->appeal =$request-> input('appeal');
 
+       dd($request);
+       // アップロードされたファイル（name="image"）が存在すれば処理を実行する
+    if ($request->hasFile('image')) {
+        // アップロードされたファイル（name="image"）をS3に保存し、戻り値（ファイルパス）を変数$image_pathに代入する
+        $image_path = Storage::disk('s3')->put('/', $request->file('image'));
+
+        // ファイルパスからファイル名のみを取得し、Scheduleインスタンスのimage_nameプロパティに代入する
+        $schedule->image_name = basename($image_path);
+    }
+
+    //$result = Storage::disk('s3')->put('/', $request->file('file'));
+        // アップロードの成功判定
+        if ($result) {
+            return 'アップロード成功';
+        }else {
+            return 'アップロード失敗';
+        }
+
+        
+
+       /*
+
         // アップロードされたファイル（name="image"）が存在すれば処理を実行する
         if ($request->hasFile('image')) {
         // アップロードされたファイル（name="image"）をstorage/app/public/productsフォルダに保存し、戻り値（ファイルパス）を変数$image_pathに代入する
-        $image_path = $request->file('image')->store('public/img');
+        $image_path = Storage::disk('s3')->put('/', $request->file('file'));
+        //$request->file('image')->store('public/img');
         // ファイルパスからファイル名のみを取得し、Productインスタンスのimage_nameプロパティに代入する
         $schedule->image_name = basename($image_path);
         }
 
+        */
         $schedule->recommend_flag = $request->has('recommend_flag') ? true : false;
 
 
@@ -169,15 +194,38 @@ class ScheduleController extends Controller
        $schedule->comment = $request->input('comment');
        $schedule->title =$request-> input('title');
        $schedule->appeal =$request-> input('appeal');
+       /*$result = Storage::disk('s3')->put('/', $request->file('image'));*/
+
+      /**/
+       dump($request);
+       if ($request->hasFile('image')) {
+        $image = $request->file('image');  // ファイルを取得
+        $image_path = Storage::disk('s3')->put('/', $image->get());  // ファイルの内容を指定して保存
+        $schedule->image_name = basename($image_path);
+        }
+
+/*
+
+
 
         // アップロードされたファイル（name="image"）が存在すれば処理を実行する
         if ($request->hasFile('image')) {
         // アップロードされたファイル（name="image"）をstorage/app/public/productsフォルダに保存し、戻り値（ファイルパス）を変数$image_pathに代入する
-        $image_path = $request->file('image')->store('public/img');
+        //$result = Storage::disk('s3')->put('/', $request->file('file'));
+        
+        $image_path = Storage::disk('s3')->put('/', $request->file('file'));
         // ファイルパスからファイル名のみを取得し、Productインスタンスのimage_nameプロパティに代入する
         $schedule->image_name = basename($image_path);
         }
-
+        
+        try {
+            $image_path = Storage::disk('s3')->put('/', $request->file('file'));
+            $schedule->image_name = basename($image_path);
+        } catch (\Exception $e) {
+            // 例外発生時のログ出力など
+            dd($e->getMessage());
+        }
+*/
         $schedule->recommend_flag = $request->has('recommend_flag') ? true : false;
         $schedule->user_id = Auth::id();
         $schedule->plan_id = $plan->id;

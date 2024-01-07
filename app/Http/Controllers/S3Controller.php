@@ -21,12 +21,14 @@ class S3Controller extends Controller
         // S3へファイルをアップロード
         $result = Storage::disk('s3')->put('/', $request->file('file'));
 
+        //dump($result);
         // アップロードの成功判定
         if ($result) {
             return 'アップロード成功';
         }else {
             return 'アップロード失敗';
         }
+        
     }
    
 }

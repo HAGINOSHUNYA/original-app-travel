@@ -4,16 +4,16 @@
         <div class="row g-0" >
             <div class="col-md-6">
                 @if($schedule->image_name)
-                    <img src="{{ asset('storage/img/' . $schedule->image_name) }}" class="img-fluid rounded-start" alt="..." style="height: 400px;width:600px; ">
+                    <img src="{{ asset('storage/img/' . $schedule->image_name) }}" class="img-fluid rounded-start" alt="..." style="height: 300px;width:1000px; ">
                 @else
-                    <img src="{{ asset('img/no_img.jpg') }}" class="img-fluid rounded-start" alt="Default Image" style="height: 200px;width:300px; ">
+                    <img src="{{ asset('img/no_img.jpg') }}" class="img-fluid rounded-start" alt="Default Image" style="height: 300px;width:1000px;">
                 @endif
             </div>
             <div class="col-md-6" style="padding: 0px;">
             <a href="{{route('public_schedule',['schedule'=>$schedule])}}" class="link-dark text-decoration-none">
                 <div class="card-body">
                     <h1 class="card-title" style="margin-bottom: 0px;">{{ $schedule->title }}</h1>
-                    <h3 class="card-text" style="margin-bottom: 0px;">開始予定時刻：{{ \Carbon\Carbon::parse($schedule->start_time)->format('H時i分') }}</h2>
+                    <h3 class="card-text" style="margin-bottom: 0px;">開始予定時刻：{{ \Carbon\Carbon::parse($schedule->start_day)->format('Y年m月d日') }}{{ \Carbon\Carbon::parse($schedule->start_time)->format('H時i分') }}</h2>
                     <p class="card-text"><small class="text-body-secondary">作成者：{{ App\Models\Schedule::find($schedule->id)->user->name }}　さん</small></p>
                     
                       
@@ -41,6 +41,7 @@
 </div>
   
 @endforeach
+{{$recently_schedules->links()}}
 
 
 
