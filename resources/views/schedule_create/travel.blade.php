@@ -31,14 +31,14 @@
     </select>
     <hr>
     <label>到着予定時刻</label>
-    <input type="date" class="form-control text-center" name="start_day">
-    <input type="time" class="form-control text-center" name="start_time">
+    <input type="date" class="form-control text-center" name="start_day" required>
+    <input type="time" class="form-control text-center" name="start_time" required>
     <hr>
     <label>到着場所</label>
     <input type="text" class="form-control text-center" name="end_place">
     <hr>
     <label>終了予定時刻</label>
-    <input type="time" class="form-control text-center" name="end_time">
+    <input type="time" class="form-control text-center" name="end_time" required>
     <hr>
     <label>値段</label>
     <input type="text" class="form-control text-center" name="cost">

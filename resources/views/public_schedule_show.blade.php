@@ -26,7 +26,7 @@
 <hr>
 <div class="row">
     <p class="public_text">場所:{{$schedule->place}}</p>
-    <p class="public_text">日にち:{{$schedule->start_day}}　{{ \Carbon\Carbon::parse($schedule->start_time)->format('H時i分') }}</p>
+    <p class="public_text">日付:{{$schedule->start_day}}　{{ \Carbon\Carbon::parse($schedule->start_time)->format('H時i分') }}</p>
     <p class="public_text">コメント:{{$schedule->comment}}</p>
     <p class="card-text"><small class="text-body-secondary">作成者：{{ App\Models\Schedule::find($schedule->id)->user->name }}　さん</small></p>
 

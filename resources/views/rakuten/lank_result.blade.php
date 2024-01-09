@@ -2,7 +2,7 @@
 
 
 @section('content') 
- <div class="container">
+ <div class="container" id="top">
       <span>
         <p><a href="{{route('rakuten.index')}}">検索</a> > ランキング検索>{{$title}}検索結果</p>
       </span> 
@@ -69,6 +69,7 @@
         </div>
      </div>        
     @endforeach
+    <a href="#top">ページ上部へ</a>
     </div> 
 
   

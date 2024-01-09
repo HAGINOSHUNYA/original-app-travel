@@ -8,7 +8,15 @@
 <div class="container text-center" style="max-width:800px">
 
 {{--@dump($plan)--}}
- 
+@if ($errors->any())
+     <div class="alert alert-danger">
+         <ul>
+             @foreach ($errors->all() as $error)
+                 <li>{{ $error }}</li>
+             @endforeach
+         </ul>
+     </div>
+ @endif
  <select name="event_category" id="event_category"  for="event_category" class="form-control" onchange="viewChange();" style="display:"> 
   <option class="text-center">--- 選択してください ---</option>
   <option class="text-center" value="移動">移動</option>

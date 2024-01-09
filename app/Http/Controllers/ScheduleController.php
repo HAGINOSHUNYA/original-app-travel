@@ -72,6 +72,14 @@ class ScheduleController extends Controller
      */
     public function store(Request $request , Schedule $schedule, Plan $plan)
     {
+
+        $request->validate([
+            'event_category'=>'required',
+            'start_time'=>'required',
+            'end_time'=>'required',
+            'start_day'=>'required',
+            'image'=>'image|max:2048',
+        ]);
      
     //dd($request);
        $schedule -> event_category = $request-> input('event_category');
@@ -154,6 +162,13 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, Schedule $schedule, Plan $plan)
     {
+        $request->validate([
+            'event_category'=>'required',
+            'start_time'=>'required',
+            'end_time'=>'required',
+            'start_day'=>'required',
+            'image'=>'image|max:2048',
+        ]);
        $schedule -> event_category = $request-> input('event_category');
        $schedule->start_time =$request-> input('start_time');
        $schedule->end_time	 =$request-> input('end_time');

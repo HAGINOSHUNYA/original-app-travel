@@ -1,7 +1,7 @@
 @extends('layouts.mypage')
 
 @section('content')
-<div class="container text-center">
+<div class="container text-center form-text" id="top">
       <span>
        <p> <a href="{{route('rakuten.index')}}">検索</a> > 施設検索 > 検索結果</p>
       </span> 
@@ -62,6 +62,7 @@
               
               @endforeach
 
+              <a href="#top">ページ上部へ</a>
               @else
               <!--エラー時の表示-->
               <h1>{{$message}}</h1>

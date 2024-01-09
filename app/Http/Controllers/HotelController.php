@@ -158,7 +158,7 @@ class HotelController extends Controller
                     }
                     $mergedClasses[] = $dclass;
                 }
-                 dump($mergedClasses);
+                 //dump($mergedClasses);
               
                 $detailArray = array_merge(...$mergedClasses);
                 
@@ -224,7 +224,7 @@ class HotelController extends Controller
                              $mcodes[] =$middleClass->middleClass[0]->middleClassCode;
                             }
                         }
-                        dump($mcodes);
+                        //dump($mcodes);
     
                      $mNames = [];//各都道府県のmiddleClassName☆
                         foreach($Places->areaClasses as $place){
@@ -425,14 +425,14 @@ class HotelController extends Controller
                         $message = "検索結果なし";
                         $posts = "";
                     }
-                    } else {
+                } else {
                     // レスポンスがない場合（リクエストが失敗した場合など）
                     $message = "検索結果なし";
                     $posts = "";
             
                     // タイムアウトやネットワークエラーなどの処理を行う
                     // ...
-                    }
+                }
             }
  
             
@@ -448,26 +448,58 @@ class HotelController extends Controller
 
 
         public function keyword_api(Request $request){//キーワード検索機能とページ　
-            /***楽天トラベルキーワード検索API開始*/
-            $keyword = $request->input('keyword');
-            $client = new Client();
-            $applicationId = "1052696491690146167";
-            $method = "GET";
+           
+            try{
+                    /***楽天トラベルキーワード検索API開始*/
+                    $keyword = $request->input('keyword');
+                    $client = new Client();
+                    $applicationId = "1052696491690146167";
+                    $method = "GET";
 
-            $url = "https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&applicationId=".$applicationId."&keyword=".$keyword;
+                    $url = "https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&applicationId=".$applicationId."&keyword=".$keyword;
  
 
-            $response = $client->request($method, $url);
+                    $response = $client->request($method, $url);
     
-            $posts = $response->getBody();
-            $posts = json_decode($posts);
-                
-
+                    $posts = $response->getBody();
+                    $posts = json_decode($posts);
+                    /***楽天トラベルキーワード検索API終了*/
+                }catch (RequestException $e) {
+                    // Guzzle が例外をスローした場合の処理
             
-
-                
-                
-            /***楽天トラベルキーワード検索API終了*/
+                    if ($e->hasResponse()) {
+                        // レスポンスがある場合
+            
+                        // HTTP ステータスコードを取得
+                        $statusCode = $e->getResponse()->getStatusCode();
+            
+                        // エラーレスポンスのボディを JSON 形式でデコード
+                        $errorBody = json_decode($e->getResponse()->getBody(), true);
+            
+                        // エラーに応じた処理を行う
+                        if ($statusCode === 404 && isset($errorBody['error']) && $errorBody['error'] === 'not_found') {
+                            // データが見つからなかった場合の処理
+                            // 例: エラーメッセージをログに記録するなど
+                            $posts = "";
+                            $keyword = $request->input('keyword');
+                        
+            
+                        } else {
+                            // その他のエラーの場合の処理
+                            // ...
+                            $posts = "";
+                            $keyword = $request->input('keyword');
+                        }
+                    } else {
+                        // レスポンスがない場合（リクエストが失敗した場合など）
+                        $posts = "";
+                        $keyword = $request->input('keyword');
+            
+                        // タイムアウトやネットワークエラーなどの処理を行う
+                        // ...
+                    }
+                }
+ 
             return view('rakuten.keyword_result', compact('posts','keyword'));
         }
 

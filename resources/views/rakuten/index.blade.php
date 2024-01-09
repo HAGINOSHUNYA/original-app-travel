@@ -7,8 +7,8 @@
 </div>
 
 <div class="container text-center">
-    <select name="search" id="search"  for="search" class="form-control text-center" onchange="searchChange();" style="display:"> 
-         <option >--- 検索方法を選択してください ---</option>
+    <select name="search" id="search"  for="search" class="form-control text-center form-text" onchange="searchChange();" style="display:"> 
+         <option class="form-text">--- 検索方法を選択してください ---</option>
          <option value="曖昧">キーワード検索</option>
          <option  value="空室">空室検索</option> 
          <option value="ランキング">ランキング検索</option>

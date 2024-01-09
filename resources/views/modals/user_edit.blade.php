@@ -3,7 +3,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="user_editLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="user_editLabel">コメント編集</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -12,7 +12,7 @@
                  <input type="hidden" name="_method" value="PUT">
                  <div class="form-group">
                      <div class="d-flex justify-content-between">
-                         <label for="name" class="text-md-left samuraimart-edit-user-info-label">ユーザーネーム</label>
+                         <label for="name" class="text-md-left">ユーザーネーム</label>
                      </div>
                      <div class="collapse show editUserName">
                          <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ Auth::user()->name }}" required autocomplete="name" autofocus placeholder="タロウ">
@@ -26,6 +26,17 @@
                  <br>
  
                  <div class="form-group">
+                     <div class="d-flex justify-content-between">
+                         <label for="comment" class="text-md-left">一言コメント</label>
+                     </div>
+                     <div >
+                         <input id="comment" type="text" class="form-control @error('comment') is-invalid @enderror" name="comment" value="{{Auth::user()->comment }}" required autocomplete="comment" autofocus placeholder="こんにちは！">
+                        
+                     </div>
+                 </div>
+
+                 
+                 <div class="form-group" style="display:none;">
                      <div class="d-flex justify-content-between">
                          <label for="email" class="text-md-left samuraimart-edit-user-info-label">メールアドレス</label>
                      </div>
@@ -41,7 +52,7 @@
                  <br>
  
  
-                 <div class="form-group">
+                 <div class="form-group" style="display:none;">
                      <div class="d-flex justify-content-between">
                          <label for="address" class="text-md-left samuraimart-edit-user-info-label">住所</label>
                      </div>
@@ -55,15 +66,6 @@
                      </div>
                  </div>
                  <br>
-                 <div class="form-group">
-                     <div class="d-flex justify-content-between">
-                         <label for="comment" class="text-md-left">一言コメント</label>
-                     </div>
-                     <div >
-                         <input id="comment" type="text" class="form-control @error('comment') is-invalid @enderror" name="comment" value="{{Auth::user()->comment }}" required autocomplete="comment" autofocus placeholder="こんにちは！">
-                        
-                     </div>
-                 </div>
                  
  
              

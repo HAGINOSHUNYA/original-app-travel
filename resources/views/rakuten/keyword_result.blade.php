@@ -5,16 +5,14 @@
 
 
   
-  <div class="container">
+  <div class="container text-center" id="top">
   
     <span>
      <p><a href="{{route('rakuten.index')}}">検索</a> > キーワード検索>検索結果</p>
     </span>
    
     <div class="row text-center">
-      <select name="search" id="search"  for="search" class="form-control"  style="display:"> 
-        <option value="曖昧">キーワード検索</option>
-      </select>
+      
       <form action="{{route('keyword')}}" class="from-control">
         @csrf
         <label>キーワード検索</label>
@@ -27,6 +25,7 @@
     <div class="container text-center">
               <h1>検索結果</h1>
              <hr>
+             @if($posts != "")
              
               @foreach($posts->hotels as $post)
               {{--@dump($post->hotel[0]->hotelBasicInfo)--}}
@@ -58,6 +57,12 @@
 
               
               @endforeach
+
+              <a href="#top">ページ上部へ</a>
+              @else
+              <!--エラー時の表示-->
+              <h1>{{$keyword}}の検索結果なし</h1>
+              @endif
 
     </div> 
     

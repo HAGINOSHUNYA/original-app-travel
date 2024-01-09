@@ -11,7 +11,7 @@
        {{ Auth::user()->name }}<br>
         {{ Auth::user()->address }}
       </div>
-      <div class="col-10">
+      <div class="col-10 text-center">
         <div id="user_comment" >
           @if(Auth::user()->comment != null)
             {{ Auth::user()->comment }}
@@ -25,8 +25,8 @@
         </div>
         
         <div class="text-end">
-          <button type="button" class="btn btn-primary text-end" data-bs-toggle="modal" data-bs-target="#user_edit"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-          更新する
+          <button type="button" value="" class="btn btn-primary text-end" data-bs-toggle="modal" data-bs-target="#user_edit"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+          <div class="mypage_p">更新する</div>
           </button>
         </div>
       </div>

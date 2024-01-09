@@ -16,11 +16,11 @@
     <hr>
     
     <label>チェックイン</label>
-    <input type="date" class="form-control text-center" name="start_day">
-    <input type="time" class="form-control" name="start_time">
+    <input type="date" class="form-control text-center" name="start_day" value="{{$day}}" required>
+    <input type="time" class="form-control" name="start_time" required>
     <hr>
     <label>チェックアウト</label>
-    <input type="time" class="form-control" name="end_time">
+    <input type="time" class="form-control" name="end_time" required>
     <hr>    
     <label>値段</label>
     <input type="text" class="form-control" name="cost">

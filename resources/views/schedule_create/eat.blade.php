@@ -33,11 +33,11 @@
     <hr>
     
     <label>予定開始時刻</label>
-    <input type="date" class="form-control text-center" name="start_day">
-    <input type="time" class="form-control text-center" name="start_time">
+    <input type="date" class="form-control text-center" name="start_day" value="{{$day}}" required>
+    <input type="time" class="form-control text-center" name="start_time" required>
     <hr>
     <label>予定終了時刻</label>
-    <input type="time" class="form-control text-center" name="end_time">
+    <input type="time" class="form-control text-center" name="end_time" required>
     <hr>
     <label>値段</label>
     <input type="text" class="form-control" name="cost">

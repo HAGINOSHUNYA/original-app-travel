@@ -9,7 +9,9 @@ body {
   font-family: 'Potta One', cursive;
 }
 
-
+button{
+  font-family: 'Potta One', cursive;
+}
 p{
   font-family: 'Potta One', cursive;
 
@@ -132,6 +134,13 @@ img{
 
 .mypage_text{
   font-size: 300%;  
+  font-family: 'Potta One', cursive;
+}
+.mypage_p{
+  font-family: 'Potta One', cursive;
+  font-size: 20px;
+}/**/
+.form-text{
   font-family: 'Potta One', cursive;
 }
 
