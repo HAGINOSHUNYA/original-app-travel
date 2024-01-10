@@ -48,7 +48,7 @@
     <hr>
   
     <label>コメント</label>
-    <input type="text" class="form-control text-center" name="comment" autofocus  placeholder="必要なもの・注意点・魅力など！" value="{{ $schedule->comment }}">
+    <input type="text" class="form-control text-center" name="comment"   placeholder="必要なもの・注意点・魅力など！" value="{{ $schedule->comment }}">
     <hr>
     <div class="card mb-3" style="max-width: 800px;">
       <div class="row g-0">

@@ -32,12 +32,7 @@
     <li>
         <a href="{{route('rakuten.index')}}">楽天ホテル簡易検索</a>
     </li>
-    <li>
-        <a href="https://travel.rakuten.co.jp/" target="_blank" rel="noopener noreferrer">楽天トラベル</a>へ
-    </li>
-    <li>
-        <a href="https://www.jalan.net/" target="_blank" rel="noopener noreferrer">じゃらん</a>へ
-    </li>
+    
    
   </ul>
   

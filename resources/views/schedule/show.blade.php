@@ -1,6 +1,10 @@
 @extends('layouts.mypage')
 @section('content')
 <div class="container text-center">
+    <span>
+        <p><a href="{{route('mypage')}}">マイページ</a>>プラン一覧 > スケジュール一覧>{{$plan->name}}プランの{{$schedule->event_category}}の編集</p>
+</span> 
+
     <h1>{{$plan->name}}{{$schedule->event_category}}の編集</h1>
 <hr>
 </div>

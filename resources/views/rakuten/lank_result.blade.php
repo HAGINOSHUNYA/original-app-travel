@@ -69,7 +69,7 @@
         </div>
      </div>        
     @endforeach
-    <a href="#top">ページ上部へ</a>
+    
     </div> 
 
   
