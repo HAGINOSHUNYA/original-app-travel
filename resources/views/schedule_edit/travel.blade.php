@@ -1,4 +1,6 @@
 <div class="row text-center" id="travel" >
+
+
   <form action="{{route('schedule_updata', ['schedule' => $schedule, 'plan' => $plan])}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('put')

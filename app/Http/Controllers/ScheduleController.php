@@ -70,17 +70,10 @@ class ScheduleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request , Schedule $schedule, Plan $plan)
+    public function store(ScheduleRequest $request , Schedule $schedule, Plan $plan)
     {
 
-        $request->validate([
-            'event_category'=>'required',
-            'start_time'=>'required',
-            'end_time'=>'required',
-            'start_day'=>'required',
-            'image'=>'image|max:2048',
-        ]);
-     
+        
     //dd($request);
        $schedule -> event_category = $request-> input('event_category');
        $schedule->start_time =$request-> input('start_time');
@@ -160,15 +153,9 @@ class ScheduleController extends Controller
      * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Schedule $schedule, Plan $plan)
+    public function update(ScheduleRequest $request, Schedule $schedule, Plan $plan)
     {
-        $request->validate([
-            'event_category'=>'required',
-            'start_time'=>'required',
-            'end_time'=>'required',
-            'start_day'=>'required',
-            'image'=>'image|max:2048',
-        ]);
+        
        $schedule -> event_category = $request-> input('event_category');
        $schedule->start_time =$request-> input('start_time');
        $schedule->end_time	 =$request-> input('end_time');
@@ -201,8 +188,11 @@ class ScheduleController extends Controller
         $schedule->plan_id = $plan->id;
        
         $schedule->save();
+        
 
     return redirect()->route('schedule', compact('schedule', 'plan'));
+    
+
     }
 
     /**
