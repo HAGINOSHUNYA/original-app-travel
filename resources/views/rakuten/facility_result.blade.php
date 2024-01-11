@@ -62,7 +62,9 @@
               
               @endforeach
 
-              <a href="#top">ページ上部へ</a>
+              <div class="back-to-top">
+                <a href="#top">ページ上部へ</a>
+              </div>
               @else
               <!--エラー時の表示-->
               <h1>{{$message}}</h1>
