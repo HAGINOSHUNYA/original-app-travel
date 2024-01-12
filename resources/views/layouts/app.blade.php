@@ -35,7 +35,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
          
-                   <a class="navbar-brand" href="{{route('public_index') }}">
+                   <a class="navbar-brand" href="{{route('public_index') }}" style="font-size:200%;">
                     {{ config('app.name', 'Laravel') }}
                    </a>
                 

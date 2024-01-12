@@ -45,9 +45,11 @@ i{
 
 label{
   font-family: 'Potta One', cursive;
+  font-size: 150%;
 }
 option{
   font-family: 'Potta One', cursive;
+  font-size: 150%;
 }
 
 .plan-index {
@@ -57,6 +59,7 @@ option{
 form {
   background-color: rgb(236, 241, 229);
   font-family: 'Potta One', cursive;
+  font-size: 150%;
 }
 .user_name{
   font-family: 'Potta One', cursive;
@@ -68,9 +71,9 @@ form {
 .public_div h1{
   position: absolute;/*絶対位置*/
   /*color: white;*/
-  font-size: 500%;
+  font-size: 1500%;
   top: 35%;
-  left: 35%;
+  left: 20%;
 }
 .public_p{
   /*border-bottom: double 6px #87CEFA;*/
@@ -94,7 +97,12 @@ form {
   color: #333;
   text-decoration: none;
 }
-
+.nav-item{
+  font-size: 200%;
+}
+.navbar-brand{
+  font-size: 200%;
+}
 
 
 .public_img{

@@ -17,11 +17,11 @@
   <h2>UserMenu</h2>
   <ul>
     <li>
-        <a href="{{route('mypage')}}" class="link-dark text-decoration-none">マイページ</a>
+        <a href="{{route('mypage')}}" class="link-dark text-decoration-none" style="font-size:200%;">マイページ</a>
     </li>
 
     <li> 
-        <a href="{{route('plan.index')}}" class="link-dark text-decoration-none">プラン一覧</a>
+        <a href="{{route('plan.index')}}" class="link-dark text-decoration-none" style="font-size:200%;">プラン一覧</a>
     </li>
 
     
@@ -30,7 +30,7 @@
   <h2>HotelSerch</h2>
   <ul>
     <li>
-        <a href="{{route('rakuten.index')}}">楽天ホテル簡易検索</a>
+        <a href="{{route('rakuten.index')}}" style="font-size:200%;">楽天ホテル簡易検索</a>
     </li>
     
    
