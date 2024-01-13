@@ -74,7 +74,7 @@ form {
 .public_div h1{
   position: absolute;/*絶対位置*/
   /*color: white;*/
-  font-size: 100%;
+  font-size: 300%;
   top: 35%;
   left: 35%;
 }
