@@ -74,7 +74,7 @@ form {
 .public_div h1{
   position: absolute;/*絶対位置*/
   /*color: white;*/
-  font-size: 300%;
+  font-size: 100%;
   top: 35%;
   left: 35%;
 }
@@ -88,6 +88,13 @@ form {
   padding-bottom: 0px;
   margin-bottom: 0px;
   line-height: 1; /* 追加: 行の高さを1に設定 */
+}
+.midasi{
+  
+    color: #6091d3;/*文字色*/
+    background: #FFF;
+    border: solid 3px #6091d3;/*線*/
+    border-radius: 10px;/*角の丸み*/
 }
 .back-to-top{
   position: fixed;

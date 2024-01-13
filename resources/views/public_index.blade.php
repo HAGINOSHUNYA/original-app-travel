@@ -7,8 +7,8 @@
     <h1>旅行計画アプリ</h1>
   </div>
 
-  <h1>使い方</h1>
-  <hr>
+  <h1 class="midasi">使い方</h1>
+
   <p class = "public_p">（１）はじめにプランを作成します</p>
   <div class="public_img">
     <img src="{{ asset('img/public_plan1.png') }}" class="public_img">
