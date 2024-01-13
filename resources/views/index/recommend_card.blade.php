@@ -1,6 +1,6 @@
 @foreach ($recently_schedules as $schedule)
 
-     <div class="card mb-3" style="max-width:1600px;">
+     <div class="card mb-3" style="max-width:1000px;">
         <div class="row g-0" >
             <div class="col-md-6">
                 @if($schedule->image_name)

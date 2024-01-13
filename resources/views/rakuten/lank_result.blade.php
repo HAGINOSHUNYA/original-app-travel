@@ -28,6 +28,7 @@
     <h1>{{$title}}検索結果</h1>
       <hr>
         @foreach($posts as $post )
+        @dump($post)
        
              <div class="card mb-3" style="max-width: 1800px;">
                 <div class="row g-0">
@@ -37,7 +38,7 @@
                   <div class="col-md-8">
                     <div class="card-body">
                       <h1 class="card-title">第{{$post->hotel->rank}}位{{$post->hotel->hotelName}}</h1>
-                      <p class="card-text">{{$post->hotel->userReview}}</p>
+                      <p class="card-text">{{$post->hotel->middleClassName}}</p>
                       <p class="card-text"><small class="text-body-secondary">リンクURL：<a href="{{ $post->hotel->planListUrl }}" target="_blank">ホテルHP</a></small></p>
                     </div>
                   </div>
